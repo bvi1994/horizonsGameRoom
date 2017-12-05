@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 // import Title from '../components/Title';
-import LoginForm from '../components/LoginForm'
+import LoginForm from '../components/LoginForm';
 
 const AppContainer = (/*{ name }*/) => {
     return (
