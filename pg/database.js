@@ -8,7 +8,7 @@ const client = new Client({
 client.connect();
 
 client.query(`CREATE TABLE users(
-  id integer PRIMARY KEY
+  id integer PRIMARY KEY,
   username varchar(40),
   password varchar(40)
 );`, (err, res) => {
