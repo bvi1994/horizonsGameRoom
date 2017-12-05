@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 const { User } = require('./sequelize/models');
 const PORT = process.env.PORT || 3000;
 const api = require('./backend/routes');
+const models = require('./models');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -52,6 +53,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(api(passport));
+
+models.sequelize.sync({ force: true })
+  .then(function() {
+      console.log('Successfully updated database tables!');
+      process.exit(0);
+  })
+  .catch(function(error) {
+      console.log('Error updating database tables', error);
+      process.exit(1);
+  });
 
 app.listen(PORT, error => {
     error
