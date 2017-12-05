@@ -53,7 +53,7 @@ app.use(passport.session());
 
 app.use(api(passport));
 
-app.listen(process.env.PORT, error => {
+app.listen(PORT, error => {
     error
     ? console.error(error)
     : console.info(`==> 🌎 Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`);
