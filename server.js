@@ -2,6 +2,17 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const app = express();
+const models = require('./sequelize/models');
+
+models.sequelize.sync({ force: true })
+  .then(function() {
+      console.log('Successfully updated database tables!');
+      process.exit(0);
+  })
+  .catch(function(error) {
+      console.log('Error updating database tables', error);
+      process.exit(1);
+  });
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -9,7 +20,6 @@ const bcrypt = require('bcrypt');
 const { User } = require('./sequelize/models');
 const PORT = process.env.PORT || 3000;
 const api = require('./backend/routes');
-const models = require('./sequelize/models');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -53,16 +63,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(api(passport));
-
-models.sequelize.sync({ force: true })
-  .then(function() {
-      console.log('Successfully updated database tables!');
-      process.exit(0);
-  })
-  .catch(function(error) {
-      console.log('Error updating database tables', error);
-      process.exit(1);
-  });
 
 app.listen(PORT, error => {
     error
