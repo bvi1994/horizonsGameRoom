@@ -50,7 +50,7 @@ module.exports = (passport) => {
 
   // SAMPLE ROUTE
     router.use('/', (req, res) => {
-        res.json({ success: true })
+        res.json({ success: true });
     });
 
 
