@@ -5,6 +5,9 @@ const bcrypt = require('bcrypt');
 let hashedPassword;
 
 module.exports = (passport) => {
+    router.post('/test', (req, res) => {
+        res.json({success: true});
+    });
     router.post('/register', (req, res) => {
         User.findAll({where: {username: req.body.username}})
         .then(users => {
