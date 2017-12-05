@@ -20,6 +20,7 @@ class LoginForm extends Component {
         });
     }
     login() {
+<<<<<<< HEAD
         axios.post('http://localhost:3000/register', {
             username: this.state.username,
             password: this.state.password,
@@ -29,6 +30,17 @@ class LoginForm extends Component {
         })
       .then(() => this.setState({redirect: true}))
       .catch((err) => {console.log('Register Post request failed', err);});
+=======
+      //   axios.post('http://localhost:3000/register', {
+      //       username: this.state.username,
+      //       password: this.state.password,
+      //       firstName: this.state.firstName
+      //   }, {
+      //       withCredentials: true
+      //   })
+      // .then(() => this.setState({redirect: true}))
+      // .catch((err) => {console.log('Register Post request failed', err);});
+>>>>>>> 75460c8a276a4f5fef0f2135724e6557b9da8e9f
     }
     render() {
         return(
@@ -46,7 +58,11 @@ class LoginForm extends Component {
                 <input type="password" onChange={e => this.onPasswordChange(e)} name="password" placeholder="Password" />
               </div>
               <div id="loginButton">
+<<<<<<< HEAD
                 <button onClick={() => this.login()}><a href="/auth/test">
+=======
+                <button onClick={() => this.login()}>
+>>>>>>> 75460c8a276a4f5fef0f2135724e6557b9da8e9f
                   Login
                 </a></button>
               </div>
