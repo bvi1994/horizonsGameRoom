@@ -52,7 +52,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(api(passport));
-console.log(PORT);
+
 app.listen(PORT, error => {
     error
     ? console.error(error)
