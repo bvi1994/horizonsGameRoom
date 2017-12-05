@@ -49,8 +49,8 @@ module.exports = (passport) => {
     });
 
   // SAMPLE ROUTE
-    router.use('/users', (req, res) => {
-        res.json({ success: true });
+    router.use('/', (req, res) => {
+        res.json({ success: true })
     });
 
 
