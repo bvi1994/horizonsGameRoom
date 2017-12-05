@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const { User } = require('./sequelize/models');
 const PORT = process.env.PORT || 3000;
 const api = require('./backend/routes');
-const models = require('./models');
+const models = require('./sequelize/models');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
