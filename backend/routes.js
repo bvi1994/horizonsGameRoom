@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../models');
+const { User } = require('../sequelize/models');
 const bcrypt = require('bcrypt');
 let hashedPassword;
 
@@ -49,7 +49,7 @@ module.exports = (passport) => {
     });
 
   // SAMPLE ROUTE
-    router.use('/users', (req, res) => {
+    router.use('/', (req, res) => {
         res.json({ success: true });
     });
 

@@ -51,7 +51,7 @@ passport.use(new LocalStrategy((username, password, done) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api', api(passport));
+app.use(api(passport));
 
 app.listen(PORT, error => {
     error
