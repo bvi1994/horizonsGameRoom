@@ -20,15 +20,15 @@ class LoginForm extends Component {
         });
     }
     login() {
-        axios.post('http://localhost:3000/register', {
-            username: this.state.username,
-            password: this.state.password,
-            firstName: this.state.firstName
-        }, {
-            withCredentials: true
-        })
-      .then(() => this.setState({redirect: true}))
-      .catch((err) => {console.log('Register Post request failed', err);});
+      //   axios.post('http://localhost:3000/register', {
+      //       username: this.state.username,
+      //       password: this.state.password,
+      //       firstName: this.state.firstName
+      //   }, {
+      //       withCredentials: true
+      //   })
+      // .then(() => this.setState({redirect: true}))
+      // .catch((err) => {console.log('Register Post request failed', err);});
     }
     render() {
         return(
