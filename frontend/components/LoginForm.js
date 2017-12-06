@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios';
+import './stylesheets/LoginForm.css';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -20,9 +21,10 @@ class LoginForm extends Component {
         });
     }
     login() {
-        axios.post(process.env.HEROKU_ADDRESS + '/register', {
+        axios.post('http://localhost:3000/register', {
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            firstName: this.state.firstName
         }, {
             withCredentials: true
         })
@@ -44,10 +46,12 @@ class LoginForm extends Component {
                 Password: <br />
                 <input type="password" onChange={e => this.onPasswordChange(e)} name="password" placeholder="Password" />
               </div>
-              <div id="loginButton">
-                <button onClick={() => this.login()}>
-                  Login
-                </button>
+              <div>
+                <a href="#">
+                  <button id="loginButton" onClick={() => this.login()}>
+                    Login
+                  </button>
+                </a>
               </div>
               <div id="githubSignUp">
                 <button>
