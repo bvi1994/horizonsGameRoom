@@ -2,19 +2,18 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const app = express();
-
-var models = require('./sequelize/models');
-
-models.sequelize.sync({ force: true })
-  .then(function() {
-      console.log('Successfully updated database tables!');
-      process.exit(0);
-  })
-  .catch(function(error) {
-      console.log('Error updating database tables', error);
-      process.exit(1);
-  });
-
+//
+// var models = require('./sequelize/models');
+//
+// models.sequelize.sync({ force: true })
+//   .then(function() {
+//       console.log('Successfully updated database tables!');
+//       process.exit(0);
+//   })
+//   .catch(function(error) {
+//       console.log('Error updating database tables', error);
+//       process.exit(1);
+//   });
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
