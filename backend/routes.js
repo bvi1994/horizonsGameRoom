@@ -9,8 +9,10 @@ module.exports = (passport) => {
         res.json({success: true});
     });
     router.post('/register', (req, res) => {
-
-      bcrypt.hash(req.body.password, 10, (err, hash) => {
+        User.findAll({where: {username: req.body.username}})
+        .then(users => {
+            if(req.body.password && !users[0]) {
+                bcrypt.hash(req.body.password, 10, (err, hash) => {
                     hashedPassword = hash;
                     User.create({
                         username: req.body.username,
@@ -21,25 +23,11 @@ module.exports = (passport) => {
                       })
                       .catch(e => res.json({error: e}));
                 });
-
-      //   User.findAll({where: {username: req.body.username}})
-      //   .then(users => {
-      //       if(req.body.password) {
-      //           bcrypt.hash(req.body.password, 10, (err, hash) => {
-      //               hashedPassword = hash;
-      //               User.create({
-      //                   username: req.body.username,
-      //                   password: hashedPassword
-      //               })
-      //                 .then(() => {
-      //                     res.json({success: true});
-      //                 });
-      //           });
-      //       } else {
-      //           res.json({success: false});
-      //       }
-      //   })
-      // .catch((err)=>console.log(err));
+            } else {
+                res.json({success: false});
+            }
+        })
+      .catch((err)=>console.log(err));
     });
 
     router.post('/login', (req, res, next) => {

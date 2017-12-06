@@ -6,7 +6,8 @@ class LoginForm extends Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect: false
         };
     }
     onUsernameChange(e) {
