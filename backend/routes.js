@@ -5,9 +5,6 @@ const bcrypt = require('bcrypt');
 let hashedPassword;
 
 module.exports = (passport) => {
-    router.post('/test', (req, res) => {
-        res.json({success: true});
-    });
     router.post('/register', (req, res) => {
         User.findAll({where: {username: req.body.username}})
         .then(users => {
@@ -38,10 +35,11 @@ module.exports = (passport) => {
             }) : res.json({success: false});
         })(req, res, next);
     });
+
     router.get('/auth/github', passport.authenticate('github'));
 
     router.get('/callback/github', passport.authenticate('github', {
-        failureRedirect: '/login' }), (req, res) => {
+        failureRedirect: '/' }), (req, res) => {
             res.json({success: true, msg: "login with github successful"});
     });
 
@@ -57,12 +55,6 @@ module.exports = (passport) => {
         req.logout();
         res.status(200).json({success: true});
     });
-
-  // SAMPLE ROUTE
-    router.use('/', (req, res) => {
-        res.json({ success: true });
-    });
-
 
     return router;
 };

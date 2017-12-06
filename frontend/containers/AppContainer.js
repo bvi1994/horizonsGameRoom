@@ -8,8 +8,8 @@ const AppContainer = () => {
     return (
         <HashRouter>
           <div>
-            <Route exact path="/" component={Dashboard} />
-            <Route path="/login" component={LoginForm} />
+            <Route exact path="/" component={LoginForm} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </div>
         </HashRouter>
     );
