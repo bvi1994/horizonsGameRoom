@@ -57,7 +57,9 @@ passport.use(new GitHubStrategy({
   (accessToken, refreshToken, profile, cb) => {
       GitHubUser.findOrCreate({where: { username: profile.id }}, (err, user) => {
           return cb(err, user);
-      });
+      })
+      .then(callback => console.log(callback))
+      .catch(e => {throw new Error(e);});
   }
 ));
 
