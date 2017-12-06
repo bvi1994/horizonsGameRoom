@@ -21,7 +21,7 @@ class LoginForm extends Component {
         });
     }
     login() {
-        axios.post(process.env.HEROKU_ADDRESS + '/register', {
+        axios.post('https://horizonsplayground.herokuapp.com' + '/register', {
             username: this.state.username,
             password: this.state.password
         }, {
