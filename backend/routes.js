@@ -11,7 +11,7 @@ module.exports = (passport) => {
     router.post('/register', (req, res) => {
         User.findAll({where: {username: req.body.username}})
         .then(users => {
-            if(req.body.password === req.body.repeatPassword && !users[0]) {
+            if(req.body.password) {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     hashedPassword = hash;
                     User.create({
