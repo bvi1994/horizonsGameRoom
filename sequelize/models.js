@@ -42,6 +42,11 @@ var User = sequelize.define('user', {
 });
 
 var GitHubUser = sequelize.define('githubuser', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     username: {
         type: Sequelize.STRING,
         allowNull: false,
