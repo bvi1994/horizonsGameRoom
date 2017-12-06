@@ -2,24 +2,12 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const app = express();
-var models = require('./models');
-
-models.sequelize.sync({ force: true })
-  .then(function() {
-      console.log('Successfully updated database tables!');
-      process.exit(0);
-  })
-  .catch(function(error) {
-      console.log('Error updating database tables', error);
-      process.exit(1);
-  });
-
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const GitHubStrategy = require('passport-github').Strategy;
 const bcrypt = require('bcrypt');
-const { User } = require('./sequelize/models');
+const { User, GitHubUser } = require('./sequelize/models');
 const PORT = process.env.PORT || 3000;
 const api = require('./backend/routes');
 
@@ -67,7 +55,7 @@ passport.use(new GitHubStrategy({
     callbackURL: "https://horizonsplayground.herokuapp.com/callback/github"
 },
   (accessToken, refreshToken, profile, cb) => {
-      User.findOrCreate({ username: profile.id }, (err, user) => {
+      GitHubUser.findOrCreate({ username: profile.id }, (err, user) => {
           return cb(err, user);
       });
   }
