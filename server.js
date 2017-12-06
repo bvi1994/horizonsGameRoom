@@ -55,7 +55,7 @@ passport.use(new GitHubStrategy({
     callbackURL: "https://horizonsplayground.herokuapp.com/callback/github"
 },
   (accessToken, refreshToken, profile, cb) => {
-      GitHubUser.findOrCreate({ username: profile.id }, (err, user) => {
+      GitHubUser.findOrCreate({where: { username: profile.id }}, (err, user) => {
           return cb(err, user);
       });
   }

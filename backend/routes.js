@@ -40,7 +40,8 @@ module.exports = (passport) => {
 
     router.get('/callback/github', passport.authenticate('github', {
         failureRedirect: '/' }), (req, res) => {
-            res.json({success: true, msg: "login with github successful"});
+            console.log(req.query.code)
+            res.redirect('/dashboard');
     });
 
     router.use((req, res, next) => {
