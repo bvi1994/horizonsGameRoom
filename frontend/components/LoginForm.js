@@ -33,9 +33,6 @@ class LoginForm extends Component {
         })
         .catch((err) => {console.log('Register Post request failed', err);});
     }
-    githubLogin() {
-        axios.post('')
-    }
     render() {
         return(
           <div>
@@ -57,9 +54,9 @@ class LoginForm extends Component {
                 </button>
               </div>
               <div id="githubSignUp">
-                <button onClick={() => this.githubLogin()}>
+                <a href="/auth/github">
                   Sign up with Github
-                </button>
+                </a>
               </div>
             </div>
           </div>

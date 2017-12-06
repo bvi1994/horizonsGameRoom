@@ -1,15 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-// import Title from '../components/Title';
+import { HashRouter, Route } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
-
-const AppContainer = (/*{ name }*/) => {
+import Dashboard from '../components/Dashboard';
+const AppContainer = () => {
     return (
-        <div>
-            {/* <Title name={name} /> */}
-            <LoginForm />
-        </div>
+        <HashRouter>
+          <div>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/login" component={LoginForm} />
+          </div>
+        </HashRouter>
     );
 };
 
