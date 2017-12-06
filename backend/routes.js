@@ -18,7 +18,8 @@ module.exports = (passport) => {
                     })
                       .then(() => {
                           res.json({success: true});
-                      });
+                      })
+                      .catch(e => res.json({error: e}));
                 });
 
       //   User.findAll({where: {username: req.body.username}})
