@@ -27,8 +27,11 @@ class LoginForm extends Component {
         }, {
             withCredentials: true
         })
-      .then(() => this.setState({redirect: true}))
-      .catch((err) => {console.log('Register Post request failed', err);});
+        .then(() => {
+            this.setState({redirect: true});
+            console.log("post request went through.");
+        })
+        .catch((err) => {console.log('Register Post request failed', err);});
     }
     render() {
         return(
