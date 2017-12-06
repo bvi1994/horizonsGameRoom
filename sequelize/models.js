@@ -41,7 +41,16 @@ var User = sequelize.define('user', {
   // ADD MORE ATTRIBUTES HERE
 });
 
+var GitHubUser = sequelize.define('githubuser', {
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+    }
+});
+
 module.exports = {
     sequelize,
-    User
+    User,
+    GitHubUser
 };

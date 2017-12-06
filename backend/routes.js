@@ -39,6 +39,10 @@ module.exports = (passport) => {
         })(req, res, next);
     });
 
+    router.get('/callback/github', (req, res, next) => {
+        res.json(req);
+    });
+
     router.use((req, res, next) => {
         if (!req.user) {
             res.status(401).json({success: 'failed'});
