@@ -25,36 +25,32 @@ sequelize
 var User = sequelize.define('user', {
     id: {
         type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+        primaryKey: true
     },
     username: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
     },
-    password: {
+    displayName: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    profileUrl: {
         type: Sequelize.STRING,
         allowNull: false
     },
-  // ADD MORE ATTRIBUTES HERE
-});
-
-var GitHubUser = sequelize.define('githubuser', {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    username: {
+    photo: {
         type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
     }
 });
 
 module.exports = {
     sequelize,
-    User,
-    GitHubUser
+    User
 };

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import axios from 'axios';
 import '../assets/stylesheets/Dashboard.css';
 import Profile from './Profile.js';
@@ -28,6 +29,7 @@ class Dashboard extends Component {
         });
     }
     render() {
+<<<<<<< HEAD
         return(
           // <button onClick={() => this.logout()}>Log out</button>
           <div style={{height: "100%"}}>
@@ -37,6 +39,10 @@ class Dashboard extends Component {
                 <Chatbox />
             </div>
           </div>
+=======
+        return (this.state.redirect) ? <Redirect to="/" /> : (
+          <button onClick={() => this.logout()}>Log out</button>
+>>>>>>> 27a70fa66eaa741c588dda72ef1ab931dc1766fd
         );
     }
 }
