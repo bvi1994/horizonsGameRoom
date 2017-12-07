@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import axios from 'axios';
-import './stylesheets/LoginForm.css';
+import '../assets/stylesheets/LoginForm.css';
 
 class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect: false
         };
     }
     onUsernameChange(e) {
@@ -22,43 +23,49 @@ class LoginForm extends Component {
     }
     login() {
         axios.post('http://localhost:3000/register', {
+        // axios.post('https://horizonsplayground.herokuapp.com' + '/login', {
             username: this.state.username,
             password: this.state.password,
             firstName: this.state.firstName
         }, {
             withCredentials: true
         })
-      .then(() => this.setState({redirect: true}))
-      .catch((err) => {console.log('Register Post request failed', err);});
+        .then(() => {
+            this.setState({redirect: true});
+            console.log("post request went through.");
+        })
+        .catch((err) => {console.log('Register Post request failed', err);});
     }
     render() {
         return(
           <div>
             <div id="loginForm">
-              <div id="loginImage">
-                Welcome to the Horizons Arcade!
+                <div id="loginImage">
+                  Welcome to the Horizons Arcade!
+                </div>
+                <div id="userNameField">
+                  Username: <br />
+                  <input type="text" onChange={e => this.onUsernameChange(e)} name="firstName" placeholder="Username"/>
+                </div>
+                <div id="passwordField">
+                  Password: <br />
+                  <input type="password" onChange={e => this.onPasswordChange(e)} name="password" placeholder="Password" />
+                </div>
+                <div>
+                  <a href="#">
+                    <button className="button" id="loginButton" onClick={() => this.login()}>
+                      Login
+                    </button>
+                  </a>
+                </div>
+                <div id="githubSignUp">
+                  <a href="/register">
+                    <button className="button">
+                      Sign up with Github
+                    </button>
+                  </a>
+                </div>
               </div>
-              <div id="userNameField">
-                Username: <br />
-                <input type="text" onChange={e => this.onUsernameChange(e)} name="firstName" placeholder="Username"/>
-              </div>
-              <div id="passwordField">
-                Password: <br />
-                <input type="password" onChange={e => this.onPasswordChange(e)} name="password" placeholder="Password" />
-              </div>
-              <div>
-                <a href="#">
-                  <button id="loginButton" onClick={() => this.login()}>
-                    Login
-                  </button>
-                </a>
-              </div>
-              <div id="githubSignUp">
-                <button>
-                  Sign up with Github
-                </button>
-              </div>
-            </div>
           </div>
         );
     }
