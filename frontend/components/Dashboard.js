@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import '../assets/stylesheets/Dashboard.css';
+import Profile from './Profile.js';
+import Chatbox from './ChatBox.js';
+import CurrentGameSession from './CurrentGameSession.js';
 const BASE_URL = 'http://8096a45d.ngrok.io';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
@@ -26,7 +29,14 @@ class Dashboard extends Component {
     }
     render() {
         return(
-          <button onClick={() => this.logout()}>Log out</button>
+          // <button onClick={() => this.logout()}>Log out</button>
+          <div style={{height: "100%"}}>
+            <div id="mainDashboard" style={{minHeight: "100%"}}>
+                <Profile />
+                <CurrentGameSession />
+                <Chatbox />
+            </div>
+          </div>
         );
     }
 }

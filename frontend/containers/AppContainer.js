@@ -7,8 +7,9 @@ import Dashboard from '../components/Dashboard';
 const AppContainer = () => {
     return (
         <HashRouter>
-          <div>
-            <Route exact path="/" component={LoginForm} />
+          <div style={{height: "100%"}}>
+            {/* <Route exact path="/" component={LoginForm} /> */}
+            <Route exact path="/" component={Dashboard} />
             <Route exact path="/dashboard" component={Dashboard} />
           </div>
         </HashRouter>
