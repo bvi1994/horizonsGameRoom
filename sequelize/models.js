@@ -2,12 +2,11 @@
 
 var Sequelize = require('sequelize');
 var sequelize = null;
-
 if(process.env.HEROKU_POSTGRESQL_AMBER_URL) {
     sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_AMBER_URL, {
-        dialect:  'postgres',
+        dialect: 'postgres',
         protocol: 'postgres',
-        logging:  true
+        logging: true
     });
 } else {
     sequelize = new Sequelize(process.env.DATABASE_NAME, null, null, {
@@ -41,7 +40,21 @@ var User = sequelize.define('user', {
   // ADD MORE ATTRIBUTES HERE
 });
 
+var GitHubUser = sequelize.define('githubuser', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+    }
+});
+
 module.exports = {
     sequelize,
-    User
+    User,
+    GitHubUser
 };

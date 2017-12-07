@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const router = express.Router();
 const { User } = require('../sequelize/models');
@@ -8,9 +9,6 @@ const passport = require('passport');
 let hashedPassword;
 
 module.exports = (passport) => {
-    router.post('/test', (req, res) => {
-        res.json({success: true});
-    });
     router.post('/register', (req, res) => {
         User.findAll({where: {username: req.body.username}})
         .then(users => {
@@ -42,24 +40,34 @@ module.exports = (passport) => {
         })(req, res, next);
     });
 
+    router.get('/auth/github', passport.authenticate('github'));
+
+    router.get('/callback/github', passport.authenticate('github', {
+        failureRedirect: '/' }), (req, res) => {
+            res.redirect('/');
+    });
+
     router.use((req, res, next) => {
+        console.log(req.user);
         if (!req.user) {
             res.status(401).json({success: 'failed'});
         } else {
             next();
         }
     });
+    router.get('/loggedIn', (req, res) => {
+        if(!req.user) {
+            res.status(402).json({success: false});
+        } else {
+            res.status(200).json({success: true});
+        }
+    });
 
     router.get('/logout', (req, res) => {
+        console.log(req.user);
         req.logout();
-        res.status(200).json({success: true});
+        res.redirect('/');
     });
-
-  // SAMPLE ROUTE
-    router.use('/', (req, res) => {
-        res.json({ success: true });
-    });
-
 
     return router;
 };
