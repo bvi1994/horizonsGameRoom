@@ -2,6 +2,9 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const app = express();
+const BASE_URL = 'http://8096a45d.ngrok.io';
+//  'http://localhost:3000';
+// 'https://horizonsplayground.herokuapp.com'
 //
 // var models = require('./sequelize/models');
 //
@@ -23,9 +26,17 @@ const { User, GitHubUser } = require('./sequelize/models');
 const PORT = process.env.PORT || 3000;
 const api = require('./backend/routes');
 
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.get('/', (request, response) => {
     response.sendFile(__dirname + '/public/index.html'); // For React/Redux
 });
@@ -34,14 +45,20 @@ app.use(session({
     secret: process.env.SECRET,
 }));
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
+
+passport.serializeUser((user, done) => {
+    done(null, user[0].dataValues.id);
 });
 
 passport.deserializeUser((id, done) => {
-    User.findOne({where: {id: id}})
-    .then(user => done(null, user.dataValues))
-    .catch((err) => {throw new Error(err);});
+  console.log("deserializeUser id", id);
+    GitHubUser.findOne({where: {id: id}})
+    .then(user => {
+      console.log("deserializeUser user", user);
+      done(null, user.dataValues)})
+    .catch((err) => {console.log("deserializeUser err", err);
+        done(err);
+    });
 });
 
 passport.use(new LocalStrategy((username, password, done) => {
@@ -64,14 +81,18 @@ passport.use(new LocalStrategy((username, password, done) => {
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "https://horizonsplayground.herokuapp.com/callback/github"
+    callbackURL: BASE_URL + "/callback/github"
 },
   (accessToken, refreshToken, profile, cb) => {
+      console.log({profile});
       GitHubUser.findOrCreate({where: { username: profile.id }})
       .then((user) => {
           return cb(null, user);
       })
-      .catch(e => {throw new Error(e);});
+      .catch(e => {
+          console.log(e);
+          return cb(e);
+      });
   }
 ));
 

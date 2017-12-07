@@ -2,12 +2,11 @@
 
 var Sequelize = require('sequelize');
 var sequelize = null;
-
 if(process.env.HEROKU_POSTGRESQL_AMBER_URL) {
     sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_AMBER_URL, {
-        dialect:  'postgres',
+        dialect: 'postgres',
         protocol: 'postgres',
-        logging:  true
+        logging: true
     });
 } else {
     sequelize = new Sequelize(process.env.DATABASE_NAME, 'postgres', process.env.DATABASE_PASSWORD, {
