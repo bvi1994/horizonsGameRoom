@@ -19,10 +19,8 @@ const BASE_URL = 'http://8096a45d.ngrok.io';
 //   });
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
 const GitHubStrategy = require('passport-github').Strategy;
-const bcrypt = require('bcrypt');
-const { User, GitHubUser } = require('./sequelize/models');
+const { User } = require('./sequelize/models');
 const PORT = process.env.PORT || 3000;
 const api = require('./backend/routes');
 
@@ -45,38 +43,20 @@ app.use(session({
     secret: process.env.SECRET,
 }));
 
-
 passport.serializeUser((user, done) => {
     done(null, user[0].dataValues.id);
 });
 
 passport.deserializeUser((id, done) => {
-  console.log("deserializeUser id", id);
-    GitHubUser.findOne({where: {id: id}})
+    User.findOne({where: {id: id}})
     .then(user => {
-      console.log("deserializeUser user", user);
-      done(null, user.dataValues)})
-    .catch((err) => {console.log("deserializeUser err", err);
+        done(null, user.dataValues);
+    })
+    .catch((err) => {
+        console.log("deserializeUser err", err);
         done(err);
     });
 });
-
-passport.use(new LocalStrategy((username, password, done) => {
-    User.findOne({where: {username: username}})
-      .then( user => {
-          if(user) {
-              bcrypt.compare(password, user.dataValues.password, (err, res) => {
-                  if (res) {
-                      return done(null, user.dataValues);
-                  }
-                  return done(null, false);
-              });
-          } else {
-              return done(null, false);
-          }
-      })
-      .catch((err) => {return done(err);});
-}));
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
@@ -84,8 +64,14 @@ passport.use(new GitHubStrategy({
     callbackURL: BASE_URL + "/callback/github"
 },
   (accessToken, refreshToken, profile, cb) => {
-      console.log({profile});
-      GitHubUser.findOrCreate({where: { username: profile.id }})
+      User.findOrCreate({where: {
+          id: profile.id,
+          username: profile.username,
+          displayName: profile.displayName,
+          email: profile.emails[0].value,
+          profileUrl: profile.profileUrl,
+          photo: profile.photos[0].value
+      }})
       .then((user) => {
           return cb(null, user);
       })
