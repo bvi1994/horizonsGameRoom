@@ -19,7 +19,7 @@ class LoginForm extends Component {
         axios.get(BASE_URL + '/loggedIn')
         .then(result => {
             if(result.status === 200) {
-                console.log('successfully authorized.', result);
+                console.log('successfully authorized.');
                 this.setState({
                     redirect: true
                 });
