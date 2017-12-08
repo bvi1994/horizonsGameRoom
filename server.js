@@ -64,19 +64,22 @@ passport.use(new GitHubStrategy({
     callbackURL: BASE_URL + "/callback/github"
 },
   (accessToken, refreshToken, profile, cb) => {
-      User.findOrCreate({where: {
+      const email = (profile.emails) ? profile.emails[0].value : null;
+      const displayName = (profile.displayName) ? profile.displayName : null;
+      const photo = (profile.photos) ? profile.photos[0].value : "photo not available";
+      const obj = {
           id: profile.id,
           username: profile.username,
-          displayName: profile.displayName,
-          email: profile.emails[0].value,
+          displayName: displayName,
+          email: email,
           profileUrl: profile.profileUrl,
-          photo: profile.photos[0].value
-      }})
+          photo: photo
+      };
+      User.findOrCreate({where: obj})
       .then((user) => {
           return cb(null, user);
       })
       .catch(e => {
-          console.log(e);
           return cb(e);
       });
   }
