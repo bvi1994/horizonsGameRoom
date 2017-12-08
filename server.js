@@ -87,7 +87,7 @@ passport.use(new GitHubStrategy({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(api(passport));
 app.listen(PORT, error => {
     error
     ? console.error(error)
