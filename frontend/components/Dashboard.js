@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
+import Profile from './Profile';
 import axios from 'axios';
 const BASE_URL = 'http://8096a45d.ngrok.io';
 //  'http://localhost:3000';
@@ -14,20 +15,11 @@ class Dashboard extends Component {
     componentDidMount() {
 
     }
-    logout() {
-        axios.get(BASE_URL + '/logout')
-        .then(() => {
-            this.setState({
-                redirect: true
-            });
-        })
-        .catch(e => {
-            console.log('Logout Error', e);
-        });
-    }
     render() {
         return (this.state.redirect) ? <Redirect to="/" /> : (
-          <button onClick={() => this.logout()}>Log out</button>
+          <div>
+              <Profile />
+          </div>
         );
     }
 }

@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const { User } = require('../sequelize/models');
 const router = express.Router();
 
 module.exports = (passport) => {
@@ -12,7 +13,6 @@ module.exports = (passport) => {
     });
 
     router.use((req, res, next) => {
-        console.log(req.user);
         if (!req.user) {
             res.status(401).json({success: 'failed'});
         } else {
@@ -27,8 +27,11 @@ module.exports = (passport) => {
         }
     });
 
+    router.get('/profile', (req, res) => {
+        res.json(req.user);
+    })
+
     router.get('/logout', (req, res) => {
-        console.log(req.user);
         req.logout();
         res.redirect('/');
     });
