@@ -1,75 +1,46 @@
 import React, {Component} from "react";
+import { Redirect } from 'react-router';
 import axios from 'axios';
+import '../assets/stylesheets/LoginForm.css';
 
+const BASE_URL = 'http://8096a45d.ngrok.io';
+//  'http://localhost:3000';
+// 'https://horizonsplayground.herokuapp.com'
 class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect: false
         };
     }
-    onUsernameChange(e) {
-        this.setState({
-            username: e.target.value
-        });
-    }
-    onPasswordChange(e) {
-        this.setState({
-            password: e.target.value
-        });
-    }
-    login() {
-<<<<<<< HEAD
-        axios.post('http://localhost:3000/register', {
-            username: this.state.username,
-            password: this.state.password,
-            firstName: this.state.firstName
-        }, {
-            withCredentials: true
+    componentWillMount() {
+        axios.get(BASE_URL + '/loggedIn')
+        .then(result => {
+            if(result.status === 200) {
+                console.log('successfully authorized.', result);
+                this.setState({
+                    redirect: true
+                });
+            } else {
+                console.log("unsuccessful auth");
+            }
         })
-      .then(() => this.setState({redirect: true}))
-      .catch((err) => {console.log('Register Post request failed', err);});
-=======
-      //   axios.post('http://localhost:3000/register', {
-      //       username: this.state.username,
-      //       password: this.state.password,
-      //       firstName: this.state.firstName
-      //   }, {
-      //       withCredentials: true
-      //   })
-      // .then(() => this.setState({redirect: true}))
-      // .catch((err) => {console.log('Register Post request failed', err);});
->>>>>>> 75460c8a276a4f5fef0f2135724e6557b9da8e9f
+        .catch(e => {
+            console.log('error auth', e);
+        });
     }
+
     render() {
-        return(
+        return (this.state.redirect) ? <Redirect to="/dashboard" /> : (
           <div>
             <div id="loginForm">
               <div id="loginImage">
                 Welcome to the Horizons Arcade!
               </div>
-              <div id="userNameField">
-                Username: <br />
-                <input type="text" onChange={e => this.onUsernameChange(e)} name="firstName" placeholder="Username"/>
-              </div>
-              <div id="passwordField">
-                Password: <br />
-                <input type="password" onChange={e => this.onPasswordChange(e)} name="password" placeholder="Password" />
-              </div>
-              <div id="loginButton">
-<<<<<<< HEAD
-                <button onClick={() => this.login()}><a href="/auth/test">
-=======
-                <button onClick={() => this.login()}>
->>>>>>> 75460c8a276a4f5fef0f2135724e6557b9da8e9f
-                  Login
-                </a></button>
-              </div>
               <div id="githubSignUp">
-                <button>
-                  Sign up with Github
-                </button>
+                <a href="/auth/github">Login with Github</a>
               </div>
             </div>
           </div>

@@ -2,15 +2,14 @@
 
 var Sequelize = require('sequelize');
 var sequelize = null;
-
 if(process.env.HEROKU_POSTGRESQL_AMBER_URL) {
     sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_AMBER_URL, {
-        dialect:  'postgres',
+        dialect: 'postgres',
         protocol: 'postgres',
-        logging:  true
+        logging: true
     });
 } else {
-    sequelize = new Sequelize(process.env.DATABASE_NAME, 'postgres', process.env.DATABASE_PASSWORD, {
+    sequelize = new Sequelize(process.env.DATABASE_NAME, null, null, {
         dialect: 'postgres'
     });
 }
@@ -26,19 +25,29 @@ sequelize
 var User = sequelize.define('user', {
     id: {
         type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+        primaryKey: true
     },
     username: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
     },
-    password: {
+    displayName: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    profileUrl: {
         type: Sequelize.STRING,
         allowNull: false
     },
-  // ADD MORE ATTRIBUTES HERE
+    photo: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 });
 
 module.exports = {

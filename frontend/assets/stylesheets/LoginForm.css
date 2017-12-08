@@ -1,0 +1,17 @@
+.button{
+    cursor: pointer;
+    width: 300px;
+    height: 45px;
+    font-size: 20px;
+}
+
+#loginForm{
+    /*display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
