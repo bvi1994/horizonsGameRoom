@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import CreateGame from './CreateGame';
 import axios from 'axios';
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
@@ -8,7 +9,8 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            user: {},
+            redirect: false
         };
     }
     componentWillReceiveProps(props) {
@@ -28,7 +30,7 @@ class Profile extends Component {
         });
     }
     render() {
-        return(
+        return (this.state.redirect) ? <Redirect to="/" /> : (
             <div>
                 <img src={this.state.user.photo} alt={this.state.user.username + "'s profile"} height="200" width="200"/>
                 <p>{this.state.user.username}</p>
