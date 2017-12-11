@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CreateGame from './CreateGame';
 import axios from 'axios';
-const BASE_URL = 'http://8096a45d.ngrok.io';
+const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
 class Profile extends Component {
@@ -11,15 +11,9 @@ class Profile extends Component {
             user: {}
         };
     }
-    componentWillMount() {
-        axios.get(BASE_URL + '/profile')
-        .then(userInfo => {
-            this.setState({
-                user: userInfo.data
-            });
-        })
-        .catch(e => {
-            console.log("componentWillMount Error", e);
+    componentWillReceiveProps(props) {
+        this.setState({
+            user: props.user
         });
     }
     logout() {

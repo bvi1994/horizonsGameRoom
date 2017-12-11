@@ -9,7 +9,7 @@ if(process.env.HEROKU_POSTGRESQL_AMBER_URL) {
         logging: true
     });
 } else {
-    sequelize = new Sequelize(process.env.DATABASE_NAME, null, null, {
+    sequelize = new Sequelize(process.env.DATABASE_NAME, 'postgres', process.env.DATABASE_PASSWORD, {
         dialect: 'postgres'
     });
 }

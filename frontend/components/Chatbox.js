@@ -2,33 +2,33 @@ import React, { Component } from "react";
 import '../assets/stylesheets/Chatbox.css';
 import io from 'socket.io-client';
 import ChatWindow from './ChatWindow.js';
-
-// const socket = io('http://localhost:3000');
+const BASE_URL = 'https://horizonsplayground.herokuapp.com';
+//  'http://localhost:3000';
+// 'https://horizonsplayground.herokuapp.com'
+const socket = io(BASE_URL);
 
 class Chatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            socket: io('http://localhost:3000'),
-            room: "Main Chat Room",
+            socket: socket,
+            roomName: "Main Chat Room",
             username: ""
         };
     }
-
-    componentDidMount() {
+    componentWillMount() {
         // console.log("Did mount has happened");
         this.state.socket.on('connect', () => {
-            console.log('Connected to main chat!');
-            // const username =
-            const testUsername = "Pikachu";
-            console.log("USername has been changed");
-            // this.setState({username: username});
-            this.setState({username: testUsername});
             this.state.socket.emit('username', this.state.username);
             this.state.socket.emit('room', this.state.roomName);
         });
         this.state.socket.on('errorMessage', message => {
             console.log("Unable to connect. Error: ", message);
+        });
+    }
+    componentWillReceiveProps(props) {
+        this.setState({
+            username: props.username
         });
     }
     join(room) {

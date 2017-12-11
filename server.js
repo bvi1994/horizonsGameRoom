@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const app = express();
-const BASE_URL = 'http://8096a45d.ngrok.io';
+const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 const server2 = "./server2.js";
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
