@@ -50,7 +50,7 @@ class CreateGame extends Component {
                   contentLabel="Modal"
                 >
                   <h1>Choose a game</h1>
-                  <button onClick={this.slapjack}>SlapJack</button>
+                  <button onClick={() => this.slapjack()}>SlapJack</button>
                   <button onClick={this.modalClose}>close</button>
                 </Modal>
             </div>
