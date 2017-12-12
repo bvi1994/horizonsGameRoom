@@ -33,8 +33,8 @@ module.exports = (passport) => {
     router.get('/create/:game', (req, res) => {
         if(req.params.game === 'slapjack') {
             console.log(__dirname);
-            
-            res.sendFile(__dirname + '../public/slapjack.html');
+
+            res.sendFile(__dirname + '/../public/slapjack.html');
         }
     });
 
