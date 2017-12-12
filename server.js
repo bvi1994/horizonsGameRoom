@@ -92,8 +92,8 @@ passport.use(new GitHubStrategy({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(game);
 app.use(api(passport));
+app.use(game);
 
 var server = app.listen(PORT, error => {
     error
