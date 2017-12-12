@@ -3,11 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter, Route } from 'react-router-dom';
 import Ready from '../components/Ready';
+import Slapjack from '../components/Slapjack';
 const SlapAppContainer = () => {
     return (
         <HashRouter>
           <div style={{height: "100%"}}>
-            {/* <Route exact path="/" component={SlapJack} /> */}
+            <Route exact path="/game/slapjack" component={Slapjack} />
             <Route exact path="/ready" component={Ready} />
           </div>
         </HashRouter>

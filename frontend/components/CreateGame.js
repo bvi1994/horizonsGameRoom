@@ -33,7 +33,7 @@ class CreateGame extends Component {
         axios.get(BASE_URL + '/create/slapjack')
         .then(() => {
             this.setState({
-                game: "/slapjack"
+                game: "/game/slapjack"
             });
         })
         .catch(e => console.log("create Game fail", e));
