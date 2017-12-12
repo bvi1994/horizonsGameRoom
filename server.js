@@ -36,8 +36,11 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (request, response) => {
-    // response.sendFile(__dirname + '/public/slapjack.html');
     response.sendFile(__dirname + '/public/index.html'); // For React/Redux
+});
+
+app.get('/game/slapjack', (req, res) => {
+    res.sendFile(__dirname + '/public/slapjack.html');
 });
 
 app.use(session({
