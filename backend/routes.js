@@ -32,7 +32,7 @@ module.exports = (passport) => {
 
     router.get('/create/:game', (req, res) => {
         if(req.params.game === 'slapjack') {
-            res.json(req.user);
+            res.sendFile(__dirname + '../public/index.html');
         }
     });
 

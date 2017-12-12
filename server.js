@@ -21,7 +21,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
 const { User } = require('./sequelize/models');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const api = require('./backend/routes');
 
 
@@ -36,6 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (request, response) => {
+    // response.sendFile(__dirname + '/public/slapjack.html');
     response.sendFile(__dirname + '/public/index.html'); // For React/Redux
 });
 

@@ -2,10 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: [
-        'index': './frontend/index',
-        'slapjack':'./frontend/slapjack'
-    ],
+    entry: {
+        index: './frontend/index',
+        slapjack: './frontend/slapjack'
+    },
     module: {
         rules: [
             { test: /\.js?$/, loader: 'babel-loader', exclude: /node_modules/ },
