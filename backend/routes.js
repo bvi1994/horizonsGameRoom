@@ -30,12 +30,6 @@ module.exports = (passport) => {
         res.json(req.user);
     });
 
-    router.get('/create/:game', (req, res) => {
-        if(req.params.game === 'slapjack') {
-            res.redirect('/game/slapjack');
-        }
-    });
-
     router.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/');
