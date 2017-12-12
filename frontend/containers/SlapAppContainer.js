@@ -8,7 +8,7 @@ const SlapAppContainer = () => {
     return (
         <HashRouter>
           <div style={{height: "100%"}}>
-            <Route exact path="/game/slapjack" component={Slapjack} />
+            <Route exact path="/" component={Slapjack} />
             <Route exact path="/ready" component={Ready} />
           </div>
         </HashRouter>

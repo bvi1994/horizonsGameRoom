@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router";
 import Modal from "react-modal";
 import axios from 'axios';
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
@@ -11,14 +10,10 @@ class CreateGame extends Component {
         this.state = {
             modalOpen: false,
             overlayClickClose: true,
-            game: "",
             redirect: false
         };
         this.openModal = this.openModal.bind(this);
         this.modalClose = this.modalClose.bind(this);
-    }
-    componentDidMount() {
-
     }
     openModal() {
         this.setState({
@@ -30,22 +25,8 @@ class CreateGame extends Component {
             modalOpen: false
         });
     }
-    slapjack() {
-        axios.get(BASE_URL + '/create/slapjack')
-        .then(() => {
-            this.setState({
-                game: "/game/slapjack"
-            });
-        })
-        .then(() => {
-            this.setState({
-                redirect: true
-            });
-        })
-        .catch(e => console.log("create Game fail", e));
-    }
     render() {
-        return (this.state.redirect) ? <Redirect to={this.state.game} /> : (
+        return (
             <div>
                 <button id="createGameButton" onClick={() => this.openModal()}>Create Game Room</button>
                 <Modal
@@ -56,8 +37,7 @@ class CreateGame extends Component {
                   contentLabel="Modal"
                 >
                   <h1>Choose a game</h1>
-                  {/* <button onClick={() => this.slapjack()}>SlapJack</button> */}
-                  <a href={BASE_URL + "/create/slapjack"}>slapjack</a>
+                  <a href={BASE_URL + "/game/slapjack"}>slapjack</a>
                   <button onClick={this.modalClose}>close</button>
                 </Modal>
             </div>

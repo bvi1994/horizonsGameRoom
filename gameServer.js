@@ -11,7 +11,7 @@ router.use((req, res, next) => {
     }
 });
 
-router.get('/create/:game', (req, res) => {
+router.get('/game/:game', (req, res) => {
     console.log("create game route reached");
     if(req.params.game === 'slapjack') {
         res.sendFile(__dirname + '/public/slapjack.html');
