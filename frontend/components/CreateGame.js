@@ -11,7 +11,8 @@ class CreateGame extends Component {
         this.state = {
             modalOpen: false,
             overlayClickClose: true,
-            game: ""
+            game: "",
+            redirect: false
         };
         this.openModal = this.openModal.bind(this);
         this.modalClose = this.modalClose.bind(this);
@@ -34,6 +35,11 @@ class CreateGame extends Component {
         .then(() => {
             this.setState({
                 game: "/game/slapjack"
+            });
+        })
+        .then(() => {
+            this.setState({
+                redirect: true
             });
         })
         .catch(e => console.log("create Game fail", e));
