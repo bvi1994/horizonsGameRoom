@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import { configureStore, history } from './store/configureStore';
 import SlapJack from './containers/Slapjack';
 
+import './assets/stylesheets/base.scss';
+
 const store = configureStore();
 
 render(

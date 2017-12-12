@@ -23,7 +23,7 @@ const GitHubStrategy = require('passport-github').Strategy;
 const { User } = require('./sequelize/models');
 const PORT = process.env.PORT || 3001;
 const api = require('./backend/routes');
-
+const game = require('./gameServer');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -39,9 +39,9 @@ app.get('/', (request, response) => {
     response.sendFile(__dirname + '/public/index.html'); // For React/Redux
 });
 
-app.get('/game/slapjack', (req, res) => {
-    res.sendFile(__dirname + '/public/slapjack.html');
-});
+// app.get('/game/slapjack', (req, res) => {
+//     res.sendFile(__dirname + '/public/slapjack.html');
+// });
 
 app.use(session({
     secret: process.env.SECRET,
@@ -93,7 +93,7 @@ passport.use(new GitHubStrategy({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(api(passport));
-
+app.use(game);
 
 var server = app.listen(PORT, error => {
     error
