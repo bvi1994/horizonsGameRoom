@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import Modal from "react-modal";
 import axios from 'axios';
-const BASE_URL = 'http://8096a45d.ngrok.io';
+const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
 class CreateGame extends Component {
@@ -9,7 +10,8 @@ class CreateGame extends Component {
         super(props);
         this.state = {
             modalOpen: false,
-            overlayClickClose: true
+            overlayClickClose: true,
+            game: ""
         };
         this.openModal = this.openModal.bind(this);
         this.modalClose = this.modalClose.bind(this);
@@ -27,8 +29,17 @@ class CreateGame extends Component {
             modalOpen: false
         });
     }
+    slapjack() {
+        axios.get(BASE_URL + '/create/slapjack')
+        .then(() => {
+            this.setState({
+                game: "/slapjack"
+            });
+        })
+        .catch(e => console.log("create Game fail", e));
+    }
     render() {
-        return (
+        return (this.state.redirect) ? <Redirect to={this.state.game} /> : (
             <div>
                 <button id="createGameButton" onClick={() => this.openModal()}>Create Game Room</button>
                 <Modal
@@ -39,7 +50,7 @@ class CreateGame extends Component {
                   contentLabel="Modal"
                 >
                   <h1>Choose a game</h1>
-
+                  <button onClick={this.slapjack}>SlapJack</button>
                   <button onClick={this.modalClose}>close</button>
                 </Modal>
             </div>

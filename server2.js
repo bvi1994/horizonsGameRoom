@@ -27,8 +27,6 @@ module.exports = function(app) {
           content: `${socket.username} has joined`
         });
       });
-
-      console.log("Socket.room ----------------", room);
     });
 
     socket.on('message', message => {

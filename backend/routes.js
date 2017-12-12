@@ -28,7 +28,13 @@ module.exports = (passport) => {
 
     router.get('/profile', (req, res) => {
         res.json(req.user);
-    })
+    });
+
+    router.get('/create/:game', (req, res) => {
+        if(req.params.game === 'slapjack') {
+            res.json(req.user);
+        }
+    });
 
     router.get('/logout', (req, res) => {
         req.logout();

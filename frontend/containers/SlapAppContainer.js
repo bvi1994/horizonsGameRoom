@@ -2,23 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter, Route } from 'react-router-dom';
-import LoginForm from '../components/LoginForm';
-import Dashboard from '../components/Dashboard';
 import Ready from '../components/Ready';
-const AppContainer = () => {
+const SlapAppContainer = () => {
     return (
         <HashRouter>
           <div style={{height: "100%"}}>
-            <Route exact path="/" component={LoginForm} />
-            {/* <Route exact path="/" component={Dashboard} /> */}
-            <Route exact path="/ready" component={Ready} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            {/* <Route exact path="/" component={SlapJack} /> */}
+            <Route exact path="/" component={Ready} />
           </div>
         </HashRouter>
     );
 };
 
-AppContainer.propTypes = {
+SlapAppContainer.propTypes = {
     name: PropTypes.string,
 };
 
@@ -36,4 +32,4 @@ const mapDispatchToProps = (/* dispatch */) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AppContainer);
+)(SlapAppContainer);

@@ -3,7 +3,8 @@ const path = require('path');
 
 module.exports = {
     entry: [
-        './frontend/index'
+        'index': './frontend/index',
+        'slapjack':'./frontend/slapjack'
     ],
     module: {
         rules: [
@@ -17,7 +18,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '/public'),
         publicPath: '/',
-        filename: 'bundle.js'
+        filename: '[name].bundle.js'
     },
     devtool: 'source-map',
     devServer: {
