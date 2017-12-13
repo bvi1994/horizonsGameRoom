@@ -1,9 +1,10 @@
 * {
 	margin: 0;
 	padding: 0;
+}
+body {
   background: linear-gradient(#e4e0ba, #f7d9aa);
 }
-
 #world {
 	position: absolute;
 	width: 100%;
