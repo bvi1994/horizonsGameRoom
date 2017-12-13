@@ -4,13 +4,15 @@ import axios from 'axios';
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
-// const worldStyle = {
-// 	 position: 'absolute',
-// 	 width: '100%',
-// 	 height: '100%',
-// 	 overflow: 'hidden',
-// 	 background: 'linear-gradient(#e4e0ba, #f7d9aa)'
-// };
+const worldStyle = {
+    margin: '0',
+    padding: '0',
+	  position: 'absolute',
+ 	  width: '100%',
+	  height: '100%',
+	  overflow: 'hidden',
+	  background: 'linear-gradient(#e4e0ba, #f7d9aa)'
+};
 
 var Colors = {
 	red:0xf25346,
