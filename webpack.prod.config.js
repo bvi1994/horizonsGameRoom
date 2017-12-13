@@ -6,7 +6,7 @@ module.exports = {
         index: './frontend/index',
         slapjack: './frontend/slapjack',
         ready: './frontend/ready',
-        plusMinus: './frontden/plusMinus'
+        plusMinus: './frontend/plusMinus'
     },
     module: {
         rules: [
