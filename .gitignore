@@ -3,6 +3,7 @@ node_modules/
 *.DS_Store
 public/index.bundle.js
 public/slapjack.bundle.js
+public/ready.bundle.js
 package-lock.json
 *hot-update.js
 *hot-update.json
