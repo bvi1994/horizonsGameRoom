@@ -12,7 +12,7 @@ class Slapjack extends Component {
         };
     }
     render() {
-        return (this.state.redirect) ? <Redirect to="/" /> : <div className="world">Hello Slapjack!</div>;
+        return (this.state.redirect) ? <Redirect to="/" /> : <div>Hello Slapjack!</div>;
     }
 }
 
