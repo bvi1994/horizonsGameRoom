@@ -95,9 +95,9 @@ var hemispshereLight, shadowLight;
 
 function createLights(){
 	// Gradient coloured light - Sky, Ground, Intensity
-	hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, .9)
+	var hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, .9)
 	// Parallel rays
-	shadowLight = new THREE.DirectionalLight(0xffffff, .9);
+	var shadowLight = new THREE.DirectionalLight(0xffffff, .9);
 
 
 
@@ -565,13 +565,6 @@ function createPlane(){
 	airplane.mesh.position.set(-40,110,-250);
 	// airplane.mesh.rotation.z = Math.PI/15;
 	scene.add(airplane.mesh);
-}
-
-function createFox(){
-	fox = new Fox();
-	fox.mesh.scale.set(.35,.35,.35);
-	fox.mesh.position.set(-40,110,-250);
-	scene.add(fox.mesh);
 }
 
 
