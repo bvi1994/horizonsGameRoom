@@ -19,7 +19,7 @@ class Chatbox extends Component {
     componentWillMount() {
         // console.log("Did mount has happened");
         this.state.socket.on('connect', () => {
-            this.state.socket.emit('username', this.state.username);
+            this.state.socket.emit('username', this.props.username);
             this.state.socket.emit('room', this.state.roomName);
         });
         this.state.socket.on('errorMessage', message => {
