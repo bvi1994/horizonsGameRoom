@@ -6,12 +6,19 @@
 }
 
 #loginForm{
-    /*display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;*/
+    display: flex;
+    flex-direction: column;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    height: 400px;
+}
+
+#loginImage{
+    margin-left: 23%;
+}
+
+#welomeText{
+    font-size: 20px;
 }

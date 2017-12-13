@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { Redirect } from 'react-router';
 import axios from 'axios';
+import { GithubLoginButton } from 'react-social-login-buttons';
 import '../assets/stylesheets/LoginForm.css';
 
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
@@ -35,10 +36,15 @@ class LoginForm extends Component {
           <div>
             <div id="loginForm">
               <div id="loginImage">
-                Welcome to the Horizons Arcade!
+                <img src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/2229/s300/logo-lg.png" alt="Horizons Logo" height="150px" width="150px"/>
+              </div>
+              <div id="welomeText">
+                <p>Welcome to the Horizons Arcade!</p>
               </div>
               <div id="githubSignUp">
-                <a href="/auth/github">Login with Github</a>
+                <a href="/auth/github" style={{textDecoration: "none"}}>
+                  <GithubLoginButton />
+                </a>
               </div>
             </div>
           </div>
