@@ -20,7 +20,7 @@ class Dashboard extends Component {
     render() {
         return (this.state.redirect) ? <Redirect to="/" /> : (
           <div style={{height: "100%"}}>
-            <button onClick={() => this.logout()}>Log out</button>
+            {/* <button onClick={() => this.logout()}>Log out</button> */}
             <div id="mainDashboard" style={{minHeight: "100%"}}>
                 <Profile />
                 <CurrentGameSession />

@@ -10,7 +10,7 @@ class Chatbox extends Component {
         super(props);
         this.state = {
             socket: io('http://localhost:3000'),
-            room: "Main Chat Room",
+            roomName: "Main Chat Room",
             username: ""
         };
     }
@@ -21,10 +21,10 @@ class Chatbox extends Component {
             console.log('Connected to main chat!');
             // const username =
             const testUsername = "Pikachu";
-            console.log("USername has been changed");
+            console.log("Username has been changed");
             // this.setState({username: username});
             this.setState({username: testUsername});
-            this.state.socket.emit('username', this.state.username);
+            this.state.socket.emit('username', testUsername);
             this.state.socket.emit('room', this.state.roomName);
         });
         this.state.socket.on('errorMessage', message => {

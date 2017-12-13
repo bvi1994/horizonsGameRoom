@@ -1,0 +1,18 @@
+#joinButton{
+    cursor: pointer;
+    /*border-radius: 5px;*/
+    border: #6ee248;
+    background-color: #6ee248;
+    text-color: white;
+    height: 30px;
+    font-size: 15px;
+    color: white;
+    /*margin-right: 10px;*/
+    /*width: 50%;*/
+    text-align: center;
+    width: 125%;
+}
+
+#joinButton:hover{
+    background-color: #1c4210;
+}

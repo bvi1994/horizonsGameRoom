@@ -1,0 +1,16 @@
+#watchButton{
+    cursor: pointer;
+    /*border-radius: 5px;*/
+    border: none;
+    background-color: #e799fc;
+    text-color: white;
+    height: 30px;
+    font-size: 15px;
+    color: white;
+    /*width: 36%;*/
+    margin-left: 2%;
+}
+
+#watchButton:hover{
+    background-color: #bc24e5;
+}

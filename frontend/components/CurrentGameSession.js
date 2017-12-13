@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import '../assets/stylesheets/CurrentGameSession.css';
+import GameSession from './GameSession.js';
 
 class CurrentGameSession extends Component {
     constructor(props) {
@@ -8,7 +9,19 @@ class CurrentGameSession extends Component {
     render() {
         return(
             <div id="gamesInSession" className="section">
-                This is a test - Game Session
+                Current Games in Session
+                <div className="columnofGames">
+                  <div className="rowofGames">
+                    <GameSession />
+                    <GameSession />
+                    <GameSession />
+                  </div>
+                  <div className="rowofGames">
+                    <GameSession />
+                    <GameSession />
+                    <GameSession />
+                  </div>
+                </div>
             </div>
         );
     }

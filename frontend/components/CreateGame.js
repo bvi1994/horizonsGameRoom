@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
 import axios from 'axios';
+import '../assets/stylesheets/CreateGame.css';
 const BASE_URL = 'http://8096a45d.ngrok.io';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
@@ -30,7 +31,7 @@ class CreateGame extends Component {
     render() {
         return (
             <div>
-                <button id="createGameButton" onClick={() => this.openModal()}>Create Game Room</button>
+                <button id="createGameButton" onClick={() => this.openModal()}>Create Game</button>
                 <Modal
                   isOpen={this.state.modalOpen}
                   onRequestClose={this.modalClose}

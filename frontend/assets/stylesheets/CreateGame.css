@@ -1,0 +1,19 @@
+#createGameButton {
+  -webkit-border-radius: 6;
+  -moz-border-radius: 6;
+  border-radius: 6px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 20px;
+  background: #10631c;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  width: 95%;
+  margin-left: 2%;
+  cursor: pointer;
+}
+
+#createGameButton:hover {
+  background: #4d606b;
+  text-decoration: none;
+}

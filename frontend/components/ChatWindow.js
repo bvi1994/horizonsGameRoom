@@ -13,7 +13,7 @@ class ChatWindow extends React.Component {
     componentDidMount() {
         this.props.socket.on('message', (message) =>{
             const newMessage = message;
-            this.setState({message: this.state.messages.concat([newMessage])});
+            this.setState({messages: this.state.messages.concat([newMessage])});
         });
     }
     componentWillReceiveProps(nextProps) {
@@ -23,7 +23,9 @@ class ChatWindow extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const newMessage = {username: this.props.username, content: this.state.message};
-        this.setState({messages: this.state.messages.concat([newMessage]), message: ''});
+        // this.setState({messages: this.state.messages.concat([newMessage]), message: ''});
+        this.setState({messages: [...this.state.messages, newMessage], message: ''});
+        event.target.value = "";
         this.props.socket.emit('message', newMessage.content);
     }
     handleChange(e) {
@@ -37,7 +39,7 @@ class ChatWindow extends React.Component {
                     This is a room
                     {this.state.messages.map((msg) => ( <p> {msg.username}: {msg.content}</p>))}
                     <form onSubmit = {(e) => this.handleSubmit(e)}>
-                      <input onChange = {(e) => this.handleChange(e)} value = {this.state.message} />
+                      <input onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
                     </form>
                 </div>
             </div>
