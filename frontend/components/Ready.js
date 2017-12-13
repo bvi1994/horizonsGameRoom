@@ -622,7 +622,7 @@ function init(event) {
 	loop();
 }
 
-const world = document.getElementById('world');
+const world = document.getElementById('ready');
 world.addEventListener('load', init, false);
 
 class Ready extends Component {
