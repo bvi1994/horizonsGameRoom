@@ -9,5 +9,5 @@ const store = configureStore();
 
 render(
     <Ready store={store} history={history} />,
-    document.getElementById('root')
+    document.getElementById('ready')
 );
