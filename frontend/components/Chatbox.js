@@ -16,21 +16,22 @@ class Chatbox extends Component {
             username: ""
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         // console.log("Did mount has happened");
         this.state.socket.on('connect', () => {
-            this.state.socket.emit('username', this.props.username);
+            this.setState({username: this.props.username});
+            this.state.socket.emit('username', this.state.username);
             this.state.socket.emit('room', this.state.roomName);
         });
         this.state.socket.on('errorMessage', message => {
             console.log("Unable to connect. Error: ", message);
         });
     }
-    componentWillReceiveProps(props) {
-        this.setState({
-            username: props.username
-        });
-    }
+    // componentWillReceiveProps(props) {
+    //     this.setState({
+    //         username: props.username
+    //     });
+    // }
     join(room) {
         console.log("Join room: ", this.state.roomName);
         this.setState({roomName: room}).bind();
