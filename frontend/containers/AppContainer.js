@@ -4,14 +4,11 @@ import { connect } from 'react-redux';
 import { HashRouter, Route } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import Dashboard from '../components/Dashboard';
-import Ready from '../components/Ready';
 const AppContainer = () => {
     return (
         <HashRouter>
           <div style={{height: "100%"}}>
             <Route exact path="/" component={LoginForm} />
-            {/* <Route exact path="/" component={Dashboard} /> */}
-            <Route exact path="/ready" component={Ready} />
             <Route exact path="/dashboard" component={Dashboard} />
           </div>
         </HashRouter>
