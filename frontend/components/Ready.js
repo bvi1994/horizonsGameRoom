@@ -278,7 +278,7 @@ var Flower = function () {
 
 	var geomPetalCore = new THREE.BoxGeometry(10,10,10,1,1,1);
 	var matPetalCore = new THREE.MeshPhongMaterial({color:Colors.yellow, shading:THREE.FlatShading});
-	petalCore = new THREE.Mesh(geomPetalCore, matPetalCore);
+	var petalCore = new THREE.Mesh(geomPetalCore, matPetalCore);
 	petalCore.castShadow = false;
 	petalCore.receiveShadow = true;
 
