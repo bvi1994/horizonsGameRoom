@@ -622,7 +622,7 @@ function init(event) {
 	loop();
 }
 
-document.addEventListener('load', init, false);
+window.addEventListener('load', init, false);
 
 class Ready extends Component {
     constructor(props) {
