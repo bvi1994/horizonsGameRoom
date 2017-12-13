@@ -43,10 +43,6 @@ class Chatbox extends Component {
               <div id="chatWindow" className="section">
                 This is a test of chatWindow
               </div>
-              {/* <div id="messageForm" className="section">
-                <input id="messageBox" type="text" name="message" />
-                <button>Send</button>
-              </div> */}
               <ChatWindow username={this.state.username} room={this.state.roomName} socket={this.state.socket} />
           </div>
         );

@@ -622,8 +622,8 @@ function init(event) {
 	loop();
 }
 
-const world = document.getElementById('ready');
-world.addEventListener('load', init, false);
+//const world = document.getElementById('ready');
+window.addEventListener('load', init, false);
 
 class Ready extends Component {
     constructor(props) {
