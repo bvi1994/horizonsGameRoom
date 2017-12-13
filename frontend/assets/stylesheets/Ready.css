@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 }
-body {
+canvas {
   background: linear-gradient(#e4e0ba, #f7d9aa);
 }
 #world {
