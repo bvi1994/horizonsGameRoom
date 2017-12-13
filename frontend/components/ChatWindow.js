@@ -13,7 +13,7 @@ class ChatWindow extends React.Component {
     componentDidMount() {
         this.props.socket.on('message', (message) =>{
             const newMessage = message;
-            this.setState({message: this.state.messages.concat([newMessage])});
+            this.setState({messages: [...this.state.messages, newMessage]});
         });
     }
     componentWillReceiveProps(nextProps) {
@@ -23,7 +23,7 @@ class ChatWindow extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const newMessage = {username: this.props.username, content: this.state.message};
-        this.setState({messages: this.state.messages.concat([newMessage]), message: ''});
+        this.setState({messages: [...this.state.messages, newMessage], message: ''});
         this.props.socket.emit('message', newMessage.content);
     }
     handleChange(e) {
