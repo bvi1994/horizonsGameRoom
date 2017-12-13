@@ -628,9 +628,10 @@ class Ready extends Component {
     constructor(props) {
         super(props);
     }
+    // style={{backgroundColor: 'linear-gradient(#e4e0ba, #f7d9aa)'}}
     render() {
         return (
-          <div style={{backgroundColor: 'linear-gradient(#e4e0ba, #f7d9aa)'}} id="world">Loading...</div>
+          <div id="world">Loading...</div>
         );
     }
 }
