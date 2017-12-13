@@ -9,7 +9,7 @@ router.use((req, res, next) => {
         next();
     }
 });
-router.get('/ready', (req, res) => {
+router.get('/ready/', (req, res) => {
     res.sendFile(__dirname + '/public/ready.html');
 });
 router.get('/game/:game', (req, res) => {
