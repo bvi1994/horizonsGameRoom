@@ -706,7 +706,7 @@ class Ready extends Component {
     }
     render() {
         return (
-          <div className="world"/>
+          <div style={worldStyle} className="world"/>
         );
     }
 }
