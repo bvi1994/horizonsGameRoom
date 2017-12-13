@@ -630,7 +630,7 @@ class Ready extends Component {
     }
     render() {
         return (
-          <div id="world">Loading...</div>
+          <div style={{backgroundColor: 'linear-gradient(#e4e0ba, #f7d9aa)'}} id="world">Loading...</div>
         );
     }
 }
