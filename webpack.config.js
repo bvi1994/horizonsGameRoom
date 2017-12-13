@@ -4,7 +4,8 @@ const path = require('path');
 module.exports = {
     entry: {
         index: './frontend/index',
-        slapjack: './frontend/slapjack'
+        slapjack: './frontend/slapjack',
+        ready: './frontend/ready'
     },
     module: {
         rules: [

@@ -31,6 +31,7 @@ class Dashboard extends Component {
         return (this.state.redirect) ? <Redirect to="/" /> : (
           <div style={{height: "100%"}}>
             <div id="mainDashboard" style={{minHeight: "100%"}}>
+                <a href="/ready">Click to kill time!</a>
                 <Profile user={this.state.user}/>
                 <CurrentGameSession />
                 <Chatbox username={this.state.user.username}/>
