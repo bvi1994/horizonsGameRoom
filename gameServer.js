@@ -16,10 +16,13 @@ router.get('/game/:game', (req, res) => {
     switch(req.params.game) {
         case 'slapjack':
             res.sendFile(__dirname + '/public/slapjack.html');
+            break;
         case 'plusMinus':
             res.sendFile(__dirname + '/public/plusMinus.html');
+            break;
         default:
             res.redirect('/ready/');
+            break;
     }
 });
 
