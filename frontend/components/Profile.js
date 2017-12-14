@@ -37,6 +37,7 @@ class Profile extends Component {
                 <p>{this.state.user.displayName}</p>
                 <p>{this.state.user.email}</p>
                 <a href={this.state.user.profileUrl}>Get back to work :)</a>
+                <a href="/ready/">Click to kill time!</a>
                 <button onClick={() => this.logout()}>Log out</button>
                 <CreateGame userInfo={this.state.user}/>
             </div>
