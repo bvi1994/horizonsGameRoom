@@ -17,8 +17,8 @@ module.exports = function(app) {
       if (!requestedRoom) {
         return socket.emit('errorMessage', 'No room!');
       }
-      if (socket.room) {
-        socket.leave(socket.room);
+      if (room) {
+        socket.leave(room);
       }
       room = requestedRoom;
       socket.join(requestedRoom, () => {
