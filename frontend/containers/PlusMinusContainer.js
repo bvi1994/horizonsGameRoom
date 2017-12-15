@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter, Route } from 'react-router-dom';
-import PlusMinus from '../components/PlusMinus';
+import PlusMinus from '../components/PlusMinus/PlusMinus';
 const PlusMinusContainer = () => {
     return (
         <HashRouter>
