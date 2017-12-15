@@ -85,7 +85,7 @@ class PlusMinus extends Component {
             <ol>
               {
                 this.state.questions.map((question, i) => {
-                    return <h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} = <TextField ref={c => {this.nextComponent = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>;
+                    return <h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} = <TextField ref={c => {return this.nextComponent = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>;
                 })
               }
             </ol>
