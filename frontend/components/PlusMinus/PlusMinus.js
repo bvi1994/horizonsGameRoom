@@ -18,6 +18,7 @@ class PlusMinus extends Component {
             score: 0,
             value: ''
         };
+        this.countDown();
     }
     componentWillMount() {
         this.makeQuestions(this.state.level);
@@ -72,20 +73,27 @@ class PlusMinus extends Component {
             questions: questions
         });
     }
+    countDown() {
+        this.setState({ value: this.state.timeLimit - 1 });
+        setTimeout(this.countDown.bind(this), 1000);
+    }
     answer(e, i) {
         e.preventDefault();
         console.log(parseInt(e.target.value), this.state.questions[i].answer);
         if(parseInt(e.target.value) === this.state.questions[i].answer) {
-            console.log("Inside if statement");
             ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
+            const score = Number(this.state.score);
+            this.setState({
+                score: score + this.state.level
+            });
         }
     }
     render() {
         return (
           <div>
             <h1>Hello PlusMinus!</h1>
-            <h1></h1>
-            <h1></h1>
+            <h1>Score: {this.state.score}</h1>
+            <h1>Time Left: {this.state.timeLimit}</h1>
             <ol>
               {
                 this.state.questions.map((question, i) => {
