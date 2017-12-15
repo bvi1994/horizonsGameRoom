@@ -9,7 +9,7 @@ class PlusMinus extends Component {
     constructor(props) {
         super(props);
         this.operators = ["+", "-", "*"];
-        this.nextComponent = null;
+        this.nextComponent = [];
         this.state = {
             timeLimit: 30,
             questions: [],
@@ -76,7 +76,7 @@ class PlusMinus extends Component {
         console.log(parseInt(e.target.value), this.state.questions[i].answer);
         if(parseInt(e.target.value) === this.state.questions[i].answer) {
             console.log("Inside if statement");
-            ReactDOM.findDOMNode(this.nextComponent).focus();
+            ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
         }
     }
     render() {
@@ -85,7 +85,7 @@ class PlusMinus extends Component {
             <ol>
               {
                 this.state.questions.map((question, i) => {
-                    return <h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} = <input ref={c => {return this.nextComponent = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>;
+                    return <h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} = <input ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>;
                 })
               }
             </ol>
