@@ -36,6 +36,11 @@
     display: none;
 }
 
+#playerListAvatar{
+    margin-left: 10%;
+    margin-right: 1%;
+}
+
 .roomBlock:hover #playerList{
     display: flex;
     flex-direction: column;

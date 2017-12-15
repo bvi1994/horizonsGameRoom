@@ -1,0 +1,27 @@
+.room{
+    display: flex;
+    flex-direction: column;
+    /* flex: 2; */
+    /* max-height: 90vh; */
+    overflow: scroll;
+    position: relative;
+    height: 87vh;
+    /* border-color: blue;
+    border-width: 10px;
+    border-style: solid */
+    flex-direction: column-reverse;
+}
+
+/* .message{
+    flex: 1;
+} */
+
+.textBox{
+    position: relative;
+    bottom: 0;
+    margin-top: 1vh;
+    /* flex: 2; */
+    /* border-style: solid;
+    border-color: red;
+    border-width: 10px; */
+}

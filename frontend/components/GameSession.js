@@ -25,6 +25,7 @@ class GameSession extends Component {
                   <div className="playerInfo">
                     <div id="playerListAvatar">
                       <Avatar src="https://i.imgur.com/x6PRlCE.png" size={25} />
+                      <Avatar src="https://i.imgur.com/x6PRlCE.png" size={25} />
                     </div>
                   </div>
                 </div>

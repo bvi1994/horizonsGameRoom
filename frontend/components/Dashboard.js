@@ -12,10 +12,20 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false
+            redirect: false,
+            user: {}
         };
     }
-    componentDidMount() {
+    componentWillMount() {
+        axios.get(BASE_URL + '/profile')
+        .then(userInfo => {
+            this.setState({
+                user: userInfo.data
+            });
+        })
+        .catch(e => {
+            console.log("componentWillMount Error", e);
+        });
     }
     render() {
         return (this.state.redirect) ? <Redirect to="/" /> : (
@@ -24,7 +34,7 @@ class Dashboard extends Component {
             <div id="mainDashboard" style={{minHeight: "100%"}}>
                 <Profile />
                 <CurrentGameSession />
-                <Chatbox />
+                <Chatbox username={this.state.user.username}/>
             </div>
           </div>
         );

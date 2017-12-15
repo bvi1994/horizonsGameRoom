@@ -1,10 +1,10 @@
 #chatBox{
     width: 25%;
     /*height: 100%;*/
-    overflow: auto;
+    /* overflow: scroll; */
+    height: 94vh;
 }
 
 #chatWindow{
-    flex: 1;
-    min-height: 90vh;
+    /* flex: 1; */
 }
