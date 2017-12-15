@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
+import '../../assets/stylesheets/Chatbox.css';
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
@@ -81,11 +82,15 @@ class PlusMinus extends Component {
     }
     render() {
         return (
-          <div>Hello PlusMinus!
+          <div>
+            <h1>Hello PlusMinus!</h1>
+            <h1></h1>
+            <h1></h1>
             <ol>
               {
                 this.state.questions.map((question, i) => {
-                    return <h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} = <input ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>;
+                    return (<h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} =
+                      <input className="inputField" ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>);
                 })
               }
             </ol>
