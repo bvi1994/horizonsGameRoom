@@ -9,6 +9,7 @@ class PlusMinus extends Component {
     constructor(props) {
         super(props);
         this.operators = ["+", "-", "*"];
+        this.nextComponent = null;
         this.state = {
             timeLimit: 30,
             questions: [],
