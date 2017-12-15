@@ -72,8 +72,9 @@ class PlusMinus extends Component {
     }
     answer(e, i) {
         e.preventDefault();
-        console.log(parseInt(e.target.value));
+        console.log(parseInt(e.target.value), this.state.questions[i].answer);
         if(parseInt(e.target.value) === this.state.questions[i].answer) {
+            console.log("Inside if statement");
             ReactDOM.findDOMNode(this.nextComponent).focus();
         }
     }
