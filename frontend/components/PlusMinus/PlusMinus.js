@@ -73,11 +73,11 @@ class PlusMinus extends Component {
             <ol>
               {
                 this.state.questions.map((question, i) => {
-                    return <li key={i}>{question.first} {question.operator} {question.second} = <input key={i}/></li>
+                    return <li key={i}>{question.first} {question.operator} {question.second} = <input key={i}/></li>;
                 })
               }
             </ol>
-
+            <TextField hintText="Hint Text"/>
           </div>
 
 
