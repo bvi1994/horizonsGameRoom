@@ -12,7 +12,8 @@ class PlusMinus extends Component {
             timeLimit: 30,
             questions: [],
             level: 0, // 0: easy, 1: medium, 2: hard
-            score: 0
+            score: 0,
+            value: ''
         };
     }
     componentWillMount() {
@@ -68,13 +69,19 @@ class PlusMinus extends Component {
             questions: questions
         });
     }
+    answer(e, i) {
+        e.preventDefault();
+        if(parseInt(e.target.value) === this.state.questions[i]) {
+            React.findDOMNode(this.nextComponent).focus();
+        }
+    }
     render() {
         return (
           <div>Hello PlusMinus!
             <ol>
               {
                 this.state.questions.map((question, i) => {
-                    return <li key={i}>{question.first} {this.operators[question.operator]} {question.second} = <TextField /></li>;
+                    return <h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} = <TextField ref={c => {this.nextComponent = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>;
                 })
               }
             </ol>
