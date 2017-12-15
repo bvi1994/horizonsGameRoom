@@ -7,6 +7,7 @@ const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 class PlusMinus extends Component {
     constructor(props) {
         super(props);
+        this.operators = ["+", "-", "*"];
         this.state = {
             timeLimit: 30,
             questions: [],
@@ -73,11 +74,10 @@ class PlusMinus extends Component {
             <ol>
               {
                 this.state.questions.map((question, i) => {
-                    return <li key={i}>{question.first} {question.operator} {question.second} = <input key={i}/></li>;
+                    return <li key={i}>{question.first} {this.operators[question.operator]} {question.second} = <TextField /></li>;
                 })
               }
             </ol>
-            <TextField hintText="Hint Text"/>
           </div>
 
 
