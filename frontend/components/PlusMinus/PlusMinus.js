@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
@@ -71,9 +72,9 @@ class PlusMinus extends Component {
     }
     answer(e, i) {
         e.preventDefault();
-        console.log(typeof e.target.value, typeof this.state.questions[i].answer);
+        console.log(parseInt(e.target.value));
         if(parseInt(e.target.value) === this.state.questions[i].answer) {
-            React.findDOMNode(this.nextComponent).focus();
+            ReactDOM.findDOMNode(this.nextComponent).focus();
         }
     }
     render() {
