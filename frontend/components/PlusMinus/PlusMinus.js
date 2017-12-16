@@ -32,7 +32,9 @@ class Score extends Component {
         return (
           <div>
             <h1>Your score: {this.props.score}</h1>
-            <a href='/'>Go back to main page</a>
+            <a href="/">Go back to main page</a>
+            <br/>
+            <a href="/game/plusMinus">Play again</a>
           </div>
         );
     }
