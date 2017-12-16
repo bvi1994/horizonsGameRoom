@@ -51,13 +51,12 @@ class PlusMinus extends Component {
             value: '',
             gameOver: false,
         };
-        this.countDown();
     }
     setLevel(val) {
         this.setState({
             level: val
-        });
-        this.makeQuestions();
+        }, this.makeQuestions());
+        this.countDown();
     }
     makeQuestions() {
         var questions = [];
