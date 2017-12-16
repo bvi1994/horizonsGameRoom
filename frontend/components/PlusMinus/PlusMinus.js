@@ -53,13 +53,11 @@ class PlusMinus extends Component {
         };
         this.countDown();
     }
-    componentWillMount() {
-        this.makeQuestions(this.state.level);
-    }
     setLevel(val) {
         this.setState({
             level: val
         });
+        this.makeQuestions(this.state.level);
     }
     makeQuestions(level) {
         var questions = [];
@@ -68,6 +66,7 @@ class PlusMinus extends Component {
         let second;
         let operator;
         let answer;
+        console.log(level);
         switch(level) {
             case 0:
                 randomize = 10;
