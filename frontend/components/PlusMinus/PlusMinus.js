@@ -30,7 +30,10 @@ class Score extends Component {
     }
     render() {
         return (
-          <div>Your score: {this.props.score}</div>
+          <div>
+            <h1>Your score: {this.props.score}</h1>
+            <a href='/'>Go back to main page</a>
+          </div>
         );
     }
 }
