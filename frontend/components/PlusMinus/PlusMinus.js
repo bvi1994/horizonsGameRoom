@@ -6,6 +6,35 @@ import '../../assets/stylesheets/PlusMinus.css';
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
+
+class Level extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+          <div>
+              <button onClick={() => this.props.setLevel(0)}>EASY</button>
+              <br/>
+              <button onClick={() => this.props.setLevel(1)}>MEDIUM</button>
+              <br/>
+              <button onClick={() => this.props.setLevel(2)}>HARD</button>
+          </div>
+        );
+    }
+}
+
+class Score extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+          <div>Your score: {this.props.score}</div>
+        );
+    }
+}
+
 class PlusMinus extends Component {
     constructor(props) {
         super(props);
@@ -14,14 +43,20 @@ class PlusMinus extends Component {
         this.state = {
             timeLimit: 30,
             questions: [],
-            level: 0, // 0: easy, 1: medium, 2: hard
+            level: null, // 0: easy, 1: medium, 2: hard
             score: 0,
-            value: ''
+            value: '',
+            gameOver: false,
         };
         this.countDown();
     }
     componentWillMount() {
         this.makeQuestions(this.state.level);
+    }
+    setLevel(val) {
+        this.setState({
+            level: val
+        });
     }
     makeQuestions(level) {
         var questions = [];
@@ -78,7 +113,9 @@ class PlusMinus extends Component {
             this.setState({ timeLimit: this.state.timeLimit - 1 });
             setTimeout(this.countDown.bind(this), 1000);
         } else if(this.state.timeLimit === 0) {
-            //this.props.history.push('/score');
+            this.setState({
+                gameOver: true
+            });
         }
     }
     answer(e, i) {
@@ -98,7 +135,7 @@ class PlusMinus extends Component {
         }
     }
     render() {
-        return (
+        const main = (
           <div>
             <h1>Hello PlusMinus!</h1>
             <h1>Score: {this.state.score}</h1>
@@ -112,9 +149,18 @@ class PlusMinus extends Component {
               }
             </ol>
           </div>
-
-
         );
+        const level = <Level setLevel={v => this.setLevel(v)} />;
+        const score = <Score score={this.state.score} />;
+        let response;
+        if(this.state.gameOver) {
+            response = score;
+        } else if(this.state.level === null) {
+            response = level;
+        } else {
+            response = main;
+        }
+        return response;
     }
 }
 
