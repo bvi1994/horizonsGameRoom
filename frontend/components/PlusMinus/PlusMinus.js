@@ -57,17 +57,16 @@ class PlusMinus extends Component {
         this.setState({
             level: val
         });
-        this.makeQuestions(this.state.level);
+        this.makeQuestions();
     }
-    makeQuestions(level) {
+    makeQuestions() {
         var questions = [];
         let randomize = 0;
         let first;
         let second;
         let operator;
         let answer;
-        console.log(level);
-        switch(level) {
+        switch(this.state.level) {
             case 0:
                 randomize = 10;
                 break;
@@ -126,7 +125,7 @@ class PlusMinus extends Component {
         if(parseInt(e.target.value) === this.state.questions[i].answer) {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
                 this.nextComponent.forEach(nc => {nc.value = '';});
-                this.makeQuestions(this.state.level);
+                this.makeQuestions();
                 ReactDOM.findDOMNode(this.nextComponent[0]).focus();
             } else {
                 ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
