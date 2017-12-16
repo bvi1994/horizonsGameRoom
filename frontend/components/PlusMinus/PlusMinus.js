@@ -55,8 +55,7 @@ class PlusMinus extends Component {
     setLevel(val) {
         this.setState({
             level: val
-        }, this.makeQuestions());
-        this.countDown();
+        }, () => this.makeQuestions());
     }
     makeQuestions() {
         var questions = [];
@@ -159,6 +158,7 @@ class PlusMinus extends Component {
             response = level;
         } else {
             response = main;
+            this.countDown();
         }
         return response;
     }
