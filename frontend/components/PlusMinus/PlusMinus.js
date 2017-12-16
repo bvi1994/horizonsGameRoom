@@ -74,7 +74,7 @@ class PlusMinus extends Component {
         });
     }
     countDown() {
-        this.setState({ value: this.state.timeLimit - 1 });
+        this.setState({ timeLimit: this.state.timeLimit - 1 });
         setTimeout(this.countDown.bind(this), 1000);
     }
     answer(e, i) {
@@ -86,6 +86,9 @@ class PlusMinus extends Component {
             this.setState({
                 score: score + this.state.level
             });
+            if(i === 9) {
+                this.makeQuestions();
+            }
         }
     }
     render() {
