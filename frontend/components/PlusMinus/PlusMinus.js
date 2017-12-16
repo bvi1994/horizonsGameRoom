@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
-import '../../assets/stylesheets/Chatbox.css';
+import '../../assets/stylesheets/PlusMinus.css';
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
@@ -77,6 +77,8 @@ class PlusMinus extends Component {
         if(this.state.timeLimit > 0 ) {
             this.setState({ timeLimit: this.state.timeLimit - 1 });
             setTimeout(this.countDown.bind(this), 1000);
+        } else if(this.state.timeLimit === 0) {
+            //this.props.history.push('/score');
         }
     }
     answer(e, i) {
