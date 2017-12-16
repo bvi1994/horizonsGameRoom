@@ -83,7 +83,7 @@ class PlusMinus extends Component {
         for(let i = 0; i < 10; i++) {
             first = ~~(Math.random() * randomize);
             second = ~~(Math.random() * randomize);
-            operator = level === 2 ? ~~(Math.random() * 3) : ~~(Math.random() * 2);
+            operator = this.state.level === 2 ? ~~(Math.random() * 3) : ~~(Math.random() * 2);
             switch(operator) {
                 case 0:
                     answer = first + second;
