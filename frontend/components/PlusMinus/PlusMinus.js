@@ -104,7 +104,7 @@ class PlusMinus extends Component {
               {
                 this.state.questions.map((question, i) => {
                     return (<h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} =
-                      <input className="input-field" ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>);
+                      <input className="input-field" autoFocus={i === 0 ? true : false} ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>);
                 })
               }
             </ol>
