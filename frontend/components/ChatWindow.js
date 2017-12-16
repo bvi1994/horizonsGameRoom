@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from "react";
-import '../assets/stylesheets/Chatbox.css';
-// import io from 'socket.io-client';
+import '../assets/stylesheets/ChatWindow.css';
 
-class ChatWindow extends React.Component {
+class ChatWindow extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,15 +30,18 @@ class ChatWindow extends React.Component {
     render() {
         console.log("Render: ", this.props.username);
         return (
-            <div>
-                <div className="room">
-                    This is a room
+          <div style={{height: "100vh"}}>
+              <div className="room">
+                  <div className="message">
                     {this.state.messages.map((msg) => ( <p> {msg.username}: {msg.content}</p>))}
-                    <form onSubmit = {(e) => this.handleSubmit(e)}>
-                      <input onChange = {(e) => this.handleChange(e)} value = {this.state.message} />
-                    </form>
-                </div>
-            </div>
+                  </div>
+              </div>
+              <div className="textBox">
+                <form onSubmit = {(e) => this.handleSubmit(e)}>
+                  <input onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
+                </form>
+              </div>
+          </div>
         );
     }
 }
