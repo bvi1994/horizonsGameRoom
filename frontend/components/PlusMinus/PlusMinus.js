@@ -74,20 +74,23 @@ class PlusMinus extends Component {
         });
     }
     countDown() {
-        this.setState({ timeLimit: this.state.timeLimit - 1 });
-        setTimeout(this.countDown.bind(this), 1000);
+        if(this.state.timeLimit > 0 ) {
+            this.setState({ timeLimit: this.state.timeLimit - 1 });
+            setTimeout(this.countDown.bind(this), 1000);
+        }
     }
     answer(e, i) {
         e.preventDefault();
         console.log(parseInt(e.target.value), this.state.questions[i].answer);
         if(parseInt(e.target.value) === this.state.questions[i].answer) {
-            ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
+            if(this.nextComponent[i + 1] === null) {
+                this.makeQuestions(this.state.level);
+            } else {
+                ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
+            }
             this.setState({
                 score: this.state.score + this.state.level + 1
             });
-            if(i === 9) {
-              this.makeQuestions(this.state.level);
-            }
         }
     }
     render() {
