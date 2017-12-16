@@ -84,6 +84,7 @@ class PlusMinus extends Component {
         console.log(parseInt(e.target.value), this.state.questions[i].answer);
         if(parseInt(e.target.value) === this.state.questions[i].answer) {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
+                this.nextComponent.forEach(nc => {nc.value = '';});
                 this.makeQuestions(this.state.level);
             } else {
                 ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
@@ -103,7 +104,7 @@ class PlusMinus extends Component {
               {
                 this.state.questions.map((question, i) => {
                     return (<h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} =
-                      <input className="inputField" ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>);
+                      <input className="input-field" ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>);
                 })
               }
             </ol>
