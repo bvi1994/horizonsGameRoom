@@ -86,7 +86,7 @@ class PlusMinus extends Component {
                 score: this.state.score + this.state.level + 1
             });
             if(i === 9) {
-                this.makeQuestions();
+              this.makeQuestions(this.state.level);
             }
         }
     }
