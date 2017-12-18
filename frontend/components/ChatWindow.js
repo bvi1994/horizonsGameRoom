@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from "react";
-import { Message } from '../../sequelize/models';
+// import { Message } from '../../sequelize/models';
 import '../assets/stylesheets/ChatWindow.css';
 
 class ChatWindow extends Component {
