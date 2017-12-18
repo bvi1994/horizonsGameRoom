@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const { User } = require('../sequelize/models');
+const { User, Message } = require('../sequelize/models');
 const router = express.Router();
 
 module.exports = (passport) => {
@@ -28,6 +28,29 @@ module.exports = (passport) => {
 
     router.get('/profile', (req, res) => {
         res.json(req.user);
+    });
+
+    router.get('/messages', (req, res) => {
+        Message.findAll({
+            attributes: { exclude: ['updatedAt', 'id'] }
+        })
+        .then(messages => {
+            messages.map(message => {
+                console.log('Messages -------------', message);
+            });
+        }).catch(e => {
+            console.log(e);
+        });
+    });
+
+    router.post('/messages', (req, res) => {
+        Message.create({
+            username: req.body.username,
+            photo: req.body.photo,
+            content: req.body.content
+        })
+        .then(() => res.send({success: true}))
+        .catch(e => res.json(e));
     });
 
     router.get('/logout', (req, res) => {

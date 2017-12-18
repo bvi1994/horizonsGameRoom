@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
-// import { Message } from '../../sequelize/models';
+import axios from "axios";
 import '../assets/stylesheets/ChatWindow.css';
+const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 
 class ChatWindow extends Component {
     constructor(props) {
@@ -15,21 +16,24 @@ class ChatWindow extends Component {
         this.props.socket.on('message', message => {
             this.setState({messages: [...this.state.messages, message]});
         });
-        // Message.findAll({
-        //     attributes: { exclude: ['updatedAt', 'id'] }
-        // })
-        // .then(messages => {
-        //     messages.map(message => {
-        //         console.log(message);
-        //     });
-        // });
+        // axios.get(BASE_URL +'/messages');
     }
     handleSubmit(event) {
         event.preventDefault();
-        const newMessage = {username: this.props.username, content: this.state.message};
+        const newMessage = {username: this.props.user.username, content: this.state.message};
         this.setState({messages: [...this.state.messages, newMessage], message: ''});
         this.props.socket.emit('message', newMessage.content);
-        // Message.create();
+        axios.post(BASE_URL + '/messages', {
+            username: this.props.user.username,
+            photo: this.props.user.photo,
+            content: newMessage.content
+        })
+        .then((res) => {
+            console.log('message created');
+        })
+        .catch(e => {
+            console.log(e);
+        });
     }
     handleChange(e) {
         this.setState({message: e.target.value});

@@ -13,7 +13,8 @@ class Chatbox extends Component {
         this.state = {
             socket: socket,
             roomName: "Main Chat Room",
-            username: ""
+            username: "",
+            user: ""
         };
     }
     componentDidMount() {
@@ -27,7 +28,8 @@ class Chatbox extends Component {
     }
     componentWillReceiveProps(props) {
         this.setState({
-            username: props.user.username
+            username: props.user.username,
+            user: props.user
         });
     }
     render() {
@@ -35,7 +37,7 @@ class Chatbox extends Component {
           <div id="chatBox" className="section">
               Horizons Playground Chat Room 🌎
 
-              <ChatWindow username={this.state.username} socket={this.state.socket} />
+              <ChatWindow user={this.state.user} socket={this.state.socket} />
           </div>
         );
     }
