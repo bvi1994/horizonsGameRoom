@@ -13,18 +13,13 @@ class Chatbox extends Component {
         this.state = {
             socket: socket,
             roomName: "Main Chat Room",
-            username: "",
+            username: this.props.user.username,
             user: ""
         };
     }
     componentDidMount() {
-        this.setState({
-            username: this.props.user.username
-        });
-        this.state.socket.on('connect', () => {
-            this.state.socket.emit('username', this.state.username);
-            this.state.socket.emit('room', this.state.roomName);
-        });
+        this.state.socket.emit('username', this.state.username);
+        this.state.socket.emit('room', this.state.roomName);
         this.state.socket.on('errorMessage', message => {
             console.log("Unable to connect. Error: ", message);
         });
