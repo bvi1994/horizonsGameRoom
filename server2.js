@@ -5,23 +5,29 @@ module.exports = function(app) {
             if (!user || !user.trim()) {
                 return socket.emit('errorMessage', 'No username!');
             }
+            console.log('AAA: ', user);
             socket.username = String(user);
         });
 
         socket.on('room', requestedRoom => {
             console.log("requestedRoom", requestedRoom);
             if (!socket.username) {
-                return socket.emit('errorMessage', 'Username not set!');
+              console.log(1);
+              return socket.emit('errorMessage', 'Username not set!');
             }
             if (!requestedRoom) {
-                return socket.emit('errorMessage', 'No room!');
+              console.log(2);
+              return socket.emit('errorMessage', 'No room!');
             }
             if (socket.room) {
-                socket.leave(socket.room);
+              console.log(3);
+              socket.leave(socket.room);
             }
             socket.room = requestedRoom;
+            console.log("socketROOM", socket.room);
             socket.join(socket.room, () => {
-                socket.to(socket.room).emit('message', {
+                console.log(4);
+                io.sockets.in(socket.room).emit('message', {
                     username: 'System',
                     content: `${socket.username} has joined`
                 });
@@ -29,7 +35,7 @@ module.exports = function(app) {
         });
 
         socket.on('message', message => {
-            console.log(socket.room);
+            console.log('socket.room: ', socket.room);
             if (!socket.room) {
                 return socket.emit('errorMessage', 'No rooms joined!');
             }
