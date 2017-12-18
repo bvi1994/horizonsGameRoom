@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react";
+import { Message } from '../../sequelize/models';
 import '../assets/stylesheets/ChatWindow.css';
 
 class ChatWindow extends Component {
@@ -13,6 +14,14 @@ class ChatWindow extends Component {
     componentDidMount() {
         this.props.socket.on('message', message => {
             this.setState({messages: [...this.state.messages, message]});
+        });
+        Message.findAll({
+            attributes: { exclude: ['updatedAt', 'id'] }
+        })
+        .then(messages => {
+            messages.map(message => {
+                console.log(message);
+            });
         });
     }
     componentWillReceiveProps(nextProps) {
