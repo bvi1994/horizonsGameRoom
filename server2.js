@@ -22,8 +22,8 @@ module.exports = function(app) {
                 socket.leave(room);
             }
             room = requestedRoom;
-            socket.join(requestedRoom, () => {
-                socket.to(requestedRoom).emit('message', {
+            socket.join(room, () => {
+                socket.to(room).emit('message', {
                     username: 'System',
                     content: `${username} has joined`
                 });

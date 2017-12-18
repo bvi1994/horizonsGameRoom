@@ -17,10 +17,9 @@ class Chatbox extends Component {
             user: ""
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
-            username: this.props.user.username,
-            user: this.props.user
+            username: this.props.user.username
         });
         this.state.socket.on('connect', () => {
             this.state.socket.emit('username', this.state.username);
