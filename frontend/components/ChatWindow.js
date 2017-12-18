@@ -23,7 +23,13 @@ class ChatWindow extends Component {
         this.props.socket.on('message', message => {
             this.setState({messages: [...this.state.messages, message]});
         });
-        // axios.get(BASE_URL +'/messages');
+        axios.get(BASE_URL + '/messages')
+        .then(res => {
+            console.log("All messages", res);
+        })
+        .catch(e => {
+            console.log(e);
+        });
     }
     handleSubmit(event) {
         event.preventDefault();
@@ -36,7 +42,7 @@ class ChatWindow extends Component {
             content: newMessage.content
         })
         .then((res) => {
-            console.log('message created');
+            console.log('message created', res);
         })
         .catch(e => {
             console.log(e);
