@@ -1,53 +1,75 @@
 import React, { Component, PropTypes } from "react";
+import axios from "axios";
+import '../assets/stylesheets/ChatWindow.css';
+const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 import '../assets/stylesheets/Chatbox.css';
 import '../assets/stylesheets/ChatWindow.css';
 // import io from 'socket.io-client';
 
-class ChatWindow extends React.Component {
+class ChatWindow extends Component {
     constructor(props) {
         super(props);
         this.state = {
             message: '',
-            messages: []
+            messages: [],
+            autoFocus: true
         };
     }
     componentDidMount() {
-        this.props.socket.on('message', (message) =>{
-            const newMessage = message;
-            this.setState({messages: this.state.messages.concat([newMessage])});
+        // this.props.socket.on('connect', () => {
+        //     this.props.socket.emit('username', this.props.user.username);
+        //     this.props.socket.emit('room', "Main");
+        // });
+        // this.props.socket.on('errorMessage', message => {
+        //     console.log("Unable to connect. Error: ", message);
+        // });
+        this.props.socket.on('message', message => {
+            this.setState({messages: [...this.state.messages, message]});
         });
-    }
-    componentWillReceiveProps(nextProps) {
-        const messageHistory = this.props.room === nextProps.room ? this.state.messages : [];
-        this.setState({messages: messageHistory});
+        axios.get(BASE_URL + '/messages')
+        .then(res => {
+            this.setState({
+                messages: [...this.state.messages, ...res.data]
+            });
+        })
+        .catch(e => {
+            console.log(e);
+        });
     }
     handleSubmit(event) {
         event.preventDefault();
-        const newMessage = {username: this.props.username, content: this.state.message};
-        // this.setState({messages: this.state.messages.concat([newMessage]), message: ''});
+        const newMessage = {username: this.props.user.username, content: this.state.message};
         this.setState({messages: [...this.state.messages, newMessage], message: ''});
-        event.target.value = "";
         this.props.socket.emit('message', newMessage.content);
+        axios.post(BASE_URL + '/messages', {
+            username: this.props.user.username,
+            photo: this.props.user.photo,
+            content: newMessage.content
+        })
+        .then((res) => {
+            console.log('message created', res);
+        })
+        .catch(e => {
+            console.log(e);
+        });
     }
     handleChange(e) {
         this.setState({message: e.target.value});
     }
     render() {
-        console.log("Render: ", this.props.username);
         return (
-            <div style={{height: "100vh"}}>
-                <div className="room">
-                {/* This is a room */}
-                    <div className="message">
-                      {this.state.messages.map((msg) => ( <p> {msg.username}: {msg.content}</p>))}
-                    </div>
-                </div>
-                <div className="textBox">
-                  <form onSubmit = {(e) => this.handleSubmit(e)}>
-                    <input onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
-                  </form>
-                </div>
-            </div>
+          <div style={{height: "90%"}}>
+              <div className="room" style={{height: "80%"}}>
+                  <div className="message">
+                    {this.state.messages.map((msg) => ( <p> {msg.username}: {msg.content}</p>))}
+                  </div>
+              </div>
+              <div className="textBox" style={{height: "20%"}}>
+                <form onSubmit = {(e) => this.handleSubmit(e)}>
+                  <input autoFocus={this.state.autoFocus} onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
+                </form>
+              </div>
+          </div>
         );
     }
 }

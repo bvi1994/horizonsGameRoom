@@ -1,7 +1,10 @@
 node_modules/
 *npm-debug.log
 *.DS_Store
-public/bundle.js
+public/index.bundle.js
+public/slapjack.bundle.js
+public/ready.bundle.js
+public/plusMinus.bundle.js
 package-lock.json
 *hot-update.js
 *hot-update.json

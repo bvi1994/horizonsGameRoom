@@ -2,9 +2,12 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-    entry: [
-        './frontend/index'
-    ],
+    entry: {
+        index: './frontend/index',
+        slapjack: './frontend/slapjack',
+        ready: './frontend/ready',
+        plusMinus: './frontend/plusMinus'
+    },
     module: {
         rules: [
             { test: /\.js?$/, loader: 'babel-loader', exclude: /node_modules/ },
@@ -17,7 +20,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '/public'),
         publicPath: '/',
-        filename: 'bundle.js'
+        filename: '[name].bundle.js'
     },
     devtool: 'cheap-eval-source-map',
     devServer: {

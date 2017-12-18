@@ -9,7 +9,7 @@ if(process.env.HEROKU_POSTGRESQL_AMBER_URL) {
         logging: true
     });
 } else {
-    sequelize = new Sequelize(process.env.DATABASE_NAME, null, null, {
+    sequelize = new Sequelize(process.env.DATABASE_NAME, 'postgres', process.env.DATABASE_PASSWORD, {
         dialect: 'postgres'
     });
 }
@@ -50,7 +50,23 @@ var User = sequelize.define('user', {
     }
 });
 
+var Message = sequelize.define('message', {
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    photo: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    content: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
+});
+
 module.exports = {
     sequelize,
-    User
+    User,
+    Message
 };
