@@ -31,6 +31,7 @@ module.exports = function(app) {
         });
 
         socket.on('message', message => {
+            console.log(room);
             if (!room) {
                 return socket.emit('errorMessage', 'No rooms joined!');
             }
