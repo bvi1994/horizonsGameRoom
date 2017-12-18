@@ -25,7 +25,9 @@ class ChatWindow extends Component {
         });
         axios.get(BASE_URL + '/messages')
         .then(res => {
-            console.log("All messages", res);
+            this.setState({
+                messages: [...this.state.messages, ...res.data]
+            });
         })
         .catch(e => {
             console.log(e);
