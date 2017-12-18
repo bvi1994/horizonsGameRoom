@@ -35,9 +35,7 @@ module.exports = (passport) => {
             attributes: { exclude: ['updatedAt', 'id'] }
         })
         .then(messages => {
-            messages.map(message => {
-                console.log('Messages -------------', message);
-            });
+            res.json(messages);
         }).catch(e => {
             console.log(e);
         });
