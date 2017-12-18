@@ -12,16 +12,16 @@ module.exports = function(app) {
         socket.on('room', requestedRoom => {
             console.log("requestedRoom", requestedRoom);
             if (!socket.username) {
-              console.log(1);
-              return socket.emit('errorMessage', 'Username not set!');
+                console.log(1);
+                return socket.emit('errorMessage', 'Username not set!');
             }
             if (!requestedRoom) {
-              console.log(2);
-              return socket.emit('errorMessage', 'No room!');
+                console.log(2);
+                return socket.emit('errorMessage', 'No room!');
             }
             if (socket.room) {
-              console.log(3);
-              socket.leave(socket.room);
+                console.log(3);
+                socket.leave(socket.room);
             }
             socket.room = requestedRoom;
             console.log("socketROOM", socket.room);

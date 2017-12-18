@@ -18,19 +18,19 @@ class Chatbox extends Component {
         };
     }
     componentDidMount() {
-        this.state.socket.on('errorMessage', message => {
+        socket.on('errorMessage', message => {
             console.log("Unable to connect. Error: ", message);
         });
     }
     componentWillReceiveProps(props) {
-        this.state.socket.emit('username', this.props.user.username);
+        socket.emit('username', props.user.username);
         this.setState({
             username: props.user.username,
             user: props.user
         });
     }
     joinRoom() {
-        this.state.socket.emit('room', "Main Chat Room");
+        socket.emit('room', "Main Chat Room");
     }
     render() {
         return(
