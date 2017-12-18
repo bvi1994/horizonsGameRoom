@@ -15,14 +15,14 @@ class ChatWindow extends Component {
         this.props.socket.on('message', message => {
             this.setState({messages: [...this.state.messages, message]});
         });
-        Message.findAll({
-            attributes: { exclude: ['updatedAt', 'id'] }
-        })
-        .then(messages => {
-            messages.map(message => {
-                console.log(message);
-            });
-        });
+        // Message.findAll({
+        //     attributes: { exclude: ['updatedAt', 'id'] }
+        // })
+        // .then(messages => {
+        //     messages.map(message => {
+        //         console.log(message);
+        //     });
+        // });
     }
     componentWillReceiveProps(nextProps) {
         const messageHistory = this.props.room === nextProps.room ? this.state.messages : [];
