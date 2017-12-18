@@ -13,6 +13,13 @@ class ChatWindow extends Component {
         };
     }
     componentDidMount() {
+        this.state.socket.on('connect', () => {
+            this.state.socket.emit('username', this.props.user.username);
+            this.state.socket.emit('room', "Main");
+        });
+        this.state.socket.on('errorMessage', message => {
+            console.log("Unable to connect. Error: ", message);
+        });
         this.props.socket.on('message', message => {
             this.setState({messages: [...this.state.messages, message]});
         });
