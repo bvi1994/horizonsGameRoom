@@ -1,0 +1,83 @@
+.roomBlock{
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    height: 170px;
+    /*width: 350px;*/
+    width: 30%;
+    cursor: pointer;
+    /*margin-left: 3%;*/
+    margin-right: 3%;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.gameInfo{
+    display: flex;
+    flex-direction: row;
+    flex: 3;
+}
+
+.roomName{
+    flex: 1;
+}
+
+.playerInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.roomBlock:hover{
+    background-color: grey;
+}
+
+#playerList{
+    display: none;
+}
+
+#playerListAvatar{
+    margin-left: 10%;
+    margin-right: 1%;
+}
+
+.roomBlock:hover #playerList{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+    max-height: 80%;
+    /*flex: 3;*/
+}
+
+#menuOptions{
+    display: flex;
+    flex-direction: row;
+    /*margin-top: 10%;*/
+    justify-content: center;
+    /*width: 50%*/
+    /*align-self: flex-end;*/
+    margin-top: 19%;
+    flex: 1;
+}
+
+
+#logoutButton {
+  -webkit-border-radius: 6;
+  -moz-border-radius: 6;
+  border-radius: 6px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 20px;
+  background: #ffc85b;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  width: 95%;
+  margin-left: 2%;
+  cursor: pointer;
+  border-color: #ffc85b;
+}
+
+#logoutButton:hover {
+  background: #4d606b;
+  text-decoration: none;
+}
