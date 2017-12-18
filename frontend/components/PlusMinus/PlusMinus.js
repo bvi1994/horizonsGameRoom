@@ -124,7 +124,6 @@ class PlusMinus extends Component {
     }
     answer(e, i) {
         e.preventDefault();
-        console.log(parseInt(e.target.value), this.state.questions[i].answer);
         if(parseInt(e.target.value) === this.state.questions[i].answer) {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
                 this.nextComponent.forEach(nc => {nc.value = '';});

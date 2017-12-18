@@ -6,7 +6,8 @@ class ChatWindow extends Component {
         super(props);
         this.state = {
             message: '',
-            messages: []
+            messages: [],
+            autoFocus: true
         };
     }
     componentDidMount() {
@@ -30,15 +31,15 @@ class ChatWindow extends Component {
     render() {
         console.log("Render: ", this.props.username);
         return (
-          <div style={{height: "100vh"}}>
-              <div className="room">
+          <div style={{height: "90%"}}>
+              <div className="room" style={{height: "75%"}}>
                   <div className="message">
                     {this.state.messages.map((msg) => ( <p> {msg.username}: {msg.content}</p>))}
                   </div>
               </div>
-              <div className="textBox">
+              <div className="textBox" style={{height: "20%"}}>
                 <form onSubmit = {(e) => this.handleSubmit(e)}>
-                  <input onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
+                  <input autoFocus={this.state.autoFocus} onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
                 </form>
               </div>
           </div>

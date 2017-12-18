@@ -37,7 +37,8 @@ class Chatbox extends Component {
     render() {
         return(
           <div id="chatBox" className="section">
-              This is a test - Chat Box
+              Horizons Playground Chat Room 🌎
+              
               <ChatWindow username={this.state.username} room={this.state.roomName} socket={this.state.socket} />
           </div>
         );
