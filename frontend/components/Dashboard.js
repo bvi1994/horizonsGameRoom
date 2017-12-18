@@ -33,7 +33,7 @@ class Dashboard extends Component {
             <div id="mainDashboard" style={{minHeight: "100%"}}>
                 <Profile user={this.state.user}/>
                 <CurrentGameSession />
-                <Chatbox username={this.state.user.username}/>
+                <Chatbox user={this.state.user}/>
             </div>
           </div>
         );

@@ -27,19 +27,15 @@ class Chatbox extends Component {
     }
     componentWillReceiveProps(props) {
         this.setState({
-            username: props.username
+            username: props.user.username
         });
-    }
-    join() {
-        this.setState({roomName: this.state.roomName});
-        this.state.socket.emit('room', this.state.roomName);
     }
     render() {
         return(
           <div id="chatBox" className="section">
               Horizons Playground Chat Room 🌎
-              
-              <ChatWindow username={this.state.username} room={this.state.roomName} socket={this.state.socket} />
+
+              <ChatWindow username={this.state.username} socket={this.state.socket} />
           </div>
         );
     }
