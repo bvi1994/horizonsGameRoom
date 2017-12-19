@@ -13,7 +13,7 @@ class LoginForm extends Component {
             redirect: false
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         axios.get(BASE_URL + '/loggedIn')
         .then(result => {
             if(result.status === 200) {
@@ -32,6 +32,7 @@ class LoginForm extends Component {
 
     render() {
         return (this.state.redirect) ? <Redirect to="/dashboard" /> : (
+        // return (
           <div>
             <div id="loginForm">
               <div id="loginImage">

@@ -28,8 +28,9 @@ class Dashboard extends Component {
         });
     }
     render() {
-        return (this.state.redirect) ? <Redirect to="/" /> : (
-          <div style={{height: "100%"}}>
+        // return (this.state.redirect) ? <Redirect to="/" /> : (
+        return (
+        <div style={{height: "100%"}}>
             <div id="mainDashboard" style={{minHeight: "100%"}}>
                 <Profile user={this.state.user}/>
                 <CurrentGameSession />
