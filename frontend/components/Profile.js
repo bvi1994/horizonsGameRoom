@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import { Redirect } from "react-router";
 import CreateGame from './CreateGame';
 import axios from 'axios';
-<<<<<<< HEAD
-import {GithubLoginButton} from 'react-social-login-buttons';
+import { GithubLoginButton } from 'react-social-login-buttons';
 import '../assets/stylesheets/Profile.css';
-const BASE_URL = 'http://8096a45d.ngrok.io';
-=======
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
->>>>>>> 168e9aba8606050a3efdef268f25a5d86573649c
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
 class Profile extends Component {
