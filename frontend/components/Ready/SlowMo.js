@@ -120,11 +120,6 @@ window.addEventListener('load', () => {
   // keep the mouse in sync with rendering
   render.mouse = mouse;
 
-  // fit the render viewport to the scene
-  Matter.Render.lookAt(render, {
-    min: { x: 0, y: 0 },
-    max: { x: 800, y: 600 }
-  });
 	//Start the engine
 	Matter.Engine.run(engine);
 	Matter.Render.run(render);
