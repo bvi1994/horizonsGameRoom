@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
 	var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d');
 
-    document.body.appendChild(canvas);
+    document.getElementById('box').appendChild(canvas);
 
 	//Setup Matter JS
 	var engine = Matter.Engine.create();
@@ -18,8 +18,8 @@ window.addEventListener('load', () => {
 		canvas: canvas,
 		engine: engine,
 		options: {
-			width: 1800,
-			height: 950,
+			width: window.innerWidth,
+			height: window.innerHeight,
 			wireframes: false,
 			showAngleIndicator: false
 		}
@@ -125,7 +125,7 @@ window.addEventListener('load', () => {
   // fit the render viewport to the scene
   Matter.Render.lookAt(render, {
     min: { x: 0, y: 0 },
-    max: { x: 800, y: 600 }
+    max: { x: window.innerWidth, y: window.innerHeight }
   });
 	//Start the engine
 	Matter.Engine.run(engine);
@@ -141,7 +141,7 @@ class SlowMo extends Component {
     }
     render() {
         return(
-          <div id="world" ref="world">Loading...
+          <div id="box">Loading...
               <iframe width="1" height="1" src="https://www.youtube.com/embed/hZe5K1DN4ec?autoplay=1" />
           </div>
         );
