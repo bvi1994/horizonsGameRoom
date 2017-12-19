@@ -20,6 +20,9 @@ router.get('/game/:game', (req, res) => {
         case 'plusMinus':
             res.sendFile(__dirname + '/public/plusMinus.html');
             break;
+        case 'triangle':
+            res.sendFile(__dirname + '/public/triangle.html');
+            break;
         default:
             res.redirect('/ready/');
             break;

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from "react";
 import '../assets/stylesheets/GameSession.css';
 import JoinButton from './JoinButton.js';
 import WatchButton from './WatchButton.js';
-// import Avatar from 'material-ui/Avatar';
 
 class GameSession extends Component {
     constructor(props) {
@@ -24,8 +23,7 @@ class GameSession extends Component {
                   </div>
                   <div className="playerInfo">
                     <div id="playerListAvatar">
-                      {/* <Avatar src="https://i.imgur.com/x6PRlCE.png" size={25} />
-                      <Avatar src="https://i.imgur.com/x6PRlCE.png" size={25} /> */}
+                        
                     </div>
                   </div>
                 </div>

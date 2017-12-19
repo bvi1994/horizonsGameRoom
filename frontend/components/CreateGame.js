@@ -39,7 +39,11 @@ class CreateGame extends Component {
                 >
                   <h1>Choose a game</h1>
                   <a href={BASE_URL + "/game/slapjack/"}>Slapjack</a>
+                  <br/>
                   <a href={BASE_URL + "/game/plusMinus/"}>PlusMinus</a>
+                  <br/>
+                  <a href={BASE_URL + "/game/triangle"}>Triangle</a>
+                  <br/>
                   <button onClick={this.modalClose}>close</button>
                 </Modal>
             </div>
