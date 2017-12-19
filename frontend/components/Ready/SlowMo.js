@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
 	var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d');
 
-    document.getElementById("world").appendChild(canvas);
+    document.getElementById('slowMo').appendChild(canvas);
 
 	//Setup Matter JS
 	var engine = Matter.Engine.create();
