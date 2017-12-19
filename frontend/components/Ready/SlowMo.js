@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
 	var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d');
 
-    document.getElementById('world').appendChild(canvas);
+    document.body.appendChild(canvas);
 
 	//Setup Matter JS
 	var engine = Matter.Engine.create();
