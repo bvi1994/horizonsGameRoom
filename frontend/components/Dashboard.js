@@ -16,7 +16,7 @@ class Dashboard extends Component {
             user: {}
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         axios.get(BASE_URL + '/profile')
         .then(userInfo => {
             this.setState({
