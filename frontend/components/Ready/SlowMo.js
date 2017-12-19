@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
 	var canvas = document.createElement('canvas'),
         context = canvas.getContext('2d');
 
-    document.body.appendChild(canvas);
+    document.getElementById("world").appendChild(canvas);
 
 	//Setup Matter JS
 	var engine = Matter.Engine.create();
@@ -122,7 +122,11 @@ window.addEventListener('load', () => {
 
   // keep the mouse in sync with rendering
   render.mouse = mouse;
-
+  // fit the render viewport to the scene
+  Matter.Render.lookAt(render, {
+    min: { x: 0, y: 0 },
+    max: { x: 800, y: 600 }
+  });
 	//Start the engine
 	Matter.Engine.run(engine);
 	Matter.Render.run(render);
