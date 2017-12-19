@@ -4,7 +4,7 @@ const session = require('express-session');
 const app = express();
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
-// 'https://horizonsplayground.herokuapp.com'
+// 'https://horizonsplayground.herokuapp.com';
 //
 // var models = require('./sequelize/models');
 //
@@ -38,10 +38,6 @@ app.use((req, res, next) => {
 app.get('/', (request, response) => {
     response.sendFile(__dirname + '/public/index.html'); // For React/Redux
 });
-
-// app.get('/game/slapjack', (req, res) => {
-//     res.sendFile(__dirname + '/public/slapjack.html');
-// });
 
 app.use(session({
     secret: process.env.SECRET,

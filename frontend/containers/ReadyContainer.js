@@ -2,12 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter, Route } from 'react-router-dom';
-import Ready from '../components/Ready';
+import Plane from '../components/Ready/Plane';
+import SlowMo from '../components/Ready/SlowMo';
 const ReadyContainer = () => {
     return (
         <HashRouter>
           <div style={{height: "100%"}}>
-            <Route exact path="/" component={Ready} />
+            <Route exact path="/plane" component={Plane} />
+            <Route exact path="/slowMo" component={SlowMo} />
           </div>
         </HashRouter>
     );

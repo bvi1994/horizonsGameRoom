@@ -632,8 +632,8 @@ class Ready extends Component {
     render() {
         return (
           <div id="world">Loading...
-						<iframe width="1" height="1" src="https://www.youtube.com/embed/Aq_gsctWHtQ?autoplay=1" />
-					</div>
+		  	  <iframe width="1" height="1" src="https://www.youtube.com/embed/Aq_gsctWHtQ?autoplay=1" />
+	   	  </div>
         );
     }
 }
