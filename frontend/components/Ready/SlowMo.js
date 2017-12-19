@@ -5,9 +5,8 @@ const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
 window.addEventListener('load', () => {
-
 	//Fetch our canvas
-	var canvas = document.body.getElementById('world');
+	var canvas = document.getElementById('world');
 
 	//Setup Matter JS
 	var engine = Matter.Engine.create();
@@ -140,9 +139,9 @@ class SlowMo extends Component {
     }
     render() {
         return(
-          <div id="world" ref="world">Loading...
+          <canvas id="world" ref="world">Loading...
               <iframe width="1" height="1" src="https://www.youtube.com/embed/hZe5K1DN4ec?autoplay=1" />
-          </div>
+          </canvas>
         );
     }
 }
