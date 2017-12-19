@@ -141,7 +141,7 @@ class SlowMo extends Component {
     }
     render() {
         return(
-          <div id="world" ref="world">Loading...
+          <div id="world" ref="world" style={{color: "white"}}>Loading...
               <iframe width="1" height="1" src="https://www.youtube.com/embed/hZe5K1DN4ec?autoplay=1" />
           </div>
         );
