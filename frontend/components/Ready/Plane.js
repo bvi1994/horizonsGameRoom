@@ -66,7 +66,7 @@ function createScene() {
 	  renderer.shadowMap.enabled = true;
 
 	// Add the Renderer to the DOM, in the world div.
-	  container = document.getElementById('plane').appendChild(renderer.domElement);
+	  container = document.getElementById('world').appendChild(renderer.domElement);
 
 	// RESPONSIVE LISTENER
 	  window.addEventListener('resize', handleWindowResize, false);
