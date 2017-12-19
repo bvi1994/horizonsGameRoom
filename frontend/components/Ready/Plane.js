@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import React, { Component } from "react";
-import '../assets/stylesheets/Ready.css';
+import '../../assets/stylesheets/Ready.css';
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
