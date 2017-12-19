@@ -1,12 +1,13 @@
 import Matter from 'matter-js';
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
-window.addEventListener('load', function() {
+window.addEventListener('load', () => {
 
 	//Fetch our canvas
-	var canvas = document.getElementById('ready');
+	var canvas = ReactDOM.findDOMNode('world');
 
 	//Setup Matter JS
 	var engine = Matter.Engine.create();
@@ -139,7 +140,7 @@ class SlowMo extends Component {
     }
     render() {
         return(
-          <div id="world">Loading...
+          <div id="world" ref="world">Loading...
               <iframe width="1" height="1" src="https://www.youtube.com/embed/hZe5K1DN4ec?autoplay=1" />
           </div>
         );
