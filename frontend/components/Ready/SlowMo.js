@@ -7,7 +7,7 @@ const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 window.addEventListener('load', () => {
 
 	//Fetch our canvas
-	var canvas = document.getElementById('world');
+	var canvas = document.body.getElementById('world');
 
 	//Setup Matter JS
 	var engine = Matter.Engine.create();
@@ -76,7 +76,7 @@ window.addEventListener('load', () => {
       // reset counter
       counter = 0;
     }
-}, false);
+});
 
   var bodyOptions = {
     frictionAir: 0,
@@ -130,7 +130,7 @@ window.addEventListener('load', () => {
 	Matter.Engine.run(engine);
 	Matter.Render.run(render);
 
-});
+}, false);
 
 class SlowMo extends Component {
     constructor(props) {
