@@ -7,7 +7,7 @@ const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 window.addEventListener('load', () => {
 
 	//Fetch our canvas
-	var canvas = document.body.findById('world');
+	var canvas = document.body.getElementById('world');
 
 	//Setup Matter JS
 	var engine = Matter.Engine.create();
