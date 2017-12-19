@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router";
 import Profile from './Profile';
 import axios from 'axios';
 import '../assets/stylesheets/Dashboard.css';
@@ -13,7 +12,8 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             redirect: false,
-            user: {}
+            user: {},
+            gameSession: []
         };
     }
     componentDidMount() {
@@ -27,13 +27,18 @@ class Dashboard extends Component {
             console.log("componentWillMount Error", e);
         });
     }
+    addGameSession(session) {
+        this.setState({
+            gameSession: [...this.state.gameSession, session]
+        });
+    }
     render() {
         // return (this.state.redirect) ? <Redirect to="/" /> : (
         return (
         <div style={{height: "100%"}}>
             <div id="mainDashboard" style={{minHeight: "100%"}}>
-                <Profile user={this.state.user}/>
-                <CurrentGameSession />
+                <Profile user={this.state.user} addGame={(s) => this.addGameSession(s)}/>
+                <CurrentGameSession session={this.state.gameSession}/>
                 <Chatbox user={this.state.user}/>
             </div>
           </div>

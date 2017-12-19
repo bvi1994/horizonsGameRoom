@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import TextField from 'material-ui/TextField';
+import io from "socket.io-client";
 import axios from 'axios';
 import '../../assets/stylesheets/PlusMinus.css';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
 
@@ -45,6 +45,7 @@ class PlusMinus extends Component {
         super(props);
         this.operators = ["+", "-", "*"];
         this.nextComponent = [];
+        this.socket = io(BASE_URL);
         this.state = {
             timeLimit: 30,
             questions: [],
@@ -52,7 +53,36 @@ class PlusMinus extends Component {
             score: 0,
             value: '',
             gameOver: false,
+            user: null
         };
+    }
+    componentDidMount() {
+        this.socket.on('errorMessage', message => {
+            console.log("Unable to connect. Error: ", message);
+        });
+        axios.get(BASE_URL + '/profile')
+        .then(user => {
+            if(!this.state.user) {
+                this.setState({
+                    user: user
+                }, () => {
+                    this.socket.emit('createGame', {
+                        username: this.state.user.username,
+                        game: "PlusMinus",
+                        state: this.state,
+                    });
+                });
+            } else if(this.state.user.username !== user.username) {
+                this.isSpectator = true;
+                this.socket.emit('watch', this.state.user.username + "PlusMinus");
+                this.socket.on('gameMove', move => {
+                    this.setState(move);
+                });
+            }
+        })
+        .catch(e => {
+            console.log(e);
+        });
     }
     setLevel(val) {
         this.setState({
@@ -124,7 +154,7 @@ class PlusMinus extends Component {
     }
     answer(e, i) {
         e.preventDefault();
-        if(parseInt(e.target.value) === this.state.questions[i].answer) {
+        if(parseInt(e.target.value, 10) === this.state.questions[i].answer) {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
                 this.nextComponent.forEach(nc => {nc.value = '';});
                 this.makeQuestions();
@@ -134,6 +164,8 @@ class PlusMinus extends Component {
             }
             this.setState({
                 score: this.state.score + this.state.level + 1
+            }, () => {
+                this.state.socket.emit();
             });
         }
     }
@@ -146,8 +178,8 @@ class PlusMinus extends Component {
             <ol>
               {
                 this.state.questions.map((question, i) => {
-                    return (<h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} =
-                      <input className="input-field" ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h1>);
+                    return (<h3 key={i}>{question.first} {this.operators[question.operator]} {question.second} =
+                      <input className="input-field" ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h3>);
                 })
               }
             </ol>

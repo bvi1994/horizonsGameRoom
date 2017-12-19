@@ -13,13 +13,6 @@ class CurrentGameSession extends Component {
                 <div className="columnofGames">
                   <div className="rowofGames">
                     <GameSession />
-                    <GameSession />
-                    <GameSession />
-                  </div>
-                  <div className="rowofGames">
-                    <GameSession />
-                    <GameSession />
-                    <GameSession />
                   </div>
                 </div>
             </div>

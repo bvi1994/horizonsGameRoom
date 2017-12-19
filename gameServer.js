@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 router.get('/ready/', (req, res) => {
     res.sendFile(__dirname + '/public/ready.html');
 });
-router.get('/game/:game', (req, res) => {
+router.get('/game/:game/:username', (req, res) => {
     switch(req.params.game) {
         case 'slapjack':
             res.sendFile(__dirname + '/public/slapjack.html');

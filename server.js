@@ -98,3 +98,4 @@ var server = app.listen(PORT, error => {
 });
 
 require('./server2')(server);
+require('./gameSocket')(server);
