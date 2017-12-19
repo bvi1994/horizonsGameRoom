@@ -7,22 +7,11 @@
 
 #loginForm{
     display: flex;
-<<<<<<< HEAD
-    /*align-items: center;*/
-    /*justify-content: center;*/
-=======
->>>>>>> 168e9aba8606050a3efdef268f25a5d86573649c
     flex-direction: column;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-<<<<<<< HEAD
-    /*border-style: solid;
-    border-width: 3px;
-    border-color: black;*/
-=======
->>>>>>> 168e9aba8606050a3efdef268f25a5d86573649c
     height: 400px;
 }
 

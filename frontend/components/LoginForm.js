@@ -3,7 +3,6 @@ import { Redirect } from 'react-router';
 import axios from 'axios';
 import { GithubLoginButton } from 'react-social-login-buttons';
 import '../assets/stylesheets/LoginForm.css';
-
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'

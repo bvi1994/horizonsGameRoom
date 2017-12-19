@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
 import axios from 'axios';
-<<<<<<< HEAD
 import '../assets/stylesheets/CreateGame.css';
-const BASE_URL = 'http://8096a45d.ngrok.io';
-=======
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
->>>>>>> 168e9aba8606050a3efdef268f25a5d86573649c
 //  'http://localhost:3000';
 // 'https://horizonsplayground.herokuapp.com'
 class CreateGame extends Component {
