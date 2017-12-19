@@ -1,4 +1,4 @@
-import Matter from 'matter-js';
+import * as Matter from 'matter-js';
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
@@ -7,7 +7,7 @@ const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 window.addEventListener('load', () => {
 
 	//Fetch our canvas
-	var canvas = ReactDOM.findDOMNode('world');
+	var canvas = document.body.findById('world');
 
 	//Setup Matter JS
 	var engine = Matter.Engine.create();
@@ -76,7 +76,7 @@ window.addEventListener('load', () => {
       // reset counter
       counter = 0;
     }
-  });
+}, false);
 
   var bodyOptions = {
     frictionAir: 0,
