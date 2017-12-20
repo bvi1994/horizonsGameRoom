@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
 import '../../assets/stylesheets/PlusMinus.css';
-import { SOCKET } from './general';
+import { SOCKET } from '../general';
 
 class Level extends Component {
     constructor(props) {
