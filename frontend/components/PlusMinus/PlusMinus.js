@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../../assets/stylesheets/PlusMinus.css';
 import { SOCKET, BASE_URL } from '../general';
 
-console.log(`gameId: ${Window.gameId}, username: ${Window.username}`);
+console.log(`gameId: ${gameId}, username: ${username}`);
 
 class Level extends Component {
     constructor(props) {
