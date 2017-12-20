@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import io from "socket.io-client";
 import axios from 'axios';
 import '../../assets/stylesheets/PlusMinus.css';
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
-//  'http://localhost:3000';
-// 'https://horizonsplayground.herokuapp.com'
+import { SOCKET } from './general';
 
 class Level extends Component {
     constructor(props) {
@@ -45,7 +42,7 @@ class PlusMinus extends Component {
         super(props);
         this.operators = ["+", "-", "*"];
         this.nextComponent = [];
-        this.socket = io(BASE_URL);
+        this.socket = SOCKET
         this.state = {
             timeLimit: 30,
             questions: [],
@@ -66,6 +63,7 @@ class PlusMinus extends Component {
                 this.setState({
                     user: user
                 }, () => {
+                    this.socket.emit('username', this.state.user.username);
                     this.socket.emit('createGame', {
                         username: this.state.user.username,
                         game: "PlusMinus",

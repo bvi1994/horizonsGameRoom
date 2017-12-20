@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from "react";
 import axios from "axios";
 import '../assets/stylesheets/ChatWindow.css';
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
+import { BASE_URL } from './general';
 import '../assets/stylesheets/Chatbox.css';
 import '../assets/stylesheets/ChatWindow.css';
-// import io from 'socket.io-client';
 
 class ChatWindow extends Component {
     constructor(props) {

@@ -4,9 +4,8 @@ import axios from 'axios';
 import '../assets/stylesheets/Dashboard.css';
 import Chatbox from './Chatbox.js';
 import CurrentGameSession from './CurrentGameSession.js';
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
-//  'http://localhost:3000';
-// 'https://horizonsplayground.herokuapp.com'
+import { BASE_URL } from './general';
+
 class Dashboard extends Component {
     constructor(props) {
         super(props);

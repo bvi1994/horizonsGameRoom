@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import '../assets/stylesheets/Chatbox.css';
-import io from 'socket.io-client';
 import ChatWindow from './ChatWindow.js';
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
-//  'http://localhost:3000';
-// 'https://horizonsplayground.herokuapp.com'
-const socket = io(BASE_URL);
+import { SOCKET } from './general';
 
 class Chatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            socket: socket,
+            socket: SOCKET,
             roomName: "Main Chat Room",
             username: props.user.username,
             user: ""

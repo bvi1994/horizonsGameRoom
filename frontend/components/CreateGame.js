@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
-import axios from 'axios';
 import '../assets/stylesheets/CreateGame.css';
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
-//  'http://localhost:3000';
-// 'https://horizonsplayground.herokuapp.com'
+import { BASE_URL } from './general';
+
 class CreateGame extends Component {
     constructor(props) {
         super(props);
