@@ -78,13 +78,13 @@ class PlusMinus extends Component {
             });
         }
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        if(!this.isSpectator) {
-            console.log('gameMove emit  ', this.state.user);
-            this.socket.emit('gameMove', nextState);
-        }
-        return true;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if(!this.isSpectator) {
+    //         console.log('gameMove emit  ', this.state.user);
+    //         this.socket.emit('gameMove', nextState);
+    //     }
+    //     return true;
+    // }
     setLevel(val) {
         this.setState({
             level: val
@@ -169,6 +169,10 @@ class PlusMinus extends Component {
         }
     }
     render() {
+        if(!this.isSpectator) {
+            console.log('gameMove emit  ', this.state.user);
+            this.socket.emit('gameMove', nextState);
+        }
         const main = (
           <div>
             <h1>Hello PlusMinus!</h1>
