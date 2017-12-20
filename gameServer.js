@@ -12,6 +12,7 @@ router.get('/ready/', (req, res) => {
     res.sendFile(__dirname + '/public/ready.html');
 });
 router.get('/game/:game/:username', (req, res) => {
+    console.log(req.params);
     switch(req.params.game) {
         case 'slapjack':
             // res.sendFile(__dirname + '/public/slapjack.html');
