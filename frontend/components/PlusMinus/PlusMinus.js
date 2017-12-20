@@ -4,8 +4,6 @@ import axios from 'axios';
 import '../../assets/stylesheets/PlusMinus.css';
 import { SOCKET, BASE_URL } from '../general';
 
-console.log(`gameId: ${Window.gameId}, username: ${Window.user}`);
-
 class Level extends Component {
     constructor(props) {
         super(props);
@@ -59,29 +57,26 @@ class PlusMinus extends Component {
         this.socket.on('errorMessage', message => {
             console.log("Unable to connect. Error: ", message);
         });
-        axios.get(BASE_URL + '/profile')
-        .then(user => {
-            if(!this.state.user) {
-                this.setState({
-                    user: user
-                }, () => {
-                    this.socket.emit('createGame', {
-                        username: this.state.user.username,
-                        game: "PlusMinus",
-                        state: this.state,
-                    });
+        if (Window.user !== Window.gameId) {
+            // pull current state
+            this.socket.on('gameMove', move => {
+                this.setState(move);
+            });
+            this.isSpectator = true;
+            this.socket.emit('watch', this.state.user.username + "PlusMinus");
+        }
+        if(!this.state.user) {
+            this.setState({
+                user: Window.user
+            }, () => {
+                this.socket.emit('createGame', {
+                    username: this.state.user,
+                    game: "PlusMinus",
+                    state: this.state,
                 });
-            } else if(this.state.user.username !== user.username) {
-                this.isSpectator = true;
-                this.socket.emit('watch', this.state.user.username + "PlusMinus");
-                this.socket.on('gameMove', move => {
-                    this.setState(move);
-                });
-            }
-        })
-        .catch(e => {
-            console.log(e);
-        });
+            });
+        }
+
     }
     setLevel(val) {
         this.setState({
