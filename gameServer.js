@@ -14,6 +14,7 @@ router.get('/ready/', (req, res) => {
 router.get('/game/:game/:username', (req, res) => {
     console.log(req.params);
     console.log(req.user);
+    const { username } = req.user;
     switch(req.params.game) {
         case 'slapjack':
             // res.sendFile(__dirname + '/public/slapjack.html');
@@ -26,7 +27,7 @@ router.get('/game/:game/:username', (req, res) => {
             // res.sendFile(__dirname + '/public/plusMinus.html');
             res.render('plusMinus', {
                 gameId: req.params.username,
-                user: req.user.username
+                user: username
             });
             break;
         case 'triangle':
