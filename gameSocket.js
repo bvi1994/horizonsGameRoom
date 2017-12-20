@@ -1,5 +1,4 @@
-module.exports = function(app) {
-    const io = require('socket.io')(app);
+module.exports = function(app, io) {
     const games = new Map();
     //don't use username, room, message
     io.on('connection', socket => {

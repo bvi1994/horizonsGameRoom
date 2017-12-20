@@ -1,5 +1,4 @@
-module.exports = function(app) {
-    const io = require('socket.io')(app);
+module.exports = function(app, io) {
     let room = "";
     io.on('connection', socket => {
         socket.on('username', user => {
