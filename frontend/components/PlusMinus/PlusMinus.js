@@ -66,17 +66,15 @@ class PlusMinus extends Component {
             this.isSpectator = true;
             console.log('watch emit  ', this.state.user);
             this.socket.emit('watch', this.state.user + "PlusMinus");
-        }
-        if(!this.state.user) {
+        } else if(!this.state.user) {
             this.setState({
                 user: Window.user
-            }, () => {
-                console.log('create Game emit  ', this.state.user);
-                this.socket.emit('createGame', {
-                    username: this.state.user,
-                    game: "PlusMinus",
-                    state: this.state,
-                });
+            });
+            console.log('create Game emit  ', this.state.user);
+            this.socket.emit('createGame', {
+                username: Window.user,
+                game: "PlusMinus",
+                state: this.state,
             });
         }
     }
