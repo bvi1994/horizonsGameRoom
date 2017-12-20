@@ -28,7 +28,8 @@ const game = require('./gameServer');
 
 // Set View Engine
 app.engine('hbs', exphbs({
-    extname: 'hbs'
+    extname: 'hbs',
+    defaultLayout: 'default'
 }));
 app.set('view engine', 'hbs');
 
