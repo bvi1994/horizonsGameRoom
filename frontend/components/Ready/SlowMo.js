@@ -18,8 +18,8 @@ window.addEventListener('load', () => {
 		canvas: canvas,
 		engine: engine,
 		options: {
-			width: 1800,
-			height: 950,
+			width: window.innerWidth,
+			height: window.innerHeight,
 			wireframes: false,
 			showAngleIndicator: false
 		}
@@ -122,7 +122,11 @@ window.addEventListener('load', () => {
 
   // keep the mouse in sync with rendering
   render.mouse = mouse;
-
+  // fit the render viewport to the scene
+  Matter.Render.lookAt(render, {
+    min: { x: 0, y: 0 },
+    max: { x: window.innerWidth, y: window.innerHeight }
+  });
 	//Start the engine
 	Matter.Engine.run(engine);
 	Matter.Render.run(render);
@@ -137,7 +141,7 @@ class SlowMo extends Component {
     }
     render() {
         return(
-          <div id="world" ref="world">Loading...
+          <div id="world" ref="world" style={{color: "white"}}>Loading...
               <iframe width="1" height="1" src="https://www.youtube.com/embed/hZe5K1DN4ec?autoplay=1" />
           </div>
         );

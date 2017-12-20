@@ -12,14 +12,11 @@ class CurrentGameSession extends Component {
                 Current Games in Session
                 <div className="columnofGames">
                   <div className="rowofGames">
-                    <GameSession />
-                    <GameSession />
-                    <GameSession />
-                  </div>
-                  <div className="rowofGames">
-                    <GameSession />
-                    <GameSession />
-                    <GameSession />
+                    {
+                        this.props.session.map(s => {
+                            <GameSession link={s}/>
+                        })
+                    }
                   </div>
                 </div>
             </div>

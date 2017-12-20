@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { Redirect } from "react-router";
 import CreateGame from './CreateGame';
 import axios from 'axios';
-import { GithubLoginButton } from 'react-social-login-buttons';
 import '../assets/stylesheets/Profile.css';
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
-//  'http://localhost:3000';
-// 'https://horizonsplayground.herokuapp.com'
+import { BASE_URL } from './general';
+
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -46,7 +44,7 @@ class Profile extends Component {
                 <a href={this.state.user.profileUrl}>Get back to work :)</a>
                 <a href="/ready/">Click to kill time!</a>
                 <button onClick={() => this.logout()}>Log out</button>
-                <CreateGame userInfo={this.state.user}/>
+                <CreateGame userInfo={this.state.user} addGame={(s) => this.props.addGame(s)}/>
             </div>
         );
     }

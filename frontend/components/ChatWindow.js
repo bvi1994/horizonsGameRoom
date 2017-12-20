@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from "react";
 import axios from "axios";
 import '../assets/stylesheets/ChatWindow.css';
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
+import { BASE_URL } from './general';
 import '../assets/stylesheets/Chatbox.css';
 import '../assets/stylesheets/ChatWindow.css';
-// import io from 'socket.io-client';
 
 class ChatWindow extends Component {
     constructor(props) {
@@ -64,7 +63,7 @@ class ChatWindow extends Component {
                     {this.state.messages.map((msg) => ( <p> {msg.username}: {msg.content}</p>))}
                   </div>
               </div>
-              <div className="textBox" style={{height: "0%"}}>
+              <div className="textBox" style={{height: "90%"}}>
                 <form onSubmit = {(e) => this.handleSubmit(e)}>
                   <input autoFocus={this.state.autoFocus} onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
                 </form>
