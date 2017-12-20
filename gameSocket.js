@@ -9,6 +9,7 @@ module.exports = function(app) {
             games.set(socket.game, idGame.state);
         });
         socket.on('gameMove', move => {
+            console.log("gameMove room", socket.game);
             if (!socket.game) {
                 return socket.emit('errorMessage', 'No game room created.');
             }
@@ -19,6 +20,7 @@ module.exports = function(app) {
             io.sockets.in(socket.game).emit('move', move);
         });
         socket.on('watch', game => {
+            console.log("watch room", socket.game);
             if(!game) {
                 return socket.emit('errorMessage', 'Invalid game room name');
             }

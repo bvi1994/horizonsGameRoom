@@ -52,20 +52,20 @@ class PlusMinus extends Component {
             gameOver: false,
             user: null
         };
+    }
+    componentDidMount() {
         this.socket.on('gameMove', move => {
             console.log('on GameMove receive', this.state.user);
             this.setState(move);
         });
-    }
-    componentDidMount() {
         this.socket.on('errorMessage', message => {
             console.log("Unable to connect. Error: ", message);
         });
         if (Window.user !== Window.gameId) {
             // pull current state
             this.isSpectator = true;
-            console.log('watch emit  ', this.state.user);
-            this.socket.emit('watch', this.state.user + "PlusMinus");
+            console.log('watch emit  ', Window.user);
+            this.socket.emit('watch', Window.gameId + "PlusMinus");
         } else if(!this.state.user) {
             this.setState({
                 user: Window.user
