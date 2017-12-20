@@ -31,7 +31,7 @@ class Score extends Component {
             <h1>Your score: {this.props.score}</h1>
             <a href="/">Go back to main page</a>
             <br/>
-            {this.props.spectator ? <p>Thank you for watching ;)</p> : <a href="/game/plusMinus">Play again</a>}
+            {this.props.spectator ? <p>Thank you for watching ;)</p> : <a href={"/game/plusMinus/" + Window.user}>Play again</a>}
           </div>
         );
     }
@@ -52,6 +52,9 @@ class PlusMinus extends Component {
             gameOver: false,
             user: null
         };
+        this.socket.on('gameMove', move => {
+            this.setState(move);
+        });
     }
     componentDidMount() {
         this.socket.on('errorMessage', message => {
@@ -59,9 +62,6 @@ class PlusMinus extends Component {
         });
         if (Window.user !== Window.gameId) {
             // pull current state
-            this.socket.on('gameMove', move => {
-                this.setState(move);
-            });
             this.isSpectator = true;
             this.socket.emit('watch', this.state.user + "PlusMinus");
         }
@@ -76,7 +76,12 @@ class PlusMinus extends Component {
                 });
             });
         }
-
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        if(!this.isSpectator) {
+            this.socket.emit('gameMove', nextState);
+        }
+        return true;
     }
     setLevel(val) {
         this.setState({
