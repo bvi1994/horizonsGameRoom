@@ -63,7 +63,7 @@ class PlusMinus extends Component {
                 this.setState(move);
             });
             this.isSpectator = true;
-            this.socket.emit('watch', this.state.user.username + "PlusMinus");
+            this.socket.emit('watch', this.state.user + "PlusMinus");
         }
         if(!this.state.user) {
             this.setState({
@@ -182,7 +182,7 @@ class PlusMinus extends Component {
         let response;
         if(this.state.gameOver) {
             response = score;
-            this.socket.emit('gameOver', this.state.user.username + "PlusMinus");
+            this.socket.emit('gameOver', this.state.user + "PlusMinus");
         } else if(this.state.level === null) {
             response = level;
         } else {
