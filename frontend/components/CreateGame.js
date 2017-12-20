@@ -40,7 +40,7 @@ class CreateGame extends Component {
                   <br/>
                   <a href={BASE_URL + "/game/plusMinus/" + this.props.userInfo.username} onClick={() => this.props.addGame(BASE_URL + "/game/plusMinus/" + this.props.userInfo.username)}>PlusMinus</a>
                   <br/>
-                  <a href={BASE_URL + "/game/triangle" + this.props.userInfo.username} onClick={() => this.props.addGame(BASE_URL + "/game/triangle" + this.props.userInfo.username)}>Triangle</a>
+                  <a href={BASE_URL + "/game/triangle" + this.props.userInfo.username} onClick={() => this.props.addGame(BASE_URL + "/game/triangle/" + this.props.userInfo.username)}>Triangle</a>
                   <br/>
                   <button onClick={this.modalClose}>close</button>
                 </Modal>
