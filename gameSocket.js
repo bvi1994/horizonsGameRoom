@@ -9,10 +9,6 @@ module.exports = function(app) {
             games.set(socket.game, idGame.state);
         });
         socket.on('gameMove', move => {
-            if (!socket.username) {
-                console.log(1);
-                return socket.emit('errorMessage', 'Username not set!');
-            }
             if (!socket.game) {
                 return socket.emit('errorMessage', 'No game room created.');
             }

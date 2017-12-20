@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../../assets/stylesheets/PlusMinus.css';
 import { SOCKET, BASE_URL } from '../general';
 
-console.log(`gameId: ${Window.gameId}, username: ${Window.username}`);
+console.log(`gameId: ${Window.gameId}, username: ${Window.user}`);
 
 class Level extends Component {
     constructor(props) {
@@ -65,7 +65,6 @@ class PlusMinus extends Component {
                 this.setState({
                     user: user
                 }, () => {
-                    this.socket.emit('username', this.state.user.username);
                     this.socket.emit('createGame', {
                         username: this.state.user.username,
                         game: "PlusMinus",
