@@ -25,7 +25,7 @@ router.get('/game/:game/:username', (req, res) => {
             // res.sendFile(__dirname + '/public/plusMinus.html');
             res.render('plusMinus', {
                 gameId: req.params.username,
-                user: req.user.username
+                user: req.user
             });
             break;
         case 'triangle':
