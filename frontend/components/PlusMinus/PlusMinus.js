@@ -171,7 +171,7 @@ class PlusMinus extends Component {
     render() {
         if(!this.isSpectator) {
             console.log('gameMove emit  ', this.state.user);
-            this.socket.emit('gameMove', nextState);
+            this.socket.emit('gameMove', this.state);
         }
         const main = (
           <div>
