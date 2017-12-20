@@ -4,7 +4,8 @@ import axios from 'axios';
 import '../../assets/stylesheets/PlusMinus.css';
 import { SOCKET, BASE_URL } from '../general';
 
-console.log(`gameId: ${gameId}, username: ${username}`);
+const globalObject = this;
+console.log(`gameId: ${globalObject.gameId}, username: ${globalObject.username}`);
 
 class Level extends Component {
     constructor(props) {
