@@ -26,7 +26,7 @@ router.get('/game/:game/:username', (req, res) => {
             res.render('triangle');
             break;
         default:
-            res.redirect('/ready/');
+            res.send({success: 'failure'});
             break;
     }
 });
