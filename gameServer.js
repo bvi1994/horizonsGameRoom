@@ -18,12 +18,15 @@ router.get('/game/:game/:username', (req, res) => {
             // res.sendFile(__dirname + '/public/slapjack.html');
             res.render('slapjack', {
                 gameId: req.params.username,
-                user: req.params.username,
+                user: req.user.username
             });
             break;
         case 'plusMinus':
             // res.sendFile(__dirname + '/public/plusMinus.html');
-            res.render('plusMinus');
+            res.render('plusMinus', {
+                gameId: req.params.username,
+                user: req.user.username
+            });
             break;
         case 'triangle':
             // res.sendFile(__dirname + '/public/triangle.html');
