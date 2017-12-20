@@ -50,7 +50,8 @@ class PlusMinus extends Component {
             score: 0,
             value: '',
             gameOver: false,
-            user: null
+            user: null,
+            answers: [],
         };
     }
     componentDidMount() {
@@ -167,6 +168,13 @@ class PlusMinus extends Component {
                 score: this.state.score + this.state.level + 1
             });
         }
+        this.setState((prevState) => {
+            const newAnswers = prevState.answers.slice();
+            newAnswers[i] = e.target.value;
+            return {
+                answers: newAnswers,
+            };
+        });
     }
     render() {
         if(!this.isSpectator) {
@@ -182,7 +190,7 @@ class PlusMinus extends Component {
               {
                 this.state.questions.map((question, i) => {
                     return (<h3 key={i}>{question.first} {this.operators[question.operator]} {question.second} =
-                      <input className="input-field" ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h3>);
+                      <input className="input-field" ref={c => {this.nextComponent[i] = c;}} key={i} value={this.state.answers[i]} onChange={e => this.answer(e, i)}/></h3>);
                 })
               }
             </ol>
