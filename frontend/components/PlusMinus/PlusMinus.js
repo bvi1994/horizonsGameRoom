@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from 'axios';
 import '../../assets/stylesheets/PlusMinus.css';
-import { SOCKET } from '../general';
+import { SOCKET, BASE_URL } from '../general';
 
-console.log(`gameId: ${Window.gameId}, username: ${Window.username}`);
+console.log(`gameId: ${window.gameId}, username: ${window.username}`);
 
 class Level extends Component {
     constructor(props) {
