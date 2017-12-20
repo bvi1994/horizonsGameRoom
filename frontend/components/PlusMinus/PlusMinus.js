@@ -156,6 +156,7 @@ class PlusMinus extends Component {
     }
     answer(e, i) {
         e.preventDefault();
+        let correct = false;
         if(parseInt(e.target.value, 10) === this.state.questions[i].answer) {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
                 this.nextComponent.forEach(nc => {nc.value = '';});
@@ -164,17 +165,26 @@ class PlusMinus extends Component {
             } else {
                 ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
             }
-            this.setState({
-                score: this.state.score + this.state.level + 1
+            correct = true;
+        }
+        if (correct) {
+            this.setState((prevState) => {
+                const newAnswers = prevState.answers.slice();
+                newAnswers[i] = e.target.value;
+                return {
+                    answers: newAnswers,
+                    score: this.state.score + this.state.level + 1,
+                };
+            });
+        } else {
+            this.setState((prevState) => {
+                const newAnswers = prevState.answers.slice();
+                newAnswers[i] = e.target.value;
+                return {
+                    answers: newAnswers,
+                };
             });
         }
-        this.setState((prevState) => {
-            const newAnswers = prevState.answers.slice();
-            newAnswers[i] = e.target.value;
-            return {
-                answers: newAnswers,
-            };
-        });
     }
     render() {
         if(!this.isSpectator) {
