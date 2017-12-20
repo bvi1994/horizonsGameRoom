@@ -16,7 +16,7 @@ module.exports = function(app, io) {
                 return socket.emit('errorMessage', 'No move!');
             }
             games.set(socket.game, move);
-            io.sockets.in(socket.game).emit('move', move);
+            socket.broadcast.to(socket.game).emit('move', move);
         });
         socket.on('watch', game => {
             console.log("watch room", socket.game);
@@ -27,7 +27,7 @@ module.exports = function(app, io) {
                 return socket.emit('errorMessage', 'Game room does not exist.');
             }
             socket.join(game);
-            socket.emit('gameMove', games.get(game));
+            socket.emit('move', games.get(game));
         });
         socket.on('gameOver', game => {
             if(!game) {
