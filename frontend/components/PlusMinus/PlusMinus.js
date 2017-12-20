@@ -51,7 +51,7 @@ class PlusMinus extends Component {
             value: '',
             gameOver: false,
             user: null,
-            answers: [],
+            answers: new Array(10).fill(''),
         };
     }
     componentDidMount() {
@@ -157,6 +157,7 @@ class PlusMinus extends Component {
     answer(e, i) {
         e.preventDefault();
         let correct = false;
+        console.log("e value ---------> ", e.target.value);
         if(parseInt(e.target.value, 10) === this.state.questions[i].answer) {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
                 this.nextComponent.forEach(nc => {nc.value = '';});
@@ -179,6 +180,8 @@ class PlusMinus extends Component {
         } else {
             this.setState((prevState) => {
                 const newAnswers = prevState.answers.slice();
+                console.log("e value ---------> ", e.target);
+                console.log("e value ---------> ", e.target.value);
                 newAnswers[i] = e.target.value;
                 return {
                     answers: newAnswers,
