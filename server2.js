@@ -1,11 +1,9 @@
 module.exports = function(app, io) {
-    let room = "";
     io.on('connection', socket => {
         socket.on('username', user => {
             if (!user || !user.trim()) {
                 return socket.emit('errorMessage', 'No username!');
             }
-            console.log('AAA: ', user);
             socket.username = String(user);
         });
 

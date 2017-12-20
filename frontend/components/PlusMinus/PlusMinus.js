@@ -54,7 +54,7 @@ class PlusMinus extends Component {
         };
     }
     componentDidMount() {
-        this.socket.on('gameMove', move => {
+        this.socket.on('move', move => {
             console.log('on GameMove receive', this.state.user);
             this.setState(move);
         });
