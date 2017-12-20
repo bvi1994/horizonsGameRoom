@@ -34,7 +34,7 @@ class Score extends Component {
             <h1>Your score: {this.props.score}</h1>
             <a href="/">Go back to main page</a>
             <br/>
-            <a href="/game/plusMinus">Play again</a>
+            {this.props.spectator ? <p>Thank you for watching ;)</p> : <a href="/game/plusMinus">Play again</a>}
           </div>
         );
     }
@@ -186,10 +186,11 @@ class PlusMinus extends Component {
           </div>
         );
         const level = <Level setLevel={v => this.setLevel(v)} />;
-        const score = <Score score={this.state.score} />;
+        const score = <Score spectator={this.isSpectator} score={this.state.score} />;
         let response;
         if(this.state.gameOver) {
             response = score;
+            this.socket.emit('gameOver', this.state.user.username + "PlusMinus");
         } else if(this.state.level === null) {
             response = level;
         } else {

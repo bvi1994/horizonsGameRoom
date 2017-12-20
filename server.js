@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
+const exphbs = require('express-handlebars');
 const app = express();
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
@@ -24,6 +25,12 @@ const { User } = require('./sequelize/models');
 const PORT = process.env.PORT || 3001;
 const api = require('./backend/routes');
 const game = require('./gameServer');
+
+// Set View Engine
+app.engine('hbs', exphbs({
+    extname: 'hbs'
+}));
+app.set('view engine', 'hbs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());

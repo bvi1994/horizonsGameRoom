@@ -24,7 +24,7 @@ class GameSession extends Component {
                   </div>
                   <div className="playerInfo">
                     <div id="playerListAvatar">
-
+                        {this.props.link}
                     </div>
                   </div>
                 </div>

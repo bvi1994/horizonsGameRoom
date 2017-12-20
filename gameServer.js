@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
 router.use((req, res, next) => {
     if (!req.user) {
         res.status(401).json({success: 'failed'});
@@ -15,13 +14,16 @@ router.get('/ready/', (req, res) => {
 router.get('/game/:game/:username', (req, res) => {
     switch(req.params.game) {
         case 'slapjack':
-            res.sendFile(__dirname + '/public/slapjack.html');
+            // res.sendFile(__dirname + '/public/slapjack.html');
+            res.render('slapjack');
             break;
         case 'plusMinus':
-            res.sendFile(__dirname + '/public/plusMinus.html');
+            // res.sendFile(__dirname + '/public/plusMinus.html');
+            res.render('plusMinus');
             break;
         case 'triangle':
-            res.sendFile(__dirname + '/public/triangle.html');
+            // res.sendFile(__dirname + '/public/triangle.html');
+            res.render('triangle');
             break;
         default:
             res.redirect('/ready/');
