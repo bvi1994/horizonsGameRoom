@@ -156,6 +156,9 @@ class PlusMinus extends Component {
     }
     answer(e, i) {
         e.preventDefault();
+        if(!e.target) {
+            return;
+        }
         let correct = false;
         console.log("e value ---------> ", e.target.value);
         if(parseInt(e.target.value, 10) === this.state.questions[i].answer) {
