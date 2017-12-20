@@ -164,8 +164,6 @@ class PlusMinus extends Component {
             }
             this.setState({
                 score: this.state.score + this.state.level + 1
-            }, () => {
-                this.state.socket.emit();
             });
         }
     }
