@@ -55,9 +55,9 @@ class Dashboard extends Component {
                         role="button"
                         onClick={this.toggleDrawer(false)}
                         onKeyDown={this.toggleDrawer(false)}
-                    >
-                        <Chatbox user={this.state.user} socket={SOCKET} />
-                    </div>
+                    />
+
+                    <Chatbox user={this.state.user} socket={SOCKET} />
                 </Drawer>
             </div>
           </div>
