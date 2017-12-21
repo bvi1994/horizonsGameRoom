@@ -53,20 +53,18 @@ class ChatWindow extends Component {
         return (
           <div>
               <div className="chat-history">
-                  <ul>
                     {this.state.messages.map((msg) => {
                         const myMsg = (msg.username === this.props.user.username) ? "message my-message" : (msg.username !== "System") ? "message other-message" : "message sys-message";
                         return (
-                            <li>
+                            <div>
                                 <div className="message-data">
                                     <span className="message-data-name"><Avatar src={(msg.photo) ? msg.photo : ""} />{msg.username}</span>
                                 </div>
                                 <div className={myMsg}>{msg.content}</div>
-                            </li>
+                            </div>
                         );
                     })
                     }
-                  </ul>
               </div>
               <div className="textBox">
                 <form onSubmit = {(e) => this.handleSubmit(e)}>

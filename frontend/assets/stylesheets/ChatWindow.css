@@ -4,7 +4,7 @@
 
 .textBox{
     padding: 30px;
-
+    background: #FF585B;
     input {
       width: 100%;
       border: none;
