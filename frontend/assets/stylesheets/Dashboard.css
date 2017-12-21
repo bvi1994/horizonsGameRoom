@@ -1,8 +1,6 @@
 #mainDashboard{
     display: flex;
-    /*flex-direction: row-reverse;*/
     flex-direction: row;
-    /*height: 100%;*/
     overflow: auto;
     height: 100%;
     padding-left: 5%;
