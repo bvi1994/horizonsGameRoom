@@ -55,20 +55,16 @@ class Dashboard extends Component {
         return (
         <div style={{height: "100%"}}>
                 <div id="mainDashboard">
-                    <header>Horizons Playground
-                    </header>
-                    <content>
                         <Profile user={this.state.user} addGame={this.addGameSession} joinRoom={() => this.joinRoom()}/>
                         <CurrentGameSession session={this.state.gameSession}/>
                         <Drawer width={450} openSecondary={this.openSecondary} open={this.state.chatOpen}>
                             <Chatbox user={this.state.user} socket={this.state.socket} />
                         </Drawer>
-                    </content>
-                    <footer className="footer">
-                        <div id="copyright">
-                            <p>Copyright © 2016 <a href="https://www.joinhorizons.com/">Horizons Education, LLC.</a></p>
-                        </div>
-                    </footer>
+                </div>
+                <div className="footer">
+                    <div id="copyright">
+                        <p>Copyright © 2016 <a href="https://www.joinhorizons.com/">Horizons Education, LLC.</a></p>
+                    </div>
                 </div>
           </div>
         );
