@@ -21,6 +21,7 @@ class ChatWindow extends Component {
         });
         axios.get(BASE_URL + '/messages')
         .then(res => {
+            console.log('messages', res.data);
             this.setState({
                 messages: [...this.state.messages, ...res.data]
             });
@@ -38,11 +39,7 @@ class ChatWindow extends Component {
         };
         this.setState({messages: [...this.state.messages, newMessage], message: ''});
         this.props.socket.emit('message', newMessage);
-        axios.post(BASE_URL + '/messages', {
-            username: this.props.user.username,
-            photo: this.props.user.photo,
-            content: newMessage.content
-        })
+        axios.post(BASE_URL + '/messages', newMessage)
         .then((res) => {
             console.log('message created', res);
         })
@@ -59,13 +56,13 @@ class ChatWindow extends Component {
               <div className="chat-history" style={{height: "80%"}}>
                   <ul>
                     {this.state.messages.map((msg) => {
-                        const myMsg = msg.username === this.state.user.username ? "message my-message" : "message other-message";
+                        const myMsg = (msg.username === this.state.user.username) ? "message my-message" : "message other-message";
                         return (
                             <li>
                                 <div className="message-data">
-                                    <span className="message-data-name"><Avatar src={msg.message.photo} />{msg.message.username}</span>
+                                    <span className="message-data-name"><Avatar src={msg.photo} />{msg.username}</span>
                                 </div>
-                                <div className={myMsg}>{msg.message.content}</div>
+                                <div className={myMsg}>{msg.content}</div>
                             </li>
                         );
                     })
