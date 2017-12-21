@@ -15,6 +15,7 @@ class Dashboard extends Component {
             gameSession: [],
             chatOpen: false
         };
+        this.toggleDrawer = this.toggleDrawer.bind(this);
     }
     componentDidMount() {
         axios.get(BASE_URL + '/profile')
@@ -40,7 +41,7 @@ class Dashboard extends Component {
     }
     joinRoom() {
         SOCKET.emit('room', "Main Chat Room");
-        this.toggleDrawer(true).bind(this);
+        this.toggleDrawer(true);
     }
     render() {
         return (
