@@ -31,7 +31,7 @@ class Score extends Component {
             <h1>Your score: {this.props.score}</h1>
             <a href="/">Go back to main page</a>
             <br/>
-            {this.props.spectator ? <p>Thank you for watching ;)</p> : <a href={"/game/plusMinus/" + Window.user}>Play again</a>}
+            {this.props.spectator ? <p>Thank you for watching ;)</p> : <button onClick={() => this.props.restart()}>Play again</button>}
           </div>
         );
     }
@@ -78,6 +78,11 @@ class PlusMinus extends Component {
                 state: this.state,
             });
         }
+    }
+    restartGame() {
+        this.setState({
+            gameOver: false
+        });
     }
     setLevel(val) {
         this.setState({
@@ -202,7 +207,7 @@ class PlusMinus extends Component {
           </div>
         );
         const level = <Level setLevel={v => this.setLevel(v)} />;
-        const score = <Score spectator={this.isSpectator} score={this.state.score} />;
+        const score = <Score spectator={this.isSpectator} score={this.state.score} restart={() => this.restartGame()}/>;
         let response;
         if(this.state.gameOver) {
             response = score;

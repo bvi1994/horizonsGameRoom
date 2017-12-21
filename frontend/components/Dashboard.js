@@ -37,7 +37,7 @@ class Dashboard extends Component {
         return (
         <div style={{height: "100%"}}>
             <div id="mainDashboard" style={{minHeight: "100%"}}>
-                <Profile user={this.state.user} addGame={(s) => this.addGameSession(s)}/>
+                <Profile user={this.state.user} addGame={this.addGameSession.bind(this)}/>
                 <CurrentGameSession session={this.state.gameSession}/>
                 <Chatbox user={this.state.user}/>
             </div>
