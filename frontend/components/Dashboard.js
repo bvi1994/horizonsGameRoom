@@ -13,9 +13,11 @@ class Dashboard extends Component {
         this.state = {
             user: {},
             gameSession: [],
-            chatOpen: false
+            chatOpen: false,
+            joined: false,
+            socket: SOCKET
         };
-        this.toggleDrawer = this.toggleDrawer.bind(this);
+        this.openSecondary = true;
     }
     componentDidMount() {
         axios.get(BASE_URL + '/profile')
@@ -40,7 +42,9 @@ class Dashboard extends Component {
         });
     }
     joinRoom() {
-        SOCKET.emit('room', "Main Chat Room");
+        if(!this.state.joined) {
+            this.state.socket.emit('room', "Main Chat Room");
+        }
         this.toggleDrawer(true);
     }
     render() {
@@ -49,15 +53,8 @@ class Dashboard extends Component {
             <div id="mainDashboard" style={{minHeight: "100%"}}>
                 <Profile user={this.state.user} addGame={this.addGameSession} joinRoom={() => this.joinRoom()}/>
                 <CurrentGameSession session={this.state.gameSession}/>
-                <Drawer anchor="left" open={this.state.chatOpen} onClose={this.toggleDrawer(false)}>
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        onClick={this.toggleDrawer(false)}
-                        onKeyDown={this.toggleDrawer(false)}
-                    />
-
-                    <Chatbox user={this.state.user} socket={SOCKET} />
+                <Drawer width={400} openSecondary={this.openSecondary} open={this.state.chatOpen}>
+                    <Chatbox user={this.state.user} socket={this.state.socket} />
                 </Drawer>
             </div>
           </div>
