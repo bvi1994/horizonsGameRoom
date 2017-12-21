@@ -58,13 +58,17 @@ class ChatWindow extends Component {
           <div style={{height: "90%"}}>
               <div className="chat-history" style={{height: "80%"}}>
                   <ul>
-                    {this.state.messages.map((msg) => (
-                        <li>
-                            <div className="message-data">
-                                <span className="message-data-name"><Avatar src={msg.photo} />{msg.username}</span>
-                            </div>
-                            <div className={(msg.username === this.state.user.username) ? "message my-message" : "message other-message"}>{msg.content}</div>
-                        </li>))
+                    {this.state.messages.map((msg) => {
+                        const myMsg = msg.username === this.state.user.username ? "message my-message" : "message other-message";
+                        return (
+                            <li>
+                                <div className="message-data">
+                                    <span className="message-data-name"><Avatar src={msg.photo} />{msg.username}</span>
+                                </div>
+                                <div className={myMsg}>{msg.content}</div>
+                            </li>
+                        );
+                    })
                     }
                   </ul>
               </div>
