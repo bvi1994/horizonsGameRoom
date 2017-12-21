@@ -25,3 +25,17 @@
     border-color: red;
     border-width: 10px; */
 }
+.chat-message {
+  padding: 30px;
+
+  input {
+    width: 100%;
+    border: none;
+    padding: 10px 20px;
+    font: 14px/22px "Lato", Arial, sans-serif;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    resize: none;
+
+  }
+}

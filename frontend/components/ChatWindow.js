@@ -63,7 +63,7 @@ class ChatWindow extends Component {
                     {this.state.messages.map((msg) => ( <p> {msg.username}: {msg.content}</p>))}
                   </div>
               </div>
-              <div className="textBox" style={{height: "90%"}}>
+              <div className="chat-message">
                 <form onSubmit = {(e) => this.handleSubmit(e)}>
                   <input autoFocus={this.state.autoFocus} onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
                 </form>
