@@ -160,8 +160,7 @@ class PlusMinus extends Component {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
                 this.setState({
                     answers: new Array(10).fill('')
-                });
-                this.makeQuestions();
+                }, () => this.makeQuestions());
                 ReactDOM.findDOMNode(this.nextComponent[0]).focus();
             } else {
                 ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
