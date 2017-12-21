@@ -61,6 +61,11 @@ class Dashboard extends Component {
                     <Chatbox user={this.state.user} socket={this.state.socket} />
                 </Drawer>
             </div>
+            <footer className="footer">
+                <div id="copyright" className="col-md-12">
+                        <p>Copyright © 2016 <a href="https://www.joinhorizons.com/">Horizons Education, LLC.</a></p>
+                </div>
+            </footer>
           </div>
         );
     }
