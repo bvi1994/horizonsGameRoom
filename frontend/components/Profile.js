@@ -31,7 +31,7 @@ class Profile extends Component {
     }
     render() {
         return (this.state.redirect) ? <Redirect to="/" /> : (
-            <aside className="profile-card">
+            <div className="profile-card">
               <header>
                   <a href={this.state.user.profileUrl}>
                       <img  src={this.state.user.photo} alt={this.state.user.username + "'s profile"} className="hoverZoomLink" />
@@ -75,7 +75,7 @@ class Profile extends Component {
                   </button>
                 </li>
               </ul>
-            </aside>
+          </div>
         );
     }
 }
