@@ -33,7 +33,7 @@ module.exports = function(app, io) {
             if(!game) {
                 return socket.emit('errorMessage', 'Invalid game room name');
             }
-            if(!io.sockets.adaptor.rooms[game]) {
+            if(!io.sockets.adapter.rooms[game]) {
                 return socket.emit('errorMessage', 'Game room does not exist.');
             }
             io.sockets.in(socket.game).emit('gameEnd');
