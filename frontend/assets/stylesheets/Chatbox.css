@@ -3,8 +3,5 @@
     /*height: 100%;*/
     /* overflow: scroll; */
     height: 94vh;
-}
-
-#chatWindow{
-    /* flex: 1; */
+    background: #F2F5F8;
 }
