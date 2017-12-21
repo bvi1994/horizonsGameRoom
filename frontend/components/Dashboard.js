@@ -62,7 +62,7 @@ class Dashboard extends Component {
                 </Drawer>
             </div>
             <footer className="footer">
-                <div id="copyright" className="col-md-12">
+                <div id="copyright">
                         <p>Copyright © 2016 <a href="https://www.joinhorizons.com/">Horizons Education, LLC.</a></p>
                 </div>
             </footer>

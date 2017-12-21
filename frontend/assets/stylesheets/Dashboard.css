@@ -22,9 +22,18 @@ footer {
     font-size: 14px;
     line-height: 1.42857143;
     box-sizing: border-box;
+    a {
+        color: white !important;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+    }
 }
 #copyright {
     background-color: #161616;
     padding: 15px 0px;
     border-top: 1px solid rgba(114, 114, 114, 0.25);
+    p {
+        font-size: 13px;
+        text-align: center;
+    }
 }
