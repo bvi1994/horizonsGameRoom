@@ -40,6 +40,7 @@ class Dashboard extends Component {
     }
     joinRoom() {
         SOCKET.emit('room', "Main Chat Room");
+        this.toggleDrawer(true);
     }
     render() {
         return (
