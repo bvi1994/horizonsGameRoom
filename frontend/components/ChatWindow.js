@@ -55,7 +55,7 @@ class ChatWindow extends Component {
               <div className="chat-history">
                   <ul>
                     {this.state.messages.map((msg) => {
-                        const myMsg = (msg.username === this.props.user.username) ? "message my-message" : (msg.username !== "System") ? "message other-message" : "message";
+                        const myMsg = (msg.username === this.props.user.username) ? "message my-message" : (msg.username !== "System") ? "message other-message" : "message sys-message";
                         return (
                             <li>
                                 <div className="message-data">
