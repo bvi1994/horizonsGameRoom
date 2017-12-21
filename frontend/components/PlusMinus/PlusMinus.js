@@ -56,22 +56,22 @@ class PlusMinus extends Component {
     }
     componentDidMount() {
         this.socket.on('move', move => {
-            console.log('on GameMove receive', this.state.user);
             this.setState(move);
         });
         this.socket.on('errorMessage', message => {
             console.log("Unable to connect. Error: ", message);
         });
+        this.socket.on('gameEnd', () => {
+
+        });
         if (Window.user !== Window.gameId) {
             // pull current state
             this.isSpectator = true;
-            console.log('watch emit  ', Window.user);
             this.socket.emit('watch', Window.gameId + "PlusMinus");
         } else if(!this.state.user) {
             this.setState({
                 user: Window.user
             });
-            console.log('create Game emit  ', this.state.user);
             this.socket.emit('createGame', {
                 username: Window.user,
                 game: "PlusMinus",
@@ -79,13 +79,6 @@ class PlusMinus extends Component {
             });
         }
     }
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     if(!this.isSpectator) {
-    //         console.log('gameMove emit  ', this.state.user);
-    //         this.socket.emit('gameMove', nextState);
-    //     }
-    //     return true;
-    // }
     setLevel(val) {
         this.setState({
             level: val
@@ -158,10 +151,11 @@ class PlusMinus extends Component {
         e.preventDefault();
         const lastInput = e.target.value;
         let correct = false;
-        // console.log("e value ---------> ", e.target.value);
         if(parseInt(lastInput, 10) === this.state.questions[i].answer) {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
-                this.nextComponent.forEach(nc => {nc.value = '';});
+                this.setState({
+                    answers: new Array(10).fill('')
+                });
                 this.makeQuestions();
                 ReactDOM.findDOMNode(this.nextComponent[0]).focus();
             } else {
@@ -181,8 +175,6 @@ class PlusMinus extends Component {
         } else {
             this.setState((prevState) => {
                 const newAnswers = prevState.answers.slice();
-                // console.log("e value ---------> ", e.target);
-                // console.log("e value ---------> ", e.target.value);
                 newAnswers[i] = lastInput;
                 return {
                     answers: newAnswers,
@@ -192,7 +184,6 @@ class PlusMinus extends Component {
     }
     render() {
         if(!this.isSpectator) {
-            console.log('gameMove emit  ', this.state.user);
             this.socket.emit('gameMove', this.state);
         }
         const main = (

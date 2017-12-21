@@ -8,6 +8,9 @@ import WatchButton from './WatchButton.js';
 class GameSession extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            links: this.props.link
+        };
     }
 
     render() {
@@ -24,7 +27,7 @@ class GameSession extends Component {
                   </div>
                   <div className="playerInfo">
                     <div id="playerListAvatar">
-                        {this.props.link}
+                        {this.state.links}
                     </div>
                   </div>
                 </div>

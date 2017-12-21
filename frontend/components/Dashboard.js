@@ -27,6 +27,7 @@ class Dashboard extends Component {
         });
     }
     addGameSession(session) {
+        console.log('session created', session);
         this.setState({
             gameSession: [...this.state.gameSession, session]
         });

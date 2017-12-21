@@ -5,6 +5,9 @@ import GameSession from './GameSession.js';
 class CurrentGameSession extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            sessions: this.props.session
+        };
     }
     render() {
         return(
@@ -13,7 +16,7 @@ class CurrentGameSession extends Component {
                 <div className="columnofGames">
                   <div className="rowofGames">
                     {
-                        this.props.session.map(s => {
+                        this.state.sessions.map(s => {
                             <GameSession link={s}/>
                         })
                     }
