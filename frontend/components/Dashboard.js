@@ -36,9 +36,9 @@ class Dashboard extends Component {
             gameSession: [...this.state.gameSession, session]
         });
     }
-    toggleDrawer(open) {
+    toggleDrawer() {
         this.setState({
-            chatOpen: open
+            chatOpen: !this.state.chatOpen
         });
     }
     joinRoom() {
@@ -49,7 +49,7 @@ class Dashboard extends Component {
                 this.state.socket.emit('room', "Main Chat Room")
             );
         }
-        this.toggleDrawer(true);
+        this.toggleDrawer();
     }
     render() {
         return (
