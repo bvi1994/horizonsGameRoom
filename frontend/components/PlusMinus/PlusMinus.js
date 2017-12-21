@@ -156,9 +156,7 @@ class PlusMinus extends Component {
     }
     answer(e, i) {
         e.preventDefault();
-        if(!e.target) {
-            return;
-        }
+        console.log(e);
         let correct = false;
         console.log("e value ---------> ", e.target.value);
         if(parseInt(e.target.value, 10) === this.state.questions[i].answer) {
@@ -171,26 +169,26 @@ class PlusMinus extends Component {
             }
             correct = true;
         }
-        if (correct) {
-            this.setState((prevState) => {
-                const newAnswers = prevState.answers.slice();
-                newAnswers[i] = e.target.value;
-                return {
-                    answers: newAnswers,
-                    score: this.state.score + this.state.level + 1,
-                };
-            });
-        } else {
-            this.setState((prevState) => {
-                const newAnswers = prevState.answers.slice();
-                console.log("e value ---------> ", e.target);
-                console.log("e value ---------> ", e.target.value);
-                newAnswers[i] = e.target.value;
-                return {
-                    answers: newAnswers,
-                };
-            });
-        }
+        // if (correct) {
+        //     this.setState((prevState) => {
+        //         const newAnswers = prevState.answers.slice();
+        //         newAnswers[i] = e.target.value;
+        //         return {
+        //             answers: newAnswers,
+        //             score: this.state.score + this.state.level + 1,
+        //         };
+        //     });
+        // } else {
+        //     this.setState((prevState) => {
+        //         const newAnswers = prevState.answers.slice();
+        //         console.log("e value ---------> ", e.target);
+        //         console.log("e value ---------> ", e.target.value);
+        //         newAnswers[i] = e.target.value;
+        //         return {
+        //             answers: newAnswers,
+        //         };
+        //     });
+        // }
     }
     render() {
         if(!this.isSpectator) {
