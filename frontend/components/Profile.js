@@ -71,7 +71,7 @@ class Profile extends Component {
                 </li>
                 <li>
                   <button onClick={() => this.logout()}>
-                    <i class="fa fa-unlink"/>
+                    <i className="fa fa-unlink"/>
                   </button>
                 </li>
               </ul>
