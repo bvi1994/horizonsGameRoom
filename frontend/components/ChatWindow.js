@@ -21,7 +21,6 @@ class ChatWindow extends Component {
         });
         axios.get(BASE_URL + '/messages')
         .then(res => {
-            console.log('messages', res.data);
             this.setState({
                 messages: [...this.state.messages, ...res.data]
             });
@@ -51,14 +50,12 @@ class ChatWindow extends Component {
         this.setState({message: e.target.value});
     }
     render() {
-        console.log(this.state.messages);
-        console.log(this.state.messages[0]);
         return (
           <div style={{height: "90%"}}>
               <div className="chat-history">
                   <ul>
                     {this.state.messages.map((msg) => {
-                        const myMsg = (msg.username === this.state.user.username) ? "message my-message" : (msg.username !== "System") ? "message other-message" : "message";
+                        const myMsg = (msg.username === this.props.user.username) ? "message my-message" : (msg.username !== "System") ? "message other-message" : "message";
                         return (
                             <li>
                                 <div className="message-data">
