@@ -156,10 +156,10 @@ class PlusMinus extends Component {
     }
     answer(e, i) {
         e.preventDefault();
-        console.log(e);
+        const lastInput = e.target.value;
         let correct = false;
-        console.log("e value ---------> ", e.target.value);
-        if(parseInt(e.target.value, 10) === this.state.questions[i].answer) {
+        // console.log("e value ---------> ", e.target.value);
+        if(parseInt(lastInput, 10) === this.state.questions[i].answer) {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
                 this.nextComponent.forEach(nc => {nc.value = '';});
                 this.makeQuestions();
@@ -169,26 +169,26 @@ class PlusMinus extends Component {
             }
             correct = true;
         }
-        // if (correct) {
-        //     this.setState((prevState) => {
-        //         const newAnswers = prevState.answers.slice();
-        //         newAnswers[i] = e.target.value;
-        //         return {
-        //             answers: newAnswers,
-        //             score: this.state.score + this.state.level + 1,
-        //         };
-        //     });
-        // } else {
-        //     this.setState((prevState) => {
-        //         const newAnswers = prevState.answers.slice();
-        //         console.log("e value ---------> ", e.target);
-        //         console.log("e value ---------> ", e.target.value);
-        //         newAnswers[i] = e.target.value;
-        //         return {
-        //             answers: newAnswers,
-        //         };
-        //     });
-        // }
+        if (correct) {
+            this.setState((prevState) => {
+                const newAnswers = prevState.answers.slice();
+                newAnswers[i] = lastInput;
+                return {
+                    answers: newAnswers,
+                    score: this.state.score + this.state.level + 1,
+                };
+            });
+        } else {
+            this.setState((prevState) => {
+                const newAnswers = prevState.answers.slice();
+                // console.log("e value ---------> ", e.target);
+                // console.log("e value ---------> ", e.target.value);
+                newAnswers[i] = lastInput;
+                return {
+                    answers: newAnswers,
+                };
+            });
+        }
     }
     render() {
         if(!this.isSpectator) {
