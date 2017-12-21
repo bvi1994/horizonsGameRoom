@@ -39,7 +39,8 @@ module.exports = function(app, io) {
             }
             socket.to(socket.room).emit('message', {
                 username: socket.username,
-                message: message
+                content: message.content,
+                photo: message.photo
             });
         });
     });
