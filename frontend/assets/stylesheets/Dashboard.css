@@ -1,3 +1,6 @@
+* {
+    font-family: 'Montreal-Lite';
+}
 #mainDashboard{
     display: flex;
     /*flex-direction: row-reverse;*/
@@ -26,6 +29,7 @@ footer {
         color: white !important;
         background-color: transparent;
         transition: all 0.2s ease-in-out;
+        font-family: 'Montreal-Lite';
     }
 }
 #copyright {
@@ -35,5 +39,6 @@ footer {
     p {
         font-size: 13px;
         text-align: center;
+        font-family: 'Montreal-Lite';
     }
 }
