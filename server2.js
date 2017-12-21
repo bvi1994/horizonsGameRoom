@@ -39,7 +39,7 @@ module.exports = function(app, io) {
             }
             socket.to(socket.room).emit('message', {
                 username: socket.username,
-                content: message
+                message: message
             });
         });
     });

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react";
+import Avatar from 'material-ui/Avatar';
 import axios from "axios";
 import '../assets/stylesheets/ChatWindow.css';
 import { BASE_URL } from './general';
@@ -15,13 +16,6 @@ class ChatWindow extends Component {
         };
     }
     componentDidMount() {
-        // this.props.socket.on('connect', () => {
-        //     this.props.socket.emit('username', this.props.user.username);
-        //     this.props.socket.emit('room', "Main");
-        // });
-        // this.props.socket.on('errorMessage', message => {
-        //     console.log("Unable to connect. Error: ", message);
-        // });
         this.props.socket.on('message', message => {
             this.setState({messages: [...this.state.messages, message]});
         });
@@ -37,9 +31,13 @@ class ChatWindow extends Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        const newMessage = {username: this.props.user.username, content: this.state.message};
+        const newMessage = {
+            username: this.props.user.username,
+            photo: this.props.user.photo,
+            content: this.state.message
+        };
         this.setState({messages: [...this.state.messages, newMessage], message: ''});
-        this.props.socket.emit('message', newMessage.content);
+        this.props.socket.emit('message', newMessage);
         axios.post(BASE_URL + '/messages', {
             username: this.props.user.username,
             photo: this.props.user.photo,
@@ -58,12 +56,19 @@ class ChatWindow extends Component {
     render() {
         return (
           <div style={{height: "90%"}}>
-              <div className="room" style={{height: "80%"}}>
-                  <div className="message">
-                    {this.state.messages.map((msg) => ( <p> {msg.username}: {msg.content}</p>))}
-                  </div>
+              <div className="chat-history" style={{height: "80%"}}>
+                  <ul>
+                    {this.state.messages.map((msg) => (
+                        <li>
+                            <div className="message-data">
+                                <span className="message-data-name"><Avatar src={msg.photo} />{msg.username}</span>
+                            </div>
+                            <div className={(msg.username === this.state.user.username) ? "message my-message" : "message other-message"}>{msg.content}</div>
+                        </li>))
+                    }
+                  </ul>
               </div>
-              <div className="chat-message">
+              <div className="textBox">
                 <form onSubmit = {(e) => this.handleSubmit(e)}>
                   <input autoFocus={this.state.autoFocus} onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
                 </form>
