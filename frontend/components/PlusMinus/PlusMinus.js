@@ -44,7 +44,7 @@ class PlusMinus extends Component {
         this.nextComponent = [];
         this.socket = SOCKET
         this.state = {
-            timeLimit: 30,
+            timeLimit: 60,
             questions: [],
             level: null, // 0: easy, 1: medium, 2: hard
             score: 0,
