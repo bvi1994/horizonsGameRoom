@@ -43,7 +43,11 @@ class Dashboard extends Component {
     }
     joinRoom() {
         if(!this.state.joined) {
-            this.state.socket.emit('room', "Main Chat Room");
+            this.setState({
+                joined: true
+            }, () =>
+                this.state.socket.emit('room', "Main Chat Room")
+            );
         }
         this.toggleDrawer(true);
     }

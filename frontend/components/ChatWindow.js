@@ -51,7 +51,7 @@ class ChatWindow extends Component {
     }
     render() {
         return (
-          <div style={{height: "90%"}}>
+          <div>
               <div className="chat-history">
                   <ul>
                     {this.state.messages.map((msg) => {
