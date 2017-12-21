@@ -57,7 +57,7 @@ class Dashboard extends Component {
             <div id="mainDashboard" style={{minHeight: "100%"}}>
                 <Profile user={this.state.user} addGame={this.addGameSession} joinRoom={() => this.joinRoom()}/>
                 <CurrentGameSession session={this.state.gameSession}/>
-                <Drawer width={400} openSecondary={this.openSecondary} open={this.state.chatOpen}>
+                <Drawer width={450} openSecondary={this.openSecondary} open={this.state.chatOpen}>
                     <Chatbox user={this.state.user} socket={this.state.socket} />
                 </Drawer>
             </div>

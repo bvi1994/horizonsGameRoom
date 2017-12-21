@@ -26,7 +26,7 @@ class Chatbox extends Component {
     render() {
         return(
           <div id="chatBox" className="section">
-              <h2>Horizons Playground Chat Room 🌎</h2>
+              <h3>Horizons Playground Chat Room 🌎</h3>
               <ChatWindow user={this.state.user} socket={this.props.socket} />
           </div>
         );
