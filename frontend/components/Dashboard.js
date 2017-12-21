@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router';
 import Profile from './Profile';
 import axios from 'axios';
-import '../assets/stylesheets/Dashboard.css';
 import Chatbox from './Chatbox.js';
 import CurrentGameSession from './CurrentGameSession.js';
 import Drawer from 'material-ui/Drawer';
 import { BASE_URL, SOCKET } from './general';
+import '../assets/stylesheets/Dashboard.css';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -43,14 +44,13 @@ class Dashboard extends Component {
         SOCKET.emit('room', "Main Chat Room");
     }
     render() {
-        // return (this.state.redirect) ? <Redirect to="/" /> : (
-        return (
+        return (this.state.redirect) ? <Redirect to="/" /> : (
         <div style={{height: "100%"}}>
             <div id="mainDashboard" style={{minHeight: "100%"}}>
-                <Profile user={this.state.user} addGame={this.addGameSession}/>
+                <Profile user={this.state.user} addGame={this.addGameSession} joinRoom={() => this.joinRoom()}/>
                 <CurrentGameSession session={this.state.gameSession}/>
                 <Drawer anchor="right" open={this.state.openChat} onClose={this.toggleDrawer(false)}>
-                    <Chatbox user={this.state.user} socket={SOCKET} joinRoom={() => this.joinRoom()}/>
+                    <Chatbox user={this.state.user} socket={SOCKET} />
                 </Drawer>
             </div>
           </div>

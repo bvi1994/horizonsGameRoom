@@ -42,8 +42,12 @@ class Profile extends Component {
                 </div>
                 <p>{this.state.user.email}</p>
                 <a href={this.state.user.profileUrl}>Get back to work :)</a>
+                <br/>
                 <a href="/ready/">Click to kill time!</a>
+                <br/>
                 <button onClick={() => this.logout()}>Log out</button>
+                <br/>
+                <button onClick={() => this.props.joinRoom()}>Join Chat Room</button>
                 <CreateGame userInfo={this.state.user} addGame={this.props.addGame}/>
             </div>
         );

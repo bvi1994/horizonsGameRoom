@@ -27,7 +27,6 @@ class Chatbox extends Component {
         return(
           <div id="chatBox" className="section">
               Horizons Playground Chat Room 🌎
-              <button onClick={() => this.props.joinRoom()}>Join Chat Room</button>
               <ChatWindow user={this.state.user} socket={this.props.socket} />
           </div>
         );
