@@ -47,7 +47,7 @@ class Dashboard extends Component {
             <div id="mainDashboard" style={{minHeight: "100%"}}>
                 <Profile user={this.state.user} addGame={this.addGameSession} joinRoom={() => this.joinRoom()}/>
                 <CurrentGameSession session={this.state.gameSession}/>
-                <Drawer anchor="left" open={this.state.openChat} onClose={this.toggleDrawer(false)}>
+                <Drawer anchor="left" open={this.state.chatOpen} onClose={this.toggleDrawer(false)}>
                     <div
                         tabIndex={0}
                         role="button"
