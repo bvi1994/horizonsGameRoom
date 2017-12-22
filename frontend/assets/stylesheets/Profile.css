@@ -5,13 +5,13 @@
 }
 
 .avatar{
-    display: flex;
+    /*display: flex;
     flex-direction: column;
     width: 50%;
     margin-left: 25px;
     margin-right: 25px;
     margin-top: 10px;
-    border-width: thin;
+    border-width: thin;*/
 }
 
 .avatarImage {
@@ -19,7 +19,7 @@
     height:200px;
     margin: 25px auto;
     overflow: hidden;
-    border-radius:50%;
+    border-radius: 50%;
     position: relative;
 }
 
@@ -31,9 +31,8 @@
 }
 
 .userName{
-    font-family: 'Reenie Beanie', cursive;
+    font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 50px;
-    padding-left: 20px;
 }
 
 .btn-3d {
