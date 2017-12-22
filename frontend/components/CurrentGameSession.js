@@ -12,7 +12,7 @@ class CurrentGameSession extends Component {
     render() {
         return(
             <div id="gamesInSession" className="section">
-                Current Games in Session
+                <h1>Trending Game Rooms :)</h1>
                 <div className="columnofGames">
                   <div className="rowofGames">
                       <GameSession game={"SlapJack"}/>
