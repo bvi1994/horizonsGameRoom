@@ -54,6 +54,9 @@ class Dashboard extends Component {
     render() {
         return (
         <div style={{height: "100%"}}>
+            <div className="footer">
+                <h1>Horizons Playground</h1>
+            </div>
                 <div id="mainDashboard">
                         <Profile user={this.state.user} addGame={this.addGameSession} joinRoom={() => this.joinRoom()}/>
                         <CurrentGameSession session={this.state.gameSession}/>
