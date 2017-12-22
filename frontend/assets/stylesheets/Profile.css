@@ -1,17 +1,7 @@
 #profileInfo{
     width: 15%;
     max-width: 250px;
-
-}
-
-.avatar{
-    /*display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin-left: 25px;
-    margin-right: 25px;
-    margin-top: 10px;
-    border-width: thin;*/
+    margin: 0px 35px 20px 35px;
 }
 
 .avatarImage {
@@ -32,7 +22,7 @@
 
 .userName{
     font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 50px;
+    font-size: 25px;
 }
 
 .btn-3d {
@@ -55,7 +45,7 @@
 	top: 9px;
 }
 .btn-3d.red {
-	background-color: #e74c3c;
+	background-color: #FF585B;
 	box-shadow: 0 0 0 1px #c63702 inset,
         0 0 0 2px rgba(255,255,255,0.15) inset,
         0 8px 0 0 #C24032,
