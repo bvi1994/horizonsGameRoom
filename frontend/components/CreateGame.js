@@ -28,7 +28,7 @@ class CreateGame extends Component {
     render() {
         return (
             <div>
-                <button id="createGameButton" onClick={() => this.openModal()}>Create Game</button>
+                <button className="btn-3d red" id="createGameButton" onClick={() => this.openModal()}>Create Game</button>
                 <Modal
                   isOpen={this.state.modalOpen}
                   onRequestClose={this.modalClose}
@@ -39,9 +39,9 @@ class CreateGame extends Component {
                   <h1>Choose a game</h1>
                   <a href={BASE_URL + "/game/slapjack/" + this.props.userInfo.username}>Slapjack</a>
                   <br/>
-                  <a href={BASE_URL + "/game/plusMinus/" + this.props.userInfo.username} onClick={() => this.props.addGame(this.session)}>PlusMinus</a>
+                  <a className="btn-3d purple" href={BASE_URL + "/game/plusMinus/" + this.props.userInfo.username} onClick={() => this.props.addGame(this.session)}>PlusMinus</a>
                   <br/>
-                  <a href={BASE_URL + "/game/triangle" + this.props.userInfo.username} onClick={() => this.props.addGame(BASE_URL + "/game/triangle/" + this.props.userInfo.username)}>Triangle</a>
+                  <a className="btn-3d cyan" href={BASE_URL + "/game/triangle" + this.props.userInfo.username} onClick={() => this.props.addGame(BASE_URL + "/game/triangle/" + this.props.userInfo.username)}>Triangle</a>
                   <br/>
                   <button onClick={this.modalClose}>close</button>
                 </Modal>
