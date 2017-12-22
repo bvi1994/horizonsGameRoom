@@ -7,7 +7,8 @@ module.exports = {
         slapjack: './frontend/slapjack',
         ready: './frontend/ready',
         plusMinus: './frontend/plusMinus',
-        triangle: './frontend/triangle'
+        triangle: './frontend/triangle',
+        slowMo: './frontend/slowMo'
     },
     module: {
         rules: [

@@ -1,6 +1,5 @@
-const path = require('path');
 const express = require('express');
-const { User, Message } = require('../sequelize/models');
+const { Message } = require('../sequelize/models');
 const router = express.Router();
 
 module.exports = (passport) => {

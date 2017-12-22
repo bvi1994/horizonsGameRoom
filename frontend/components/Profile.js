@@ -10,7 +10,8 @@ class Profile extends Component {
         super(props);
         this.state = {
             user: {},
-            redirect: false
+            redirect: false,
+            route: '/'
         };
     }
     componentWillReceiveProps(props) {
@@ -29,8 +30,15 @@ class Profile extends Component {
             console.log('Logout Error', e);
         });
     }
+    ready() {
+        this.setState({
+            route: "/ready"
+        }, () => this.setState({
+            redirect: true
+        }));
+    }
     render() {
-        return (this.state.redirect) ? <Redirect to="/" /> : (
+        return (this.state.redirect) ? <Redirect to={this.state.route} /> : (
             <div id="profileInfo">
                 <div className="avatar">
                   <div className="avatarImage">
@@ -47,9 +55,7 @@ class Profile extends Component {
                     <button className="btn-3d green">Work</button>
                 </a>
                 <br/>
-                <a href="/ready/">
-                    <button className="btn-3d blue">Retreat</button>
-                </a>
+                <button onClick={() => this.ready()} className="btn-3d blue">Retreat</button>
                 <br/>
                 <button className="btn-3d yellow" onClick={() => this.logout()}>Log Out</button>
                 <br/>

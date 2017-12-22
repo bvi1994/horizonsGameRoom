@@ -3,15 +3,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter, Route } from 'react-router-dom';
 import Plane from '../components/Ready/Plane';
-import SlowMo from '../components/Ready/SlowMo';
-import Ready from '../components/Ready/Ready';
 const ReadyContainer = () => {
     return (
         <HashRouter>
           <div style={{height: "100%"}}>
-            <Route exact path="/" component={Ready} />
-            <Route exact path="/plane" component={Plane} />
-            <Route exact path="/slowMo" component={SlowMo} />
+            <Route exact path="/" component={Plane} />
           </div>
         </HashRouter>
     );
