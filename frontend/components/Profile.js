@@ -37,7 +37,7 @@ class Profile extends Component {
                   {/* <div className="avatarImage">
                       <img src={this.state.user.photo} alt={this.state.user.username + "'s profile"} height="200" width="200"/>
                   </div> */}
-                  <Avatar src={this.state.user.photo} sizes={100}/>
+                  <Avatar src={this.state.user.photo} sizes={500}/>
                 </div>
                 <div className="userName">
                     <p>{this.state.user.username}</p>
