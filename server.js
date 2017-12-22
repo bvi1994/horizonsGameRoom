@@ -88,7 +88,7 @@ passport.use(new GitHubStrategy({
       };
       User.findOrCreate({where: obj})
       .spread((user, created) => {
-          console.log("User and created",user, created);
+          console.log("User and created", user, created);
           if(created) {
               return cb(null, user);
           }
