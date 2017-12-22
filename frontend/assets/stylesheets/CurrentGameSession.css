@@ -1,9 +1,7 @@
 #gamesInSession{
-    width: 60%;
-    /*padding-left: 5%;*/
-    /*padding-left: 5%;*/
+    background: lightseagreen;
+    border-radius: 5px;
 }
-
 .columnofGames{
     display: flex;
     flex-direction: column;

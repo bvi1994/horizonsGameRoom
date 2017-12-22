@@ -1,12 +1,9 @@
-module.exports = function(app) {
-    const io = require('socket.io')(app);
-    let room = "";
+module.exports = function(app, io) {
     io.on('connection', socket => {
         socket.on('username', user => {
             if (!user || !user.trim()) {
                 return socket.emit('errorMessage', 'No username!');
             }
-            console.log('AAA: ', user);
             socket.username = String(user);
         });
 
@@ -42,7 +39,8 @@ module.exports = function(app) {
             }
             socket.to(socket.room).emit('message', {
                 username: socket.username,
-                content: message
+                content: message.content,
+                photo: message.photo
             });
         });
     });

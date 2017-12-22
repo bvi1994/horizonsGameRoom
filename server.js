@@ -26,6 +26,7 @@ const PORT = process.env.PORT || 3001;
 const api = require('./backend/routes');
 const game = require('./gameServer');
 
+
 // Set View Engine
 app.engine('hbs', exphbs({
     extname: 'hbs',
@@ -40,6 +41,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
 
@@ -106,5 +108,6 @@ var server = app.listen(PORT, error => {
     : console.info(`==> 🌎 Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`);
 });
 
-require('./server2')(server);
-require('./gameSocket')(server);
+const io = require('socket.io')(server);
+require('./server2')(server, io);
+require('./gameSocket')(server, io);

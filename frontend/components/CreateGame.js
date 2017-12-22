@@ -6,6 +6,7 @@ import { BASE_URL } from './general';
 class CreateGame extends Component {
     constructor(props) {
         super(props);
+        this.session = BASE_URL + "/game/plusMinus/" + this.props.userInfo.username;
         this.state = {
             modalOpen: false,
             overlayClickClose: true,
@@ -27,7 +28,7 @@ class CreateGame extends Component {
     render() {
         return (
             <div>
-                <button id="createGameButton" onClick={() => this.openModal()}>Create Game</button>
+                <button className="btn-3d red" id="createGameButton" onClick={() => this.openModal()}>Create Game</button>
                 <Modal
                   isOpen={this.state.modalOpen}
                   onRequestClose={this.modalClose}
@@ -36,12 +37,14 @@ class CreateGame extends Component {
                   contentLabel="Modal"
                 >
                   <h1>Choose a game</h1>
-                  <a href={BASE_URL + "/game/slapjack/" + this.props.userInfo.username}>Slapjack</a>
-                  <br/>
-                  <a href={BASE_URL + "/game/plusMinus/" + this.props.userInfo.username} onClick={() => this.props.addGame(BASE_URL + "/game/plusMinus/" + this.props.userInfo.username)}>PlusMinus</a>
-                  <br/>
-                  <a href={BASE_URL + "/game/triangle" + this.props.userInfo.username} onClick={() => this.props.addGame(BASE_URL + "/game/triangle" + this.props.userInfo.username)}>Triangle</a>
-                  <br/>
+                  <div className="games">
+                      <a className="btn-3d yellow" href={BASE_URL + "/game/slapjack/" + this.props.userInfo.username}>Slapjack</a>
+                      <br/>
+                      <a className="btn-3d purple" href={BASE_URL + "/game/plusMinus/" + this.props.userInfo.username} onClick={() => this.props.addGame(this.session)}>PlusMinus</a>
+                      <br/>
+                      <a className="btn-3d cyan" href={BASE_URL + "/game/triangle" + this.props.userInfo.username} onClick={() => this.props.addGame(BASE_URL + "/game/triangle/" + this.props.userInfo.username)}>Triangle</a>
+                      <br/>
+                  </div>
                   <button onClick={this.modalClose}>close</button>
                 </Modal>
             </div>

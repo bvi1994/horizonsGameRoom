@@ -8,33 +8,31 @@ import WatchButton from './WatchButton.js';
 class GameSession extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            links: this.props.link
+        };
     }
 
     render() {
         return(
-            <div className="roomBlock">
-                {/* <img className="" alt="Pikachu gif" src="https://media.giphy.com/media/OgsZnIsoPkCfS/giphy.gif"/> */}
-                <div className="roomName">
-                  <h3>Game Room Name</h3>
-                </div>
-                {/* <h3>{this.state.GameRoomName}</h3> */}
-                <div className="gameInfo">
-                  <div id="playerList">
-                    <div className="player">Pikachu</div>
-                  </div>
-                  <div className="playerInfo">
-                    <div id="playerListAvatar">
-                        {this.props.link}
-                    </div>
+            <div className="card">
+                <div className="card-image"></div>
+                <div className="card-info">
+                  <div className="card-title">{this.props.game}</div>
+                  <div className="card-detail">
+                      Pikachu <br />
+                      JiMin <br />
+                      Luchen <br />
+                      Paul <br />
+                      Ana<br />
                   </div>
                 </div>
-                <div id="menuOptions">
-                  <div id="joinButton">
-                    <JoinButton />
-                  </div>
-                  <div id="watchButton">
-                    <WatchButton />
-                  </div>
+                <div className="card-social">
+                  <ul>
+                    <li><i className="fa fa-gamepad" aria-hidden="true"></i></li>
+                    <li><i className="fa fa-share-alt" aria-hidden="true"></i></li>
+                    <li><a href="https://horizonsplayground.herokuapp.com/game/plusMinus/borajimin"><i className="fa fa-video-camera" aria-hidden="true"></i></a></li>
+                  </ul>
                 </div>
             </div>
         );
@@ -42,3 +40,29 @@ class GameSession extends Component {
 }
 
 export default GameSession;
+
+// {/* <div className="roomBlock">
+//     {/* <img className="" alt="Pikachu gif" src="https://media.giphy.com/media/OgsZnIsoPkCfS/giphy.gif"/> */}
+//     <div className="roomName">
+//       <h3>Game Room Name</h3>
+//     </div>
+//     {/* <h3>{this.state.GameRoomName}</h3> */}
+//     <div className="gameInfo">
+//       <div id="playerList">
+//         <div className="player">Pikachu</div>
+//       </div>
+//       <div className="playerInfo">
+//         <div id="playerListAvatar">
+//             {this.state.links}
+//         </div>
+//       </div>
+//     </div>
+//     <div id="menuOptions">
+//       <div id="joinButton">
+//         <JoinButton />
+//       </div>
+//       <div id="watchButton">
+//         <WatchButton />
+//       </div>
+//     </div>
+// </div> */}

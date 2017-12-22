@@ -1,5 +1,4 @@
-module.exports = function(app) {
-    const io = require('socket.io')(app);
+module.exports = function(app, io) {
     const games = new Map();
     //don't use username, room, message
     io.on('connection', socket => {
@@ -9,10 +8,7 @@ module.exports = function(app) {
             games.set(socket.game, idGame.state);
         });
         socket.on('gameMove', move => {
-            if (!socket.username) {
-                console.log(1);
-                return socket.emit('errorMessage', 'Username not set!');
-            }
+            console.log("gameMove room", socket.game);
             if (!socket.game) {
                 return socket.emit('errorMessage', 'No game room created.');
             }
@@ -20,9 +16,10 @@ module.exports = function(app) {
                 return socket.emit('errorMessage', 'No move!');
             }
             games.set(socket.game, move);
-            io.sockets.in(socket.game).emit('move', move);
+            socket.broadcast.to(socket.game).emit('move', move);
         });
         socket.on('watch', game => {
+            console.log("watch room", socket.game);
             if(!game) {
                 return socket.emit('errorMessage', 'Invalid game room name');
             }
@@ -30,7 +27,7 @@ module.exports = function(app) {
                 return socket.emit('errorMessage', 'Game room does not exist.');
             }
             socket.join(game);
-            socket.emit('gameMove', games.get(game));
+            socket.emit('move', games.get(game));
         });
         socket.on('gameOver', game => {
             if(!game) {

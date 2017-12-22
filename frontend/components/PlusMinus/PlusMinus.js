@@ -4,9 +4,6 @@ import axios from 'axios';
 import '../../assets/stylesheets/PlusMinus.css';
 import { SOCKET, BASE_URL } from '../general';
 
-const globalObject = this;
-console.log(`gameId: ${globalObject.gameId}, username: ${globalObject.username}`);
-
 class Level extends Component {
     constructor(props) {
         super(props);
@@ -14,11 +11,11 @@ class Level extends Component {
     render() {
         return (
           <div>
-              <button onClick={() => this.props.setLevel(0)}>EASY</button>
+              <button className="btn-3d green" onClick={() => this.props.setLevel(0)}>EASY</button>
               <br/>
-              <button onClick={() => this.props.setLevel(1)}>MEDIUM</button>
+              <button className="btn-3d yellow" onClick={() => this.props.setLevel(1)}>MEDIUM</button>
               <br/>
-              <button onClick={() => this.props.setLevel(2)}>HARD</button>
+              <button className="btn-3d red" onClick={() => this.props.setLevel(2)}>HARD</button>
           </div>
         );
     }
@@ -34,7 +31,7 @@ class Score extends Component {
             <h1>Your score: {this.props.score}</h1>
             <a href="/">Go back to main page</a>
             <br/>
-            {this.props.spectator ? <p>Thank you for watching ;)</p> : <a href="/game/plusMinus">Play again</a>}
+            {this.props.spectator ? <p>Thank you for watching ;)</p> : <button onClick={() => this.props.restart()}>Play again</button>}
           </div>
         );
     }
@@ -47,42 +44,44 @@ class PlusMinus extends Component {
         this.nextComponent = [];
         this.socket = SOCKET
         this.state = {
-            timeLimit: 30,
+            timeLimit: 60,
             questions: [],
             level: null, // 0: easy, 1: medium, 2: hard
             score: 0,
             value: '',
             gameOver: false,
-            user: null
+            user: null,
+            answers: new Array(10).fill(''),
         };
     }
     componentDidMount() {
+        this.socket.on('move', move => {
+            this.setState(move);
+        });
         this.socket.on('errorMessage', message => {
             console.log("Unable to connect. Error: ", message);
         });
-        axios.get(BASE_URL + '/profile')
-        .then(user => {
-            if(!this.state.user) {
-                this.setState({
-                    user: user
-                }, () => {
-                    this.socket.emit('username', this.state.user.username);
-                    this.socket.emit('createGame', {
-                        username: this.state.user.username,
-                        game: "PlusMinus",
-                        state: this.state,
-                    });
-                });
-            } else if(this.state.user.username !== user.username) {
-                this.isSpectator = true;
-                this.socket.emit('watch', this.state.user.username + "PlusMinus");
-                this.socket.on('gameMove', move => {
-                    this.setState(move);
-                });
-            }
-        })
-        .catch(e => {
-            console.log(e);
+        this.socket.on('gameEnd', () => {
+
+        });
+        if (Window.user !== Window.gameId) {
+            // pull current state
+            this.isSpectator = true;
+            this.socket.emit('watch', Window.gameId + "PlusMinus");
+        } else if(!this.state.user) {
+            this.setState({
+                user: Window.user
+            });
+            this.socket.emit('createGame', {
+                username: Window.user,
+                game: "PlusMinus",
+                state: this.state,
+            });
+        }
+    }
+    restartGame() {
+        this.setState({
+            gameOver: false
         });
     }
     setLevel(val) {
@@ -155,20 +154,42 @@ class PlusMinus extends Component {
     }
     answer(e, i) {
         e.preventDefault();
-        if(parseInt(e.target.value, 10) === this.state.questions[i].answer) {
+        const lastInput = e.target.value;
+        let correct = false;
+        if(parseInt(lastInput, 10) === this.state.questions[i].answer) {
             if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
-                this.nextComponent.forEach(nc => {nc.value = '';});
-                this.makeQuestions();
+                this.setState({
+                    answers: new Array(10).fill('')
+                }, () => this.makeQuestions());
                 ReactDOM.findDOMNode(this.nextComponent[0]).focus();
             } else {
                 ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
             }
-            this.setState({
-                score: this.state.score + this.state.level + 1
+            correct = true;
+        }
+        if (correct) {
+            this.setState((prevState) => {
+                const newAnswers = prevState.answers.slice();
+                newAnswers[i] = lastInput;
+                return {
+                    answers: newAnswers,
+                    score: this.state.score + this.state.level + 1,
+                };
+            });
+        } else {
+            this.setState((prevState) => {
+                const newAnswers = prevState.answers.slice();
+                newAnswers[i] = lastInput;
+                return {
+                    answers: newAnswers,
+                };
             });
         }
     }
     render() {
+        if(!this.isSpectator) {
+            this.socket.emit('gameMove', this.state);
+        }
         const main = (
           <div>
             <h1>Hello PlusMinus!</h1>
@@ -177,19 +198,19 @@ class PlusMinus extends Component {
             <ol>
               {
                 this.state.questions.map((question, i) => {
-                    return (<h3 key={i}>{question.first} {this.operators[question.operator]} {question.second} =
-                      <input className="input-field" ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i)}/></h3>);
+                    return (<h1 key={i}>{question.first} {this.operators[question.operator]} {question.second} =
+                      <input className="input-field" ref={c => {this.nextComponent[i] = c;}} key={i} value={this.state.answers[i]} onChange={e => this.answer(e, i)}/></h1>);
                 })
               }
             </ol>
           </div>
         );
         const level = <Level setLevel={v => this.setLevel(v)} />;
-        const score = <Score spectator={this.isSpectator} score={this.state.score} />;
+        const score = <Score spectator={this.isSpectator} score={this.state.score} restart={() => this.restartGame()}/>;
         let response;
         if(this.state.gameOver) {
             response = score;
-            this.socket.emit('gameOver', this.state.user.username + "PlusMinus");
+            this.socket.emit('gameOver', this.state.user + "PlusMinus");
         } else if(this.state.level === null) {
             response = level;
         } else {
