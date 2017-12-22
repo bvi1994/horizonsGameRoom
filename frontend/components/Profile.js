@@ -41,14 +41,14 @@ class Profile extends Component {
                     <p>{this.state.user.username}</p>
                 </div>
                 <p>{this.state.user.email}</p>
-                <a href={this.state.user.profileUrl} className="btn-3d green">Back to Work</a>
+                <button className="btn-3d red" onClick={() => this.props.joinRoom()}>Join Chat Room</button>
+                <CreateGame userInfo={this.state.user} addGame={this.props.addGame}/>
+                <a href={this.state.user.profileUrl} className="btn-3d green">Work</a>
                 <br/>
-                <a href="/ready/" className="btn-3d blue">Click to Retreat</a>
+                <a href="/ready/" className="btn-3d blue">Retreat</a>
                 <br/>
                 <button className="btn-3d yellow" onClick={() => this.logout()}>Log Out</button>
                 <br/>
-                <button className="btn-3d red" onClick={() => this.props.joinRoom()}>Join Chat Room</button>
-                <CreateGame userInfo={this.state.user} addGame={this.props.addGame}/>
             </div>
         );
     }
