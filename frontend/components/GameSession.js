@@ -31,7 +31,7 @@ class GameSession extends Component {
                   <ul>
                     <li><i className="fa fa-gamepad" aria-hidden="true"></i></li>
                     <li><i className="fa fa-share-alt" aria-hidden="true"></i></li>
-                    <li><i className="fa fa-video-camera" aria-hidden="true"></i></li>
+                    <li><a href="https://horizonsplayground.herokuapp.com/game/plusMinus/borajimin"><i className="fa fa-video-camera" aria-hidden="true"></i></a></li>
                   </ul>
                 </div>
             </div>

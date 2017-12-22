@@ -18,6 +18,7 @@ class CurrentGameSession extends Component {
                       <GameSession game={"SlapJack"}/>
                       <GameSession game={"Triangle"}/>
                       <GameSession game={"Hide & Seek"}/>
+                      <GameSession game={"PlusMinus"}/>
                     {/* {
                         this.state.sessions.map(s => {
                             <GameSession link={s}/>
