@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from "react";
+import Avatar from 'material-ui/Avatar';
 import axios from "axios";
 import '../assets/stylesheets/ChatWindow.css';
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
+import { BASE_URL } from './general';
 import '../assets/stylesheets/Chatbox.css';
 import '../assets/stylesheets/ChatWindow.css';
-// import io from 'socket.io-client';
 
 class ChatWindow extends Component {
     constructor(props) {
@@ -12,17 +12,12 @@ class ChatWindow extends Component {
         this.state = {
             message: '',
             messages: [],
-            autoFocus: true
+            autoFocus: true,
+            messagesEnd: ''
         };
     }
     componentDidMount() {
-        // this.props.socket.on('connect', () => {
-        //     this.props.socket.emit('username', this.props.user.username);
-        //     this.props.socket.emit('room', "Main");
-        // });
-        // this.props.socket.on('errorMessage', message => {
-        //     console.log("Unable to connect. Error: ", message);
-        // });
+        this.scrollToBottom();
         this.props.socket.on('message', message => {
             this.setState({messages: [...this.state.messages, message]});
         });
@@ -36,16 +31,19 @@ class ChatWindow extends Component {
             console.log(e);
         });
     }
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
     handleSubmit(event) {
         event.preventDefault();
-        const newMessage = {username: this.props.user.username, content: this.state.message};
-        this.setState({messages: [...this.state.messages, newMessage], message: ''});
-        this.props.socket.emit('message', newMessage.content);
-        axios.post(BASE_URL + '/messages', {
+        const newMessage = {
             username: this.props.user.username,
             photo: this.props.user.photo,
-            content: newMessage.content
-        })
+            content: this.state.message
+        };
+        this.setState({messages: [...this.state.messages, newMessage], message: ''});
+        this.props.socket.emit('message', newMessage);
+        axios.post(BASE_URL + '/messages', newMessage)
         .then((res) => {
             console.log('message created', res);
         })
@@ -56,15 +54,29 @@ class ChatWindow extends Component {
     handleChange(e) {
         this.setState({message: e.target.value});
     }
+    scrollToBottom() {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
     render() {
         return (
-          <div style={{height: "90%"}}>
-              <div className="room" style={{height: "80%"}}>
-                  <div className="message">
-                    {this.state.messages.map((msg) => ( <p> {msg.username}: {msg.content}</p>))}
-                  </div>
+          <div>
+              <div className="chat-history">
+                    {this.state.messages.map((msg) => {
+                        const myMsg = (msg.username === this.props.user.username) ? "message my-message" : (msg.username !== "System") ? "message other-message" : "message sys-message";
+                        return (
+                            <div>
+                                <div className="message-data">
+                                    <span className="message-data-name"><Avatar src={(msg.photo) ? msg.photo : ""} />{msg.username}</span>
+                                </div>
+                                <div className={myMsg}>{msg.content}</div>
+                            </div>
+                        );
+                    })
+                    }
+                    <div style={{ float: "left", clear: "both" }}
+                        ref={(el) => { this.messagesEnd = el; }} />
               </div>
-              <div className="textBox" style={{height: "20%"}}>
+              <div className="textBox">
                 <form onSubmit = {(e) => this.handleSubmit(e)}>
                   <input autoFocus={this.state.autoFocus} onChange = {(e) => this.handleChange(e) } value={this.state.message}/>
                 </form>

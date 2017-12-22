@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
+const exphbs = require('express-handlebars');
 const app = express();
 const BASE_URL = 'https://horizonsplayground.herokuapp.com';
 //  'http://localhost:3000';
@@ -25,6 +26,14 @@ const PORT = process.env.PORT || 3001;
 const api = require('./backend/routes');
 const game = require('./gameServer');
 
+
+// Set View Engine
+app.engine('hbs', exphbs({
+    extname: 'hbs',
+    defaultLayout: 'default'
+}));
+app.set('view engine', 'hbs');
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -32,6 +41,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
 
@@ -45,7 +55,7 @@ app.use(session({
 
 passport.serializeUser((user, done) => {
     console.log(user);
-    done(null, user[0].dataValues.id);
+    done(null, user.dataValues.id);
 });
 
 passport.deserializeUser((id, done) => {
@@ -77,7 +87,11 @@ passport.use(new GitHubStrategy({
           photo: photo
       };
       User.findOrCreate({where: obj})
-      .then((user) => {
+      .spread((user, created) => {
+          console.log("User and created", user, created);
+          if(created) {
+              return cb(null, user);
+          }
           return cb(null, user);
       })
       .catch(e => {
@@ -97,4 +111,6 @@ var server = app.listen(PORT, error => {
     : console.info(`==> 🌎 Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`);
 });
 
-require('./server2')(server);
+const io = require('socket.io')(server);
+require('./server2')(server, io);
+require('./gameSocket')(server, io);

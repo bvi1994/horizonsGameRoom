@@ -1,23 +1,19 @@
 import * as THREE from 'three';
 import React, { Component } from "react";
-import '../../assets/stylesheets/Ready.css';
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
-//  'http://localhost:3000';
-// 'https://horizonsplayground.herokuapp.com'
+import '../../assets/stylesheets/Plane.css';
 
 var Colors = {
-	red:0xf25346,
-	yellow:0xedeb27,
-	white:0xd8d0d1,
-	brown:0x59332e,
-	pink:0xF5986E,
-	brownDark:0x23190f,
-	blue:0x68c3c0,
-	green:0x458248,
-	purple:0x551A8B,
-	lightgreen:0x629265,
+    red: 0xf25346,
+    yellow: 0xedeb27,
+    white: 0xd8d0d1,
+    brown: 0x59332e,
+    pink: 0xF5986E,
+    brownDark: 0x23190f,
+    blue: 0x68c3c0,
+    green: 0x458248,
+    purple: 0x551A8B,
+    lightgreen: 0x629265,
 };
-
 
 
 var scene, camera, fieldOfView, aspectRatio, nearPlane, farPlane, HEIGHT, WIDTH, renderer, container;
@@ -631,8 +627,8 @@ class Ready extends Component {
     }
     render() {
         return (
-          <div id="world">Loading...
-		  	  <iframe width="1" height="1" src="https://www.youtube.com/embed/Aq_gsctWHtQ?autoplay=1" />
+          <div id="world" ref="world">Loading...
+		  	  <iframe width="1" height="1" src="https://www.youtube.com/embed/tcCvZ3MrCxk?autoplay=1" />
 	   	  </div>
         );
     }

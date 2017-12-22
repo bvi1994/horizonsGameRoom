@@ -1,16 +1,8 @@
-html, body{
-  height: 100%;
-}
-
 #mainDashboard{
     display: flex;
-    /*flex-direction: row-reverse;*/
     flex-direction: row;
-    /*height: 100%;*/
     overflow: auto;
     height: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
 }
 
 .section{
@@ -18,20 +10,26 @@ html, body{
     border-style: solid;
     border-width: 1px;
 }
-/*
-#profile{
-    width: 20%;
-}
-
-#gamesInSession{
-    width: 55%;
-}
-
-#chatBox{
-    width: 25%;
-}*/
-
-
 #root{
     height: 100%;
+}
+.footer {
+    color: #888;
+    font-size: 14px;
+    line-height: 1.42857143;
+    box-sizing: border-box;
+    a {
+        color: white !important;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+    }
+}
+#copyright {
+    background-color: #161616;
+    padding: 15px 0px;
+    border-top: 1px solid rgba(114, 114, 114, 0.25);
+    p {
+        font-size: 13px;
+        text-align: center;
+    }
 }
