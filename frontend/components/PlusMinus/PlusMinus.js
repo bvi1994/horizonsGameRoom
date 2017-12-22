@@ -11,11 +11,11 @@ class Level extends Component {
     render() {
         return (
           <div>
-              <button onClick={() => this.props.setLevel(0)}>EASY</button>
+              <button className="btn-3d green" onClick={() => this.props.setLevel(0)}>EASY</button>
               <br/>
-              <button onClick={() => this.props.setLevel(1)}>MEDIUM</button>
+              <button className="btn-3d yellow" onClick={() => this.props.setLevel(1)}>MEDIUM</button>
               <br/>
-              <button onClick={() => this.props.setLevel(2)}>HARD</button>
+              <button className="btn-3d red" onClick={() => this.props.setLevel(2)}>HARD</button>
           </div>
         );
     }
