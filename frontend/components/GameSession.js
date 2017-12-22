@@ -15,17 +15,17 @@ class GameSession extends Component {
 
     render() {
         return(
-            <div class="card">
-                <div class="card-image"></div>
-                <div class="card-info">
-                  <div class="card-title">Hie</div>
-                  <div class="card-detail">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis beatae nisi soluta ex animi aperiam iste voluptatem, voluptatibus impedit rem natus doloribus sed ullam provident sunt odit eaque excepturi modi.</div>
+            <div className="card">
+                <div className="card-image"></div>
+                <div className="card-info">
+                  <div className="card-title">Hie</div>
+                  <div className="card-detail">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis beatae nisi soluta ex animi aperiam iste voluptatem, voluptatibus impedit rem natus doloribus sed ullam provident sunt odit eaque excepturi modi.</div>
                 </div>
-                <div class="card-social">
+                <div className="card-social">
                   <ul>
-                    <li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-share-alt" aria-hidden="true"></i></li>
+                    <li><i className="fa fa-comment-o" aria-hidden="true"></i></li>
+                    <li><i className="fa fa-heart-o" aria-hidden="true"></i></li>
+                    <li><i className="fa fa-share-alt" aria-hidden="true"></i></li>
                   </ul>
                 </div>
             </div>
