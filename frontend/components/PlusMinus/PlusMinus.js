@@ -81,7 +81,14 @@ class PlusMinus extends Component {
     }
     restartGame() {
         this.setState({
-            gameOver: false
+            timeLimit: 60,
+            questions: [],
+            level: null, // 0: easy, 1: medium, 2: hard
+            score: 0,
+            value: '',
+            gameOver: false,
+            user: null,
+            answers: new Array(10).fill('')
         });
     }
     setLevel(val) {

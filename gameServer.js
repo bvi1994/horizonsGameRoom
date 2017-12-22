@@ -42,8 +42,10 @@ router.get('/game/:game/:username', (req, res) => {
             });
             break;
         case 'triangle':
-            // res.sendFile(__dirname + '/public/triangle.html');
-            res.render('triangle');
+            res.render('triangle', {
+                gameId: req.params.username,
+                user: username
+            });
             break;
         default:
             res.send({success: 'failure'});
