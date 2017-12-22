@@ -8,9 +8,20 @@ router.use((req, res, next) => {
         next();
     }
 });
-router.get('/ready/', (req, res) => {
-    res.sendFile(__dirname + '/public/ready.html');
+router.get('/ready/:retreat', (req, res) => {
+    switch(req.params.retreat) {
+        case 'plane':
+            res.sendFile(__dirname + '/public/ready.html');
+            break;
+        case 'slowMo':
+            res.sendFile(__dirname + '/public/slowMo.html');
+            break;
+        default:
+            res.send({success: 'failure'});
+            break;
+    }
 });
+
 router.get('/game/:game/:username', (req, res) => {
     console.log(req.params);
     console.log(req.user);

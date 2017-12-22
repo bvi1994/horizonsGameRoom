@@ -5,12 +5,14 @@ import { HashRouter, Route } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import Dashboard from '../components/Dashboard';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Ready from '../components/Ready/Ready';
 const AppContainer = () => {
     return (
         <MuiThemeProvider>
             <HashRouter>
               <div style={{height: "100%"}}>
                 <Route exact path="/" component={LoginForm} />
+                <Route exact path="/ready" component={Ready} />
                 <Route exact path="/dashboard" component={Dashboard} />
               </div>
             </HashRouter>

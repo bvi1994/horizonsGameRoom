@@ -3,8 +3,8 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const app = express();
-// const BASE_URL = 'https://horizonsplayground.herokuapp.com';
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://horizonsplayground.herokuapp.com';
+// const BASE_URL = 'http://localhost:3001';
 // 'https://horizonsplayground.herokuapp.com';
 //
 // var models = require('./sequelize/models');
@@ -46,8 +46,8 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (request, response) => {
-    // response.sendFile(__dirname + '/public/index.html'); // For React/Redux
-    response.sendFile(__dirname + '/public/triangle.html');
+    response.sendFile(__dirname + '/public/index.html'); // For React/Redux
+    // response.sendFile(__dirname + '/public/triangle.html');
 });
 
 app.use(session({
@@ -56,7 +56,7 @@ app.use(session({
 
 passport.serializeUser((user, done) => {
     console.log(user);
-    done(null, user[0].dataValues.id);
+    done(null, user.dataValues.id);
 });
 
 passport.deserializeUser((id, done) => {
@@ -88,7 +88,11 @@ passport.use(new GitHubStrategy({
           photo: photo
       };
       User.findOrCreate({where: obj})
-      .then((user) => {
+      .spread((user, created) => {
+          console.log("User and created", user, created);
+          if(created) {
+              return cb(null, user);
+          }
           return cb(null, user);
       })
       .catch(e => {

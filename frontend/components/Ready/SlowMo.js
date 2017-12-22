@@ -1,13 +1,9 @@
 import * as Matter from 'matter-js';
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
-//  'http://localhost:3000';
-// 'https://horizonsplayground.herokuapp.com'
+
 window.addEventListener('load', () => {
 	//Fetch our canvas
-	var canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d');
+	var canvas = document.createElement('canvas');
 
     document.body.appendChild(canvas);
 

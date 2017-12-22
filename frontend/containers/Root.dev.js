@@ -11,8 +11,8 @@ export default function Root({ store }) {
         <Provider store={store}>
             <div>
               <MuiThemeProvider>
-                {/* <AppContainer /> */}
-                <TriangleContainer />
+                <AppContainer />
+                {/* <TriangleContainer /> */}
               </MuiThemeProvider>
               <DevTools />
             </div>

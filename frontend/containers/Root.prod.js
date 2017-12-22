@@ -7,8 +7,8 @@ import TriangleContainer from './TriangleContainer.js';
 export default function Root({ store }) {
     return (
         <Provider store={store}>
-            {/* <AppContainer /> */}
-            <TriangleContainer />
+            <AppContainer />
+            {/* <TriangleContainer /> */}
         </Provider>
     );
 }

@@ -1,35 +1,22 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
-const BASE_URL = 'https://horizonsplayground.herokuapp.com';
-//  'http://localhost:3000';
-// 'https://horizonsplayground.herokuapp.com'
+import '../../assets/stylesheets/Ready.css';
+
 class Ready extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            redirect: false,
-            route: '/'
-        };
-    }
-    selectPlane() {
-        this.setState({
-            route: '/plane',
-            redirect: true
-        });
-    }
-    selectSlow() {
-        this.setState({
-            route: '/slowMo',
-            redirect: true
-        });
     }
     render() {
-        return this.state.redirect ? <Redirect to={this.state.route} /> : (
+        return (
             <div>
               <h1>Choose a page</h1>
-              <button onClick={() => this.selectPlane()}>Air Plane Ride</button>
+              <a href="/ready/plane/">
+                  <button className="btn-3d yellow">Air Plane Ride</button>
+              </a>
               <br/>
-              <button onClick={() => this.selectSlow()}>Slow Motion</button>
+              <a href="/ready/slowMo/">
+                  <button className="btn-3d purple">Slow Motion</button>
+              </a>
               <br/>
             </div>
         );
