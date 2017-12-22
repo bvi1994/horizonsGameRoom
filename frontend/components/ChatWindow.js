@@ -12,10 +12,12 @@ class ChatWindow extends Component {
         this.state = {
             message: '',
             messages: [],
-            autoFocus: true
+            autoFocus: true,
+            messagesEnd: ''
         };
     }
     componentDidMount() {
+        this.scrollToBottom();
         this.props.socket.on('message', message => {
             this.setState({messages: [...this.state.messages, message]});
         });
@@ -28,6 +30,9 @@ class ChatWindow extends Component {
         .catch(e => {
             console.log(e);
         });
+    }
+    componentDidUpdate() {
+        this.scrollToBottom();
     }
     handleSubmit(event) {
         event.preventDefault();
@@ -49,6 +54,9 @@ class ChatWindow extends Component {
     handleChange(e) {
         this.setState({message: e.target.value});
     }
+    scrollToBottom() {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
     render() {
         return (
           <div>
@@ -65,6 +73,8 @@ class ChatWindow extends Component {
                         );
                     })
                     }
+                    <div style={{ float: "left", clear: "both" }}
+                        ref={(el) => { this.messagesEnd = el; }} />
               </div>
               <div className="textBox">
                 <form onSubmit = {(e) => this.handleSubmit(e)}>
