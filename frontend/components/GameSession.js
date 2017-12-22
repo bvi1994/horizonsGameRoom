@@ -15,29 +15,18 @@ class GameSession extends Component {
 
     render() {
         return(
-            <div className="roomBlock">
-                {/* <img className="" alt="Pikachu gif" src="https://media.giphy.com/media/OgsZnIsoPkCfS/giphy.gif"/> */}
-                <div className="roomName">
-                  <h3>Game Room Name</h3>
+            <div class="card">
+                <div class="card-image"></div>
+                <div class="card-info">
+                  <div class="card-title">Hie</div>
+                  <div class="card-detail">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis beatae nisi soluta ex animi aperiam iste voluptatem, voluptatibus impedit rem natus doloribus sed ullam provident sunt odit eaque excepturi modi.</div>
                 </div>
-                {/* <h3>{this.state.GameRoomName}</h3> */}
-                <div className="gameInfo">
-                  <div id="playerList">
-                    <div className="player">Pikachu</div>
-                  </div>
-                  <div className="playerInfo">
-                    <div id="playerListAvatar">
-                        {this.state.links}
-                    </div>
-                  </div>
-                </div>
-                <div id="menuOptions">
-                  <div id="joinButton">
-                    <JoinButton />
-                  </div>
-                  <div id="watchButton">
-                    <WatchButton />
-                  </div>
+                <div class="card-social">
+                  <ul>
+                    <li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-share-alt" aria-hidden="true"></i></li>
+                  </ul>
                 </div>
             </div>
         );
@@ -45,3 +34,29 @@ class GameSession extends Component {
 }
 
 export default GameSession;
+
+// {/* <div className="roomBlock">
+//     {/* <img className="" alt="Pikachu gif" src="https://media.giphy.com/media/OgsZnIsoPkCfS/giphy.gif"/> */}
+//     <div className="roomName">
+//       <h3>Game Room Name</h3>
+//     </div>
+//     {/* <h3>{this.state.GameRoomName}</h3> */}
+//     <div className="gameInfo">
+//       <div id="playerList">
+//         <div className="player">Pikachu</div>
+//       </div>
+//       <div className="playerInfo">
+//         <div id="playerListAvatar">
+//             {this.state.links}
+//         </div>
+//       </div>
+//     </div>
+//     <div id="menuOptions">
+//       <div id="joinButton">
+//         <JoinButton />
+//       </div>
+//       <div id="watchButton">
+//         <WatchButton />
+//       </div>
+//     </div>
+// </div> */}

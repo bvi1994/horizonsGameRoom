@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
 }
+h1 {
+    text-align: center;
+}
 .btn-3d {
 	position: relative;
 	display: inline-block;
