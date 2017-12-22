@@ -40,13 +40,13 @@ class Score extends Component {
 class Triangle extends Component {
     constructor(props) {
         super(props);
-        this.operators = ["+", "-"];
+        this.operators = ["+", "-", "*"];
         this.nextComponent = [];
         this.socket = SOCKET;
         this.state = {
-            timeLimit: 30,
-            questions: [],
-            answers: [],
+            timeLimit: 120,
+            question: {},
+            userAnswers: ["", "", ""],
             level: null,
             score: 0,
             gameOver: false,
@@ -81,7 +81,7 @@ class Triangle extends Component {
         .catch(e => {
             console.log(e);
         });
-        this.setLevel();
+        this.makeQuestions();
     }
     setLevel(val) {
         this.setState({
@@ -92,7 +92,7 @@ class Triangle extends Component {
         });
     }
     makeQuestions() {
-        var questions = [];
+        // var questions = [];
         let randomize = 0;
         let first;
         let second;
@@ -113,7 +113,7 @@ class Triangle extends Component {
                 randomize = 10;
                 break;
         }
-        for(let i = 0; i < 10; i++) {
+        // for(let i = 0; i < 10; i++) {
             first = ~~(Math.random() * randomize);
             second = ~~(Math.random() * randomize);
             third = ~~(Math.random() * randomize);
@@ -137,10 +137,11 @@ class Triangle extends Component {
                 operator: operators,
                 answer: answer
             };
-            questions.push(question);
-        }
+            // questions.push(question);
+        // }
         this.setState({
-            questions: questions
+            question: question,
+            userAnswers: ["", "", ""]
         });
     }
     countDown() {
@@ -154,19 +155,45 @@ class Triangle extends Component {
         }
     }
     answer(e, i, j) {
-        e.preventDefault();
-        // if(parseInt(e.target.value, 10) === this.state.questions[i].answer) {
-        if(this.state.questions[i].operator[j] === e.target.value) {
-            if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
-                this.nextComponent.forEach(nc => {nc.value = '';});
+        let operator;
+        switch(i) {
+            case 0:
+                operator = '+';
+                break;
+            case 1:
+                operator = "-";
+                break;
+            case 2:
+                operator = "*";
+                break;
+            default:
+                break;
+        }
+        // e.preventDefault();
+        let ans = this.state.userAnswers;
+        ans[j] = e;
+        this.setState({
+            userAnswers: ans
+        }, () => {console.log("Userinput " ,this.state.userAnswers)});
+        if(operator === e) {
+            console.log("Correct");
+            if(j === 2) {
+                // The last operation of the problem
+                this.setState({
+                    score: this.state.score + this.state.level + 1
+                });
                 this.makeQuestions();
-                ReactDOM.findDOMNode(this.nextComponent[0]).focus();
-            } else {
-                ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
             }
-            this.setState({
-                score: this.state.score + this.state.level + 1
-            });
+            // if(ReactDOM.findDOMNode(this.nextComponent[i + 1]) === null) {
+            //     this.nextComponent.forEach(nc => {nc.value = '';});
+            //     this.makeQuestions();
+            //     ReactDOM.findDOMNode(this.nextComponent[0]).focus();
+            // } else {
+            //     ReactDOM.findDOMNode(this.nextComponent[i + 1]).focus();
+            // }
+            // this.setState({
+            //     score: this.state.score + this.state.level + 1
+            // });
         }
     }
     render() {
@@ -176,22 +203,18 @@ class Triangle extends Component {
                 <h1>Hello Triangle!</h1>
                 <h1>Score: {this.state.score}</h1>
                 <h1>Time Left: {this.state.timeLimit}</h1>
-                <ol>
-                    {
-                        this.state.questions.map((question, i, j) => {
-                            return(
                                 <div className="problem">
                                     <div className="firstRow">
-                                        <div className="circle">{question.first}</div>
-                                        <div className="circle">{question.second}</div>
-                                        <div className="circle">{question.third}</div>
+                                        <div className="circle">{this.state.question.first}</div>
+                                        <div className="circle">{this.state.question.second}</div>
+                                        <div className="circle">{this.state.question.third}</div>
                                     </div>
                                     <div className="secondRow">
                                         <div className="branch">\</div>
-                                        <div className="operation"><input className="operationField" type="text" name="firstOperation" maxLength="1" ref={c => {this.nextComponent[i] = c;}} key={i} onChange={e => this.answer(e, i, j)}/></div>
+                                        <div className="operation"><input className="operationField" type="text" name="firstOperation" value={this.state.userAnswers[0]} maxLength="1" onChange={ (event) => this.answer(event.target.value, this.state.question.operator[0], 0)} /></div>
                                         <div className="branch">/</div>
                                         <div className="branch">\</div>
-                                        <div className="operation"><input className="operationField" type="text" name="secondOperation" maxLength="1"/></div>
+                                        <div className="operation"><input className="operationField" type="text" name="secondOperation" value={this.state.userAnswers[1]} maxLength="1" onChange={ (event) => this.answer(event.target.value, this.state.question.operator[2], 1)} /></div>
                                         <div className="branch">/</div>
                                     </div>
                                     <div className="thirdRow">
@@ -200,17 +223,13 @@ class Triangle extends Component {
                                     </div>
                                     <div className="fourthRow">
                                         <div className="branch">\</div>
-                                        <div className="operation"><input className="operationField" type="text" name="thirdOperation" maxLength="1"/></div>
+                                        <div className="operation"><input className="operationField" type="text" name="thirdOperation" value={this.state.userAnswers[2]} maxLength="1" onChange={ (event) => this.answer(event.target.value, this.state.question.operator[1], 2)} /></div>
                                         <div className="branch">/</div>
                                     </div>
                                     <div className="fifthRow">
-                                        <div className="circle">{question.answer}</div>
+                                        <div className="circle">{this.state.question.answer}</div>
                                     </div>
                                 </div>
-                            );
-                        })
-                    }
-                </ol>
             </div>
         );
         const level = <Level setLevel={v => this.setLevel(v)} />;
