@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
 import CreateGame from './CreateGame';
-import Avatar from 'material-ui/Avatar';
 import axios from 'axios';
 import '../assets/stylesheets/Profile.css';
 import { BASE_URL } from './general';
@@ -34,16 +33,15 @@ class Profile extends Component {
         return (this.state.redirect) ? <Redirect to="/" /> : (
             <div id="profileInfo">
                 <div className="avatar">
-                  {/* <div className="avatarImage">
+                  <div className="avatarImage">
                       <img src={this.state.user.photo} alt={this.state.user.username + "'s profile"} height="200" width="200"/>
-                  </div> */}
-                  <Avatar src={this.state.user.photo} sizes={500}/>
+                  </div>
                 </div>
                 <div className="userName">
                     <p>{this.state.user.username}</p>
                 </div>
                 <p>{this.state.user.email}</p>
-                <a href={this.state.user.profileUrl}>Get back to work :)</a>
+                <a href={this.state.user.profileUrl} className="btn-3d green">Get back to work :)</a>
                 <br/>
                 <a href="/ready/">Click to kill time!</a>
                 <br/>

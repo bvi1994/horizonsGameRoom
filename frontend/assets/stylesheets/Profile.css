@@ -1,6 +1,7 @@
 #profileInfo{
     width: 15%;
     max-width: 250px;
+
 }
 
 .avatar{
@@ -10,21 +11,23 @@
     margin-left: 25px;
     margin-right: 25px;
     margin-top: 10px;
-    border-style: solid;
-    border-color: black;
     border-width: thin;
 }
 
 .avatarImage {
-    margin-top: 20px;
-    margin-bottom: 15px;
-    margin-left: 27px;
-    margin-right: 25px;
+    width:150px;
+    height:150px;
+    margin: 25px auto;
+    overflow: hidden;
+    border-radius:50%;
+    position: relative;
 }
 
 .avatarImage img{
-    max-width: 150px;
-    max-height: 150px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%)
 }
 
 .userName{
