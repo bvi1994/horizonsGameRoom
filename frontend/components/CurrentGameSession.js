@@ -15,8 +15,9 @@ class CurrentGameSession extends Component {
                 Current Games in Session
                 <div className="columnofGames">
                   <div className="rowofGames">
-                      <GameSession />
-                      <GameSession />
+                      <GameSession game={"SlapJack"}/>
+                      <GameSession game={"Triangle"}/>
+                      <GameSession game={"Hide & Seek"}/>
                     {/* {
                         this.state.sessions.map(s => {
                             <GameSession link={s}/>
