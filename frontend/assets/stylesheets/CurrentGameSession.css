@@ -1,6 +1,6 @@
 #gamesInSession{
     background: lightseagreen;
-    border-radius: 50%;
+    border-radius: 5px;
 }
 .columnofGames{
     display: flex;
