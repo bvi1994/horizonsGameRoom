@@ -55,34 +55,29 @@ class Triangle extends Component {
         };
     }
     componentDidMount() {
+        this.socket.on('move', move => {
+            this.setState(move);
+        });
         this.socket.on('errorMessage', message => {
             console.log("Unable to connect. Error: ", message);
         });
-        axios.get(BASE_URL + '/profile')
-        .then(user => {
-            if(!this.state.user) {
-                this.setState({
-                    user: user
-                }, () => {
-                    this.socket.emit('username', this.state.user.username);
-                    this.socket.emit('createGame', {
-                        username: this.state.user.username,
-                        game: "Triangle",
-                        state: this.state,
-                    });
-                });
-            } else if(this.state.user.username !== user.username) {
-                this.isSpectator = true;
-                this.socket.emit('watch', this.state.user.username + "Triangle");
-                this.socket.on('gameMove', move => {
-                    this.setState(move);
-                });
-            }
-        })
-        .catch(e => {
-            console.log(e);
+        this.socket.on('gameEnd', () => {
+
         });
-        this.makeQuestions();
+        if (Window.user !== Window.gameId) {
+            // pull current state
+            this.isSpectator = true;
+            this.socket.emit('watch', Window.gameId + "Triangle");
+        } else if(!this.state.user) {
+            this.setState({
+                user: Window.user
+            });
+            this.socket.emit('createGame', {
+                username: Window.user,
+                game: "Triangle",
+                state: this.state,
+            });
+        }
     }
     setLevel(val) {
         this.setState({
