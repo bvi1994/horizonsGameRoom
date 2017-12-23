@@ -44,7 +44,7 @@ class Triangle extends Component {
         this.nextComponent = ["", "", ""];
         this.socket = SOCKET;
         this.state = {
-            timeLimit: 120,
+            timeLimit: 60,
             question: {},
             userAnswers: ["", "", ""],
             level: null,
